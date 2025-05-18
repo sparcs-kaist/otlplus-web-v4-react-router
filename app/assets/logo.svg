@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Simple “Coffee Cup & Bean” logo -->
+<svg width="220" height="220" viewBox="0 0 220 220"
+     xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>Coffee Logo</title>
+  <defs>
+    <!-- Warm coffee palette -->
+    <linearGradient id="coffeeGradient" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%"  stop-color="#8B4513"/>
+      <stop offset="100%" stop-color="#5B2C06"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circle badge background -->
+  <circle cx="110" cy="110" r="100" fill="url(#coffeeGradient)" />
+
+  <!-- Cup body -->
+  <g transform="translate(45 90)">
+    <rect x="0" y="0" width="130" height="65" rx="12" ry="12"
+          fill="white" stroke="#5B2C06" stroke-width="4"/>
+    <!-- Cup handle -->
+    <path d="M130 12
+             a20 20 0 0 1 0 40
+             a12 12 0 0 1 0 -40"
+          fill="none" stroke="#5B2C06" stroke-width="4"/>
+    <!-- Coffee surface -->
+    <rect x="4" y="4" width="122" height="28" rx="8" ry="8"
+          fill="#4B2A04" />
+  </g>
+
+  <!-- Rising steam -->
+  <g stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M80 60
+             q-8 -18 8 -28
+             q16 -10 8 -28" />
+    <path d="M110 55
+             q-6 -14 6 -22
+             q12 -8 6 -22" />
+    <path d="M140 60
+             q-8 -18 8 -28
+             q16 -10 8 -28" />
+  </g>
+
+  <!-- Coffee bean accent -->
+  <g transform="translate(110 165) rotate(-15)">
+    <ellipse cx="0" cy="0" rx="22" ry="14" fill="#69370B" />
+    <path d="M-6 -12
+             q2 12 12 24"
+          stroke="#492406" stroke-width="3" fill="none"/>
+  </g>
+</svg>
