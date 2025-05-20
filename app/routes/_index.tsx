@@ -1,5 +1,6 @@
 import React from "react"
 
+import Button from "@/common/components/Button"
 import LanguageToggle from "@/common/components/LanguageToggle"
 import ThemeToggle from "@/common/components/ThemeToggle"
 import { ExampleComponent } from "@/features/example/components/ExampleComponent"

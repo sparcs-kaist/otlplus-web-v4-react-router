@@ -3,7 +3,7 @@ import React from "react"
 import styled from "@emotion/styled"
 
 const ExampleComponentInner = styled.div`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.Text.placeholder};
 `
 
 const ExampleComponent: React.FC<React.PropsWithChildren> = (props) => {
