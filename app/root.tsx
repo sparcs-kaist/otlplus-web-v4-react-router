@@ -9,6 +9,8 @@ import {
   isRouteErrorResponse,
 } from "react-router"
 
+import Header from "@/common/guideline/components/Header"
+
 import type { Route } from "./+types/root"
 import Providers from "./Providers"
 import "./globals.css"
@@ -42,7 +44,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
         <ScrollRestoration />
         <Scripts />
       </body>

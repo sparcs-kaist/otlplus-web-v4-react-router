@@ -1,0 +1,41 @@
+"use client"
+
+import { useState } from "react"
+
+import styled from "@emotion/styled"
+
+import FlexWrapper from "@/common/components/FlexWrapper"
+import type TimeBlock from "@/common/components/interface/Timeblock"
+import TextInput from "@/common/components/search/TextInput"
+
+import SearchArea from "../components/SearchArea"
+
+const SearchSectionWrapper = styled.div`
+  width: 645px;
+  border: 2px solid ${({ theme }) => theme.colors.Highlight.default};
+  border-radius: 32px;
+  background: ${({ theme }) => theme.colors.Background.Section.default};
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 24px 12px 24px;
+  transition: all 0.3s ease-in-out;
+  gap: 24px;
+`
+
+const FullWidthSearchArea = styled(SearchArea)`
+  flex: 1 1 100%;
+  width: 100%;
+  display: flex;
+`
+
+const SearchSection = () => {
+  const [timeFilter, setTimeFilter] = useState<TimeBlock | null>(null)
+
+  return (
+    <SearchSectionWrapper>
+      <FullWidthSearchArea timeFilter={timeFilter} setTimeFilter={setTimeFilter} />
+    </SearchSectionWrapper>
+  )
+}
+
+export default SearchSection
