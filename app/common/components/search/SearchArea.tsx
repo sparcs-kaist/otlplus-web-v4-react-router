@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react"
 import type { Dispatch, SetStateAction } from "react"
 
 import styled from "@emotion/styled"
-import { Search } from "@mui/icons-material"
 import { AnimatePresence, motion } from "framer-motion"
 
 import Button from "../Button"

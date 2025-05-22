@@ -26,11 +26,15 @@ const FullWidthSearchArea = styled(SearchArea)`
   flex: 1 1 100%;
   width: 100%;
   display: flex;
+  transition: all 0.3s ease-in-out;
 `
 
-const SearchSection = () => {
-  const [timeFilter, setTimeFilter] = useState<TimeBlock | null>(null)
+interface SearchSectionProps {
+  timeFilter: TimeBlock | null
+  setTimeFilter: React.Dispatch<React.SetStateAction<TimeBlock | null>>
+}
 
+const SearchSection: React.FC<SearchSectionProps> = ({ timeFilter, setTimeFilter }) => {
   return (
     <SearchSectionWrapper>
       <FullWidthSearchArea timeFilter={timeFilter} setTimeFilter={setTimeFilter} />

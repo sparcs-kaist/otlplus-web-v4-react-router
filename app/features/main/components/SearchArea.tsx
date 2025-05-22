@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react"
 import type { Dispatch, SetStateAction } from "react"
 
 import styled from "@emotion/styled"
-import { AnimatePresence, motion } from "framer-motion"
 
 import Button from "@/common/components/Button"
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -33,7 +32,6 @@ const PageWrapper = styled.div`
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 `
 
 const TimeFilterArea = styled.div`
@@ -67,7 +65,6 @@ const SearchParamWrapper = styled.div`
   display: "inline-block";
   flex-shrink: 1;
   flex-direction: column;
-  font-size: 14px;
   padding-left: 36px;
   line-height: 17.5px;
   overflow: hidden;
@@ -79,11 +76,21 @@ const CustomTextInput = styled(TextInput)`
   width: 100%;
   border: 0;
   background: transparent;
+  font-size: 16px !important;
 `
 
 const SearchImg = styled.img<{ src: string }>`
   height: 40px;
   background: transparent;
+`
+
+const SearchAreaWrapperInner = styled.div<{ isOpen: boolean }>`
+  max-height: ${({ isOpen }) => (isOpen ? "1000px" : 0)};
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+  flex-direction: column;
+  transition: max-height 0.3s ease-in-out;
 `
 
 const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) => {
@@ -135,6 +142,9 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
   ]
   const [majorSelect, setMajor] = useState<boolean[]>(Array(majorList.length).fill(false))
 
+  const termList = ["3년이내", "1년이내", "이번 학기"]
+  const [termSelect, setTerm] = useState<boolean[]>(Array(termList.length).fill(false))
+
   const OptionMap: Map<string, OptionProps> = new Map([
     [
       "분류",
@@ -152,6 +162,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
       "학과",
       { nameList: majorList, selectedList: majorSelect, setSelectedList: setMajor },
     ],
+    ["기간", { nameList: termList, selectedList: termSelect, setSelectedList: setTerm }],
   ])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -243,12 +254,6 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
     return `(${key} : ${res})`
   }
 
-  const dropInVariants = {
-    hidden: { opacity: 0, height: 0 },
-    visible: { opacity: 1, height: "auto" },
-    exit: { opacity: 0, height: 0 },
-  }
-
   return (
     <PageWrapper>
       {/* 위쪽 검색어 입력 부분 */}
@@ -264,7 +269,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
           <CustomTextInput
             ref={inputRef}
             value={value}
-            placeholder="과목명, 교수명 등을 검색해보세요"
+            placeholder={open ? "" : "과목명, 교수명 등을 검색해보세요"}
             handleChange={(newValue) => {
               setValue(newValue)
             }}
@@ -286,82 +291,46 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
         </SearchParamWrapper>
       </SearchInputAreaWrapper>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={dropInVariants}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            style={{
-              overflow: "hidden",
-              display: "flex",
-              gap: "12px",
-              flexDirection: "column",
-            }}
+      <SearchAreaWrapperInner isOpen={open}>
+        <div
+          style={{
+            width: "100%",
+            minHeight: "8px",
+            display: "block",
+          }}
+        >
+          {" "}
+        </div>
+        {[...OptionMap.entries()].map(([key, value]) => (
+          <OptionAreaWrapper key={key}>
+            {key}
+            <OptionChipGrid
+              nameList={value.nameList}
+              chosenList={value.selectedList}
+              handleOptionClick={(idx: number) => {
+                handleOptionClick(idx, value.selectedList, value.setSelectedList)
+              }}
+              handleSelectAllClick={() => {
+                handleSelectAll(value.selectedList, value.setSelectedList)
+              }}
+              selectedAll={!value.selectedList.includes(true)}
+            />
+          </OptionAreaWrapper>
+        ))}
+        <ButtonArea>
+          <Button $paddingLeft={24} $paddingTop={8} onClick={handleReset}>
+            취소
+          </Button>
+          <Button
+            type="selected"
+            $paddingLeft={24}
+            $paddingTop={8}
+            onClick={handleSubmit}
           >
-            {[...OptionMap.entries()].map(([key, value]) => (
-              <OptionAreaWrapper key={key}>
-                {key}
-                <OptionChipGrid
-                  nameList={value.nameList}
-                  chosenList={value.selectedList}
-                  handleOptionClick={(idx: number) => {
-                    handleOptionClick(idx, value.selectedList, value.setSelectedList)
-                  }}
-                  handleSelectAllClick={() => {
-                    handleSelectAll(value.selectedList, value.setSelectedList)
-                  }}
-                  selectedAll={!value.selectedList.includes(true)}
-                />
-              </OptionAreaWrapper>
-            ))}
-
-            <OptionAreaWrapper>
-              시간
-              <div
-                style={{
-                  backgroundColor: "#F5F5F5",
-                  color: "#555555",
-                  padding: "7px 10px",
-                  fontSize: "14px",
-                  fontWeight: "400",
-                  lineHeight: "17.5px",
-                }}
-              >
-                {timeFilter == null ? (
-                  `클릭 후 시간표에서 드래그하여 선택`
-                ) : (
-                  <TimeFilterArea>
-                    {`${formatTimeAreaToString(timeFilter)}`}
-                    <Icon
-                      type={"Close"}
-                      size={17.5}
-                      onClick={() => {
-                        setTimeFilter(null)
-                      }}
-                    />
-                  </TimeFilterArea>
-                )}
-              </div>
-            </OptionAreaWrapper>
-            <ButtonArea>
-              <Button $paddingLeft={24} $paddingTop={8} onClick={handleReset}>
-                취소
-              </Button>
-              <Button
-                type="selected"
-                $paddingLeft={24}
-                $paddingTop={8}
-                onClick={handleSubmit}
-              >
-                검색
-              </Button>
-            </ButtonArea>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            검색
+          </Button>
+        </ButtonArea>
+      </SearchAreaWrapperInner>
     </PageWrapper>
   )
 }
