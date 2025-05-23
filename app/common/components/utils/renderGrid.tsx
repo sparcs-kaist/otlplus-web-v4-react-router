@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from "react"
 
 const renderGrid = (
   n: number,
@@ -10,12 +10,12 @@ const renderGrid = (
   placeholderWidth: number,
   pageStart: number,
 ) => {
-  const grid: JSX.Element[] = [];
+  const grid: JSX.Element[] = []
   for (let i = 0; i < n; i++) {
-    const row: JSX.Element[] = [];
+    const row: JSX.Element[] = []
     for (let j = 0; j < m; j++) {
-      const uniqueId = `${i * m + j}`;
-      const isShown = !placeholderIndex.includes(j + pageStart);
+      const uniqueId = `${i * m + j}`
+      const isShown = !placeholderIndex.includes(j + pageStart)
       const newRec = (
         <div
           key={uniqueId}
@@ -23,30 +23,29 @@ const renderGrid = (
           style={{
             width: `${isShown ? cellWidth : placeholderWidth}px`,
             height: `${cellHeight}px`,
-            display: 'inline-block',
-            textAlign: 'center',
-            cursor: 'pointer',
+            display: "inline-block",
+            textAlign: "center",
             borderTop: `${
               isShown
                 ? i % 2 == 0
-                  ? '1px solid rgba(232, 232, 232, 1)'
-                  : '1px dashed rgba(232, 232, 232, 1)'
-                : '0px'
+                  ? "1px solid rgba(232, 232, 232, 1)"
+                  : "1px dashed rgba(232, 232, 232, 1)"
+                : "0px"
             }`,
-            borderBottom: `${isShown && i == n - 1 ? '1px solid rgba(232, 232, 232, 1)' : '0px'}`,
-            marginRight: `${j < m - 1 ? `${colPadding}px` : '0px'}`,
+            borderBottom: `${isShown && i == n - 1 ? "1px solid rgba(232, 232, 232, 1)" : "0px"}`,
+            marginRight: `${j < m - 1 ? `${colPadding}px` : "0px"}`,
           }}
         />
-      );
-      row.push(newRec);
+      )
+      row.push(newRec)
     }
     grid.push(
-      <div key={i} style={{ display: 'flex' }}>
+      <div key={i} style={{ display: "flex" }}>
         {row}
       </div>,
-    );
+    )
   }
-  return grid;
-};
+  return grid
+}
 
-export default renderGrid;
+export default renderGrid

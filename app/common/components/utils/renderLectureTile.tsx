@@ -1,11 +1,13 @@
-import { JSX, useRef } from 'react';
-import { LectureSummary } from '../interface/Timetable';
+import { useRef } from "react"
+import type { JSX } from "react"
 
-import { WeekdayEnum } from '../enum/weekdayEnum';
-import LectureTile from '../LectureTile';
-import TimeBlock from '../interface/Timeblock';
-import Lecture from '../interface/Lecture';
-import lectures from '@/dummy/lectures';
+import lectures from "@/dummy/lectures"
+
+import LectureTile from "../LectureTile"
+import { WeekdayEnum } from "../enum/weekdayEnum"
+import type Lecture from "../interface/Lecture"
+import type TimeBlock from "../interface/Timeblock"
+import type { LectureSummary } from "../interface/Timetable"
 
 const renderLectureTile = (
   lectureSummary: LectureSummary[],
@@ -20,55 +22,57 @@ const renderLectureTile = (
   setHolding: React.Dispatch<React.SetStateAction<boolean>>,
   dragging: boolean,
 ) => {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const rectangles: JSX.Element[] = [];
+  const gridRef = useRef<HTMLDivElement>(null)
+  const rectangles: JSX.Element[] = []
 
   const findItemById = (arr: Lecture[], id: number): Lecture | undefined => {
-    return arr.find((item) => item.id === id);
-  };
+    return arr.find((item) => item.id === id)
+  }
 
   for (let i = 0; i < lectureSummary.length; i++) {
-    const lecture: LectureSummary = lectureSummary[i];
-    const course: Lecture | undefined = findItemById(lectures, lecture.course_id);
-    const timeBlocks: TimeBlock[] = lecture.timeBlocks;
-    const isSelected = selected == course;
-    const isHovered = hover == course && selected == null;
+    const lecture: LectureSummary = lectureSummary[i]
+    const course: Lecture | undefined = findItemById(lectures, lecture.course_id)
+    const timeBlocks: TimeBlock[] = lecture.timeBlocks
+    const isSelected = selected == course
+    const isHovered = hover == course && selected == null
 
     for (let j = 0; j < timeBlocks.length; j++) {
-      const timeBlock = timeBlocks[j];
-      const weekDay = (timeBlock.day as unknown as WeekdayEnum) - 1;
-      const left = weekDay * (cellWidth + colPadding);
-      const startIndex = timeBlock.timeIndex;
-      const top = startIndex * cellHeight;
+      const timeBlock = timeBlocks[j]
+      const weekDay = (timeBlock.day as unknown as WeekdayEnum) - 1
+      const left = weekDay * (cellWidth + colPadding)
+      const startIndex = timeBlock.timeIndex
+      const top = startIndex * cellHeight
 
       rectangles.push(
         <div
           ref={gridRef}
           style={{
-            position: 'absolute',
+            position: "absolute",
             left: left,
             top: top,
           }}
           key={`${i}-${j}`}
           onClick={(event: React.MouseEvent) => {
-            event.stopPropagation();
+            event.stopPropagation()
             if (course == selected) {
-              setSelected(null);
+              setSelected(null)
             } else {
               if (course != undefined) {
-                setSelected(course);
+                setSelected(course)
               }
             }
           }}
           onMouseEnter={() => {
+            console.log(course)
             if (!dragging && course != undefined) {
-              setHover(course);
+              setHover(course)
             }
-            setHolding(true);
+            setHolding(true)
           }}
           onMouseLeave={() => {
-            setHover(null);
-          }}>
+            setHover(null)
+          }}
+        >
           <LectureTile
             lecture={lecture}
             timeBlock={timeBlock}
@@ -78,11 +82,11 @@ const renderLectureTile = (
             cellHeight={cellHeight}
           />
         </div>,
-      );
+      )
     }
   }
 
-  return rectangles;
-};
+  return rectangles
+}
 
-export default renderLectureTile;
+export default renderLectureTile

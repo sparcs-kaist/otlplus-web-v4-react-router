@@ -1,12 +1,8 @@
 "use client"
 
-import { useState } from "react"
-
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
 import type TimeBlock from "@/common/components/interface/Timeblock"
-import TextInput from "@/common/components/search/TextInput"
 
 import SearchArea from "../components/SearchArea"
 

@@ -6,7 +6,6 @@ import styled from "@emotion/styled"
 
 import Button from "@/common/components/Button"
 import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
 import type TimeBlock from "@/common/components/interface/Timeblock"
 import TextInput from "@/common/components/search/TextInput"
 import { formatTimeAreaToString } from "@/common/components/utils/formatTimeblockToString"
@@ -32,14 +31,6 @@ const PageWrapper = styled.div`
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-`
-
-const TimeFilterArea = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 12px 24px 12px 24px;
 `
 
 const ButtonArea = styled.div`
@@ -200,6 +191,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
     handleSelectAll(divisionSelect, setDivison)
     handleSelectAll(majorSelect, setMajor)
     handleSelectAll(gradeSelect, setGrade)
+    handleSelectAll(termSelect, setTerm)
     setTimeFilter(null)
   }
 
@@ -218,6 +210,11 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
     gradeSelect.map((val, index) => {
       if (val == true) {
         console.log(gradeList[index])
+      }
+    })
+    termSelect.map((val, index) => {
+      if (val == true) {
+        console.log(termList[index])
       }
     })
     setOpen(false)
@@ -284,7 +281,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
               lineHeight: "15px",
             }}
           >
-            {`${getOptionList("분류")} ${getOptionList("학과")} ${getOptionList("학년")} ${
+            {`${getOptionList("분류")} ${getOptionList("학과")} ${getOptionList("학년")} ${getOptionList("기간")} ${
               timeFilter ? `(${formatTimeAreaToString(timeFilter)})` : ""
             }`}
           </span>

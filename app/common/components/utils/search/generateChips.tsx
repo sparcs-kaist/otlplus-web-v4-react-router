@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect } from "react"
 
 import styled from "@emotion/styled"
 
@@ -29,9 +29,12 @@ const OptionChipGrid: React.FC<OptionChipGridProps> = ({
   handleSelectAllClick = () => {},
   selectedAll,
 }) => {
-  if (!chosenList.includes(false)) {
-    handleSelectAllClick()
-  }
+  useEffect(() => {
+    if (!chosenList.includes(false)) {
+      handleSelectAllClick()
+    }
+  }, [chosenList, handleSelectAllClick])
+
   return (
     <OptionChipWrapper>
       <Chip selected={selectedAll} chipText="전체" onClick={handleSelectAllClick} />
