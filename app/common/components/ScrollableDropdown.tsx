@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
-import { IconButton } from "@mui/material"
 
 import Icon from "@/common/components/Icon"
+import { IconButton } from "@/common/components/IconButton"
 
 interface ScrollableDropdownProps {
   options?: string[]
@@ -17,12 +17,14 @@ interface ScrollableDropdownProps {
 const SelectedWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 8px 12px;
-  color: ${({ theme }) => theme.colors.Text.default};
+  padding: 8px 10px;
+  color: ${({ theme }) => theme.colors.Highlight.default};
   font-size: 14px;
   font-weight: 400;
   line-height: 17.5;
-  background-color: rgba(245, 245, 245, 1);
+  background-color: #fff;
+  border: 1px solid ${({ theme }) => theme.colors.Line.default};
+  border-radius: 6px;
   height: 36px;
   align-items: center;
   justify-content: space-between;
@@ -31,10 +33,9 @@ const SelectedWrapper = styled.div`
 const OptionCard = styled.div<{ disabled: boolean }>`
   display: flex;
   padding: 8px 12px;
-  background-color: white;
   height: 36px;
   align-items: center;
-  cursor: "pointer";
+  cursor: pointer;
   pointer-events: ${(props) => (props.disabled ? "none" : "all")};
   &:hover {
     background-color: rgba(245, 245, 245, 1);
@@ -61,15 +62,20 @@ const OptionScroll = styled.div<{
   height: ${(props) => (props.isDetail ? "100px" : "250px")};
   z-index: ${(props) => `${props.zindex}`};
   width: ${(props) => `${props.width}px`};
-  position: absolute;
   top: ${(props) => `${props.top + 36}px`};
   left: ${(props) => `${props.left}px`};
   overflow: scroll;
+  overflow-x: hidden;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   border-left: 1px solid ${(props) => props.theme.colors.Line.default};
   border-right: 1px solid ${(props) => props.theme.colors.Line.default};
   border-bottom: 1px solid ${(props) => props.theme.colors.Line.default};
+  background: #fff;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 `
 
 const TextWrapper = styled.div<{ disabled: boolean; selected: boolean }>`
@@ -79,7 +85,7 @@ const TextWrapper = styled.div<{ disabled: boolean; selected: boolean }>`
     props.disabled
       ? "rgba(170, 170, 170, 1)"
       : props.selected
-        ? props.theme.colors.Highlight.default
+        ? props.theme.colors.Text.default
         : "rgba(51, 51, 51, 1)"};
 `
 
@@ -152,6 +158,7 @@ const ScrollableDropdown: React.FC<ScrollableDropdownProps> = ({
           onClick={() => {
             setIsExpand(!isExpand)
           }}
+          styles={{ padding: 0 }}
         >
           <Icon type={isExpand ? "ExpandLess" : "ExpandMore"} size={24} />
         </IconButton>

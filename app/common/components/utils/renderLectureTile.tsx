@@ -63,7 +63,6 @@ const renderLectureTile = (
             }
           }}
           onMouseEnter={() => {
-            console.log(course)
             if (!dragging && course != undefined) {
               setHover(course)
             }

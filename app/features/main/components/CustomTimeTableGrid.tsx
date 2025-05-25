@@ -110,10 +110,6 @@ const CustomTimeTableGrid: React.FC<GridProps> = ({
     return result
   }
 
-  useEffect(() => {
-    console.log(hover)
-  }, [hover])
-
   useLayoutEffect(() => {
     if (gridRef.current && dragging && !holding) {
       const _startRow = Math.min(startRow!, lastRow!)

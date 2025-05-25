@@ -58,13 +58,14 @@ const TileWrapper = styled.div<{
   margin-bottom: 2px;
   margin-top: 2px;
   justify-content: center;
-  background-color: ${({ course_id, isHighlighted }) =>
-    isHighlighted ? darkColorMap[course_id % 15] : colorMap[course_id % 15]};
+  background-color: ${({ theme, course_id, isHighlighted }) =>
+    isHighlighted ? theme.colors.Highlight.default : colorMap[course_id % 15]};
   border-radius: 2px;
   overflow: hidden;
   overflow-wrap: break-word;
   gap: 1px;
   transition: box-shadow 0.1s ease-in-out;
+  cursor: pointer;
 `
 
 const TitleWrapper = styled.span<{ isHighlighted: boolean }>`

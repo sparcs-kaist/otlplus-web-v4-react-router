@@ -43,7 +43,7 @@ const Icon: React.FC<IconProps> = ({
   return (
     <div style={wrapperStyle} onClick={onClick}>
       <ThemeProvider theme={theme}>
-        <IconComponent style={{ fontSize: `${size}px`, color }} />
+        <IconComponent style={{ fontSize: `${size}px`, color, cursor: "pointer" }} />
       </ThemeProvider>
     </div>
   )

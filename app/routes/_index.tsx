@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
 
+import DividedLayoutRight from "@/common/components/DividedLayoutRight"
 import FlexWrapper from "@/common/components/FlexWrapper"
 import type TimeBlock from "@/common/components/interface/Timeblock"
 import type { LectureSummary } from "@/common/components/interface/Timetable"
+import ReviewSection from "@/features/main/sections/reviewSection"
+import ScheduleSection from "@/features/main/sections/scheduleSection"
 import SearchSection from "@/features/main/sections/searchSection"
 import TimeTableSection from "@/features/main/sections/timeTableSection"
 
@@ -24,13 +27,9 @@ const SearchSectionWrapper = styled(FlexWrapper)`
   z-index: 2;
 `
 
-const WidgetSectionWrapper = styled(FlexWrapper)``
-
-const WidgetWrapper = styled.div`
-  background: #fff;
-  padding-block: 30px;
-  padding-inline: 23px;
-  border-radius: 16px;
+const WidgetSectionWrapper = styled(FlexWrapper)`
+  display: flex;
+  gap: 24px;
 `
 
 const exampleLectureSummary: LectureSummary[] = [
@@ -110,7 +109,7 @@ const exampleLectureSummary: LectureSummary[] = [
         startTime: "",
         endTime: "",
       },
-    ], // classtimes가 비어있음
+    ],
   },
 ]
 
@@ -124,9 +123,21 @@ export default function Home() {
           <SearchSection timeFilter={timeFilter} setTimeFilter={setTimeFilter} />
         </SearchSectionWrapper>
         <WidgetSectionWrapper direction="row" justify="center" gap={0}>
-          <WidgetWrapper>
-            <TimeTableSection lectureSummary={exampleLectureSummary} />
-          </WidgetWrapper>
+          <DividedLayoutRight>
+            <FlexWrapper direction="column" gap={24}>
+              <TimeTableSection lectureSummary={exampleLectureSummary} />
+            </FlexWrapper>
+            <FlexWrapper direction="column" gap={24}>
+              <ScheduleSection
+                content="2025 봄 수강신청 마감"
+                dueDate={new Date("2025-04-11")}
+              />
+              <ReviewSection
+                content="2025 봄 수강신청 마감"
+                dueDate={new Date("2025-04-11")}
+              />
+            </FlexWrapper>
+          </DividedLayoutRight>
         </WidgetSectionWrapper>
       </MainWrapper>
     </>

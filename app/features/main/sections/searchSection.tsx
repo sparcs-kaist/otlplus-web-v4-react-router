@@ -6,7 +6,7 @@ import type TimeBlock from "@/common/components/interface/Timeblock"
 
 import SearchArea from "../components/SearchArea"
 
-const SearchSectionWrapper = styled.div`
+const SearchSectionInner = styled.div`
   width: 645px;
   border: 2px solid ${({ theme }) => theme.colors.Highlight.default};
   border-radius: 32px;
@@ -32,9 +32,9 @@ interface SearchSectionProps {
 
 const SearchSection: React.FC<SearchSectionProps> = ({ timeFilter, setTimeFilter }) => {
   return (
-    <SearchSectionWrapper>
+    <SearchSectionInner>
       <FullWidthSearchArea timeFilter={timeFilter} setTimeFilter={setTimeFilter} />
-    </SearchSectionWrapper>
+    </SearchSectionInner>
   )
 }
 
