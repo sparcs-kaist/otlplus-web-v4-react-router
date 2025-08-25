@@ -7,7 +7,7 @@ export const colors = {
 
   Background: {
     Block: {
-      default: "#F5F5F5",
+      default: "#FAFAFA",
       dark: "#EBEBEB",
       darker: "#E1E1E1",
       highlight: "#FFFFFF",
@@ -45,6 +45,7 @@ export const colors = {
     dark: "#D6D6D6",
   },
   Text: {
+    bright: "#FFFFFF",
     disable: "#AAAAAA",
     placeholder: "#AAAAAA",
     lighter: "#888888",
