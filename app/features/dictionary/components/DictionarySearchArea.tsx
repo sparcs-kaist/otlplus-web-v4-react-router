@@ -1,16 +1,17 @@
-/* eslint-disable no-console */
-import { useEffect, useRef, useState } from "react"
-import type { Dispatch, SetStateAction } from "react"
+import { useEffect, useRef, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
-import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import TextInput from "@/common/components/search/TextInput"
+import Button from "@/common/components/Button";
+import FlexWrapper from "@/common/components/FlexWrapper";
+import Icon from "@/common/components/Icon";
+import Typography from "@/common/components/Typography";
+import TextInput from "@/common/components/search/TextInput";
 import OptionChipGrid from "@/common/components/utils/search/generateChips"
-import Icon from "@/common/components/Icon"
-import themes from "@/styles/themes"
-import Typography from "@/common/components/Typography"
+import themes from "@/styles/themes";
+import { getDepartmentOptions, getLevelOptions, getTermOptions, getTypeOptions } from "@/common/searchOptions"
 
 export type OptionProps = {
   nameList: string[]
@@ -79,86 +80,50 @@ const SearchAreaWrapperInner = styled.div<{ isOpen: boolean }>`
 `
 
 const DictionarySearchArea: React.FC = () => {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState<boolean>(false)
   const [value, setValue] = useState<string>("")
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const gradeList = ["100번대", "200번대", "300번대", "400번대"]
+  const gradeList = getLevelOptions()
   const [gradeSelect, setGrade] = useState<boolean[]>(Array(gradeList.length).fill(false))
 
-  const divisionList = [
-    "기필",
-    "기선",
-    "전필",
-    "전선",
-    "교필",
-    "인선",
-    "공통",
-    "석박",
-    "자선",
-    "기타",
-  ]
+  const divisionList = getTypeOptions()
   const [divisionSelect, setDivison] = useState<boolean[]>(
     Array(divisionList.length).fill(false),
   )
 
-  const majorList = [
-    "인문",
-    "건환",
-    "기경",
-    "기계",
-    "뇌인지",
-    "물리",
-    "바공",
-    "반시공",
-    "상공",
-    "산디",
-    "생명",
-    "생화공",
-    "수리",
-    "신소재",
-    "원양",
-    "융인",
-    "전산",
-    "전자",
-    "항공",
-    "화학",
-    "기타",
-  ]
-  const [majorSelect, setMajor] = useState<boolean[]>(Array(majorList.length).fill(false))
+  const departmentList = getDepartmentOptions()
+  const [majorSelect, setMajor] = useState<boolean[]>(Array(departmentList.length).fill(false))
 
-  const termList = ["3년이내", "1년이내", "이번 학기"]
+  const termList = getTermOptions()
   const [termSelect, setTerm] = useState<boolean[]>(Array(termList.length).fill(false))
 
   const OptionMap: Map<string, OptionProps> = new Map([
     [
-      "분류",
+      t('common.class'),
       {
-        nameList: divisionList,
+        nameList: divisionList.map((item) => item[1]),
         selectedList: divisionSelect,
         setSelectedList: setDivison,
       },
     ],
     [
-      "학년",
-      { nameList: gradeList, selectedList: gradeSelect, setSelectedList: setGrade },
+      t('common.search.grade'),
+      { nameList: gradeList.map((item) => item[1]), selectedList: gradeSelect, setSelectedList: setGrade },
     ],
     [
-      "학과",
-      { nameList: majorList, selectedList: majorSelect, setSelectedList: setMajor },
+      t('common.search.department'),
+      { nameList: departmentList.map((item) => item[1]), selectedList: majorSelect, setSelectedList: setMajor },
     ],
-    ["기간", { nameList: termList, selectedList: termSelect, setSelectedList: setTerm }],
+    [t('common.search.term'), { nameList: termList.map((item) => item[1]), selectedList: termSelect, setSelectedList: setTerm }],
   ])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.nativeEvent.isComposing) {
       // 한글 입력 중이면 Enter 이벤트 무시
       return
-    }
-
-    if (event.key === "Enter") {
-      handleSubmit()
-      console.log("입력된 값:", value)
     }
   }
 
@@ -189,27 +154,6 @@ const DictionarySearchArea: React.FC = () => {
   }
 
   const handleSubmit = () => {
-    console.log("필터 결과")
-    divisionSelect.map((val, index) => {
-      if (val == true) {
-        console.log(divisionList[index])
-      }
-    })
-    majorSelect.map((val, index) => {
-      if (val == true) {
-        console.log(majorList[index])
-      }
-    })
-    gradeSelect.map((val, index) => {
-      if (val == true) {
-        console.log(gradeList[index])
-      }
-    })
-    termSelect.map((val, index) => {
-      if (val == true) {
-        console.log(termList[index])
-      }
-    })
     setOpen(false)
   }
 
@@ -259,7 +203,7 @@ const DictionarySearchArea: React.FC = () => {
           <CustomTextInput
             ref={inputRef}
             value={value}
-            placeholder={open ? "" : "검색"}
+            placeholder={open ? "" : t('common.search.search')}
             handleChange={(newValue) => {
               setValue(newValue)
             }}
@@ -274,7 +218,7 @@ const DictionarySearchArea: React.FC = () => {
               lineHeight: "15px",
             }}
           >
-            {`${getOptionList("분류")} ${getOptionList("학과")} ${getOptionList("학년")} ${getOptionList("기간")}`}
+            {`${getOptionList(t('common.class'))} ${getOptionList(t('common.search.department'))} ${getOptionList(t('common.search.grade'))} ${getOptionList(t('common.search.term'))}`}
           </span>
         </SearchParamWrapper>
       </SearchInputAreaWrapper>
@@ -307,7 +251,7 @@ const DictionarySearchArea: React.FC = () => {
         ))}
         <ButtonArea>
           <Button $paddingLeft={24} $paddingTop={8} onClick={handleReset}>
-            취소
+            {t('common.cancel')}
           </Button>
           <Button
             type="selected"
@@ -315,7 +259,7 @@ const DictionarySearchArea: React.FC = () => {
             $paddingTop={8}
             onClick={handleSubmit}
           >
-            검색
+            {t('common.search.search')}
           </Button>
         </ButtonArea>
         <div style={{width: "100%", minHeight: "8px", display: "block"}}></div>

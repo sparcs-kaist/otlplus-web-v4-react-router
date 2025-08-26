@@ -9,6 +9,7 @@ import Icon from "@/common/components/Icon"
 import themes from "@/styles/themes"
 import ScrollableDropdown from "@/common/components/ScrollableDropdown"
 import CourseBlock from "@/features/dictionary/components/CourseBlock"
+import { useTranslation, Trans } from "react-i18next"
 
 const CourseListSectionInner = styled(FlexWrapper)`
   width: 100%;
@@ -37,6 +38,8 @@ const CourseListHeader = styled(FlexWrapper)`
 const HeaderText = styled(Typography)`
   display: flex;
   align-items: center;
+  gap: 1px;
+  font-size: ${({ theme }) => theme.fonts.Normal.fontSize}px;
 `
 
 const SortWrapper = styled(FlexWrapper)`
@@ -65,6 +68,8 @@ interface CourseListSectionProps {
 }
 
 const CourseListSection: React.FC<CourseListSectionProps> = ({ selectedCourseId, setSelectedCourseId }) => {
+  const { t } = useTranslation();
+  
   const [searchResult, setSearchResult] = useState<CourseSearchResult[] | null>(CourseSearchResults);
   const [sortOption, setSortOption] = useState<number>(0);
 
@@ -76,21 +81,28 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({ selectedCourseId,
       {searchResult ? <>
         <CourseListHeader direction="row" gap={0} justify={"space-between"} align={"center"}>
           <HeaderText color={"Text.default"}>
-            총 <Typography type={"NormalBold"}>{searchResult.length}</Typography>개 과목 (<Icon type={"Circle"} size={12} color={themes.light.colors.Highlight.default}/>: 이번 학기 개설)
+            <Trans
+              i18nKey="dictionary.courseCountInfo"
+              count={searchResult.length}
+              components={{
+                bold: <Typography type={"NormalBold"} style={{ marginLeft: "4px" }}/>,
+                icon: <Icon type={"Circle"} size={12} color={themes.light.colors.Highlight.default} />,
+              }}
+            />
           </HeaderText>
           <SortWrapper direction="row" gap={8} align={"center"}>
-            <Typography type={"NormalBold"} color={"Text.default"}>정렬</Typography>
+            <Typography type={"NormalBold"} color={"Text.default"}>{t('dictionary.sort')}</Typography>
             <DropDownWrapper>
-              <ScrollableDropdown options={["과목코드순", "인기순", "수강자 많은 순"]} setSelectedOption={setSortOption} selectedOption={sortOption}/>
+              <ScrollableDropdown options={[t('dictionary.sortOptions.code'), t('dictionary.sortOptions.popularity'), t('dictionary.sortOptions.enrollment')]} setSelectedOption={setSortOption} selectedOption={sortOption}/>
             </DropDownWrapper>
           </SortWrapper>
         </CourseListHeader>
         <CourseBlockWrapper direction="column" gap={12}>
           {searchResult.map((course) => (
-            <CourseBlock course={course} isSelected={selectedCourseId == course.id} selectCourseId={setSelectedCourseId}/>
+            <CourseBlock key={course.id} course={course} isSelected={selectedCourseId == course.id} selectCourseId={setSelectedCourseId}/>
           ))}
         </CourseBlockWrapper>
-      </> : <NoResultText type={"Bigger"} color={"Text.placeholder"}>결과 없음</NoResultText>}
+      </> : <NoResultText type={"Bigger"} color={"Text.placeholder"}>{t('dictionary.noResults')}</NoResultText>}
     </CourseListSectionInner>
   );
 }

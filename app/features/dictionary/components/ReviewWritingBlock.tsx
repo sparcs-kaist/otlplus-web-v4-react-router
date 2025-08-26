@@ -6,6 +6,7 @@ import { stringSemester } from "@/utils/semesterToString"
 import styled from "@emotion/styled"
 import Button from "@/common/components/Button"
 import ReviewGradeCircles from "@/features/dictionary/components/ReviewGradeCircles"
+import { useTranslation } from "react-i18next"
 
 const ReviewWrapper = styled(FlexWrapper)`
   padding: 8px 10px;
@@ -26,6 +27,8 @@ interface ReviewWritingBlockProps {
 }
 
 const ReviewWritingBlock: React.FC<ReviewWritingBlockProps> = ({ courseName }) => {
+  const { t } = useTranslation();
+
   const [writingReviewContent, setWritingReviewContent] = useState<string>("");
   const [writingReviewScores, setWritingReviewScores] = useState({ grade: 0, load: 0, speech: 0 });
 
@@ -38,23 +41,23 @@ const ReviewWritingBlock: React.FC<ReviewWritingBlockProps> = ({ courseName }) =
             <Typography type={"Normal"} color={"Text.lighter"}>{text}</Typography>
           ))}
         </FlexWrapper>
-        <ReviewTextInput placeholder={"학점, 로드 등의 평가에 대하여 설명해주세요."} value={writingReviewContent} handleChange={setWritingReviewContent} area={true}/>
+        <ReviewTextInput placeholder={t('common.review.writingPlaceholder')} value={writingReviewContent} handleChange={setWritingReviewContent} area={true}/>
         <FlexWrapper direction="row" gap={12}>
           <FlexWrapper direction="row" gap={6} align="center">
-            <Typography type="Normal" color="Text.default">성적</Typography>
+            <Typography type="Normal" color="Text.default">{t('common.grade')}</Typography>
             <ReviewGradeCircles grade={writingReviewScores.grade} setGrade={(grade) => setWritingReviewScores({...writingReviewScores, grade: grade})}/>
           </FlexWrapper>
           <FlexWrapper direction="row" gap={6} align="center">
-            <Typography type="Normal" color="Text.default">널널</Typography>
+            <Typography type="Normal" color="Text.default">{t('common.load')}</Typography>
             <ReviewGradeCircles grade={writingReviewScores.load} setGrade={(load) => setWritingReviewScores({...writingReviewScores, load: load})}/>
           </FlexWrapper>
           <FlexWrapper direction="row" gap={6} align="center">
-            <Typography type="Normal" color="Text.default">강의</Typography>
+            <Typography type="Normal" color="Text.default">{t('common.speech')}</Typography>
             <ReviewGradeCircles grade={writingReviewScores.speech} setGrade={(speech) => setWritingReviewScores({...writingReviewScores, speech: speech})}/>
           </FlexWrapper>
         </FlexWrapper>
         <FlexWrapper direction="row" gap={0} justify={"end"} style={{ width : "100%" }}>
-          <Button type={"selected"} $paddingLeft={9}>업로드</Button>
+          <Button type={"selected"} $paddingLeft={9}>{t('common.upload')}</Button>
         </FlexWrapper>
       </ReviewWrapper>
     </>

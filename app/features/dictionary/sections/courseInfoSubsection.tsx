@@ -3,6 +3,7 @@ import FlexWrapper from "@/common/components/FlexWrapper"
 import React from "react"
 import type { NewCourse } from "@/common/components/interface/NewCourse"
 import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
 const CourseInfo = styled(FlexWrapper)`
   width: 100%;
@@ -22,11 +23,13 @@ interface CourseInfoSubsectionProps {
 }
 
 const CourseInfoSubsection: React.FC<CourseInfoSubsectionProps> = ({ courseDetail }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <CourseInfo direction="column" gap={8}>
-        {[["분류", courseDetail?.department.name + ", " + courseDetail?.type],
-          ["설명", courseDetail?.summary]]
+        {[[t('common.class'), courseDetail?.department.name + ", " + courseDetail?.type],
+          [t('common.description'), courseDetail?.summary]]
           .map(([label, value], index) => (
           <FlexWrapper key={index} direction="row" gap={6}>
             <DetailHeaderText type={"NormalBold"} color={"Text.default"}>{label}</DetailHeaderText>
@@ -35,9 +38,9 @@ const CourseInfoSubsection: React.FC<CourseInfoSubsectionProps> = ({ courseDetai
         ))}
       </CourseInfo>
       <NumberWrapper direction="row" gap={0} justify={"space-between"} align={"center"}>
-        {[[courseDetail?.num_classes, "강의시간"],
-          [courseDetail?.num_labs, "실험"],
-          [courseDetail?.credit, "학점"]]
+        {[[courseDetail?.num_classes, t('common.numClasses')],
+          [courseDetail?.num_labs, t('common.numLabs')],
+          [courseDetail?.credit, t('common.credit')]]
           .map(([value, label], index) => (
           <FlexWrapper key={index} direction="column" gap={0} align={"center"}>
             <Typography type={"Bigger"} color={"Text.default"}>{value}</Typography>

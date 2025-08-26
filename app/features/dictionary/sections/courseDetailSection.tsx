@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import React, { useState } from "react"
-import Credit from "@/common/components/Credit"
+import Credits from "@/common/components/Credits"
 import FlexWrapper from "@/common/components/FlexWrapper"
 import type { NewCourse } from "@/common/components/interface/NewCourse"
 import CourseExample from "@/dummy/CourseExample"
@@ -67,7 +67,7 @@ const CourseDetailSection: React.FC<CourseDetailSectionProps> = ({ selectedCours
             <CourseReviewSubsection courseName={courseDetail?.title} selectedProfessorId={selectedProfessorId}/>
           </CourseDetailWrapper>
         </>
-      ) : <Credit/>}
+      ) : <Credits/>}
     </CourseDetailSectionInner>
   )
 }

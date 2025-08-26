@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react"
 import styled from "@emotion/styled"
 import type { NewCourse } from "@/common/components/interface/NewCourse"
 import { stringSemester } from "@/utils/semesterToString"
+import { useTranslation } from "react-i18next"
 
 const CourseHistory = styled(FlexWrapper)`
   width: 100%;
@@ -50,6 +51,8 @@ interface CourseHistorySubsectionProps {
 }
 
 const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({ courseDetail, selectedProfessorId, setSelectedProfessorId }) => {
+  const { t } = useTranslation();
+
   const historyScroll = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -60,13 +63,13 @@ const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({ cours
 
   return (
     <>
-      <Typography type={"NormalBold"} color={"Text.default"}>개설이력</Typography>
+      <Typography type={"NormalBold"} color={"Text.default"}>{t('dictionary.courseHistory')}</Typography>
       <CourseHistory direction="row" gap={20} ref={historyScroll}>
         {courseDetail?.history.map((history, index) => (
           <CourseHistoryBlock key={index} direction="column" gap={6} align={"center"}>
             <Typography type={"Normal"} color={"Text.default"}>{history.year} {stringSemester(history.semester)}</Typography>
             {history.professors.length === 0 ? (
-              <NoHistoryText color={"Text.disable"} type={"Normal"}>미개설</NoHistoryText>
+              <NoHistoryText color={"Text.disable"} type={"Normal"}>{t('dictionary.notOffered')}</NoHistoryText>
             ) : <FlexWrapper direction="column" gap={4} align={"center"}>
               {history.professors.map((professor, profIndex) => (
                 <CourseHistoryChip selected={selectedProfessorId == professor.id} chipIndex={professor.classNo} chipText={professor.name} onClick={() => {

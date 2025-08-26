@@ -4,6 +4,7 @@ import Icon from "@/common/components/Icon"
 import themes from "@/styles/themes"
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Typography from "@/common/components/Typography"
+import { useTranslation } from "react-i18next"
 
 interface CourseBlockProps {
   course: CourseSearchResult
@@ -31,6 +32,8 @@ const DetailHeader = styled(Typography)`
 `
 
 const CourseBlock: React.FC<CourseBlockProps> = ({ course, isSelected, selectCourseId }) => {
+  const { t } = useTranslation()
+
   return (
     <CourseBlockInner onClick={() => {
       if (isSelected) {
@@ -47,15 +50,15 @@ const CourseBlock: React.FC<CourseBlockProps> = ({ course, isSelected, selectCou
       <Divider/>
       <FlexWrapper direction="column" gap={4}>
         <FlexWrapper direction="row" gap={6}>
-          <DetailHeader type={"NormalBold"} color={"Text.default"}>분류</DetailHeader>
+          <DetailHeader type={"NormalBold"} color={"Text.default"}>{t('common.class')}</DetailHeader>
           <Typography type={"Normal"} color={"Text.default"}>{course.department.name}, {course.type}</Typography>
         </FlexWrapper>
         <FlexWrapper direction="row" gap={6}>
-          <DetailHeader type={"NormalBold"} color={"Text.default"}>교수</DetailHeader>
+          <DetailHeader type={"NormalBold"} color={"Text.default"}>{t('common.professor')}</DetailHeader>
           <Typography type={"Normal"} color={"Text.default"}>{course.professors.map((professor) => professor.name).join(", ")}</Typography>
         </FlexWrapper>
         <FlexWrapper direction="row" gap={6}>
-          <DetailHeader type={"NormalBold"} color={"Text.default"}>설명</DetailHeader>
+          <DetailHeader type={"NormalBold"} color={"Text.default"}>{t('common.description')}</DetailHeader>
           <Typography type={"Normal"} color={"Text.default"}>{course.summary}</Typography>
         </FlexWrapper>
       </FlexWrapper>
