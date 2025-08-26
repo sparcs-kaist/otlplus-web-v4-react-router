@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import themes from "@/styles/themes"
 
 type ChipProps = {
   selected?: boolean
@@ -19,22 +20,22 @@ const ChipInner = styled.div`
 `
 
 const ChipDefaultInner = styled(ChipInner)`
-  color: #555555;
-  background: #f5f5f5;
+  color: ${({ theme }) => theme.colors.Text.light};
+  background: ${({ theme }) => theme.colors.Background.Button.default};
   cursor: pointer;
 
   &:hover {
-    background: #ebebeb;
+    background: ${({ theme }) => theme.colors.Background.Button.dark};
   }
 `
 
-const ChipSelectedInner = styled(ChipInner)`
-  color: #e54c65;
-  background: #f9f0f0;
+const ChipSelectedInner = styled(ChipInner) `
+  color: ${({ theme }) => theme.colors.Highlight.default};
+  background: ${({ theme }) => theme.colors.Background.Button.highlight};
   cursor: pointer;
 
   &:hover {
-    background: #fae6e6;
+    background: ${({ theme }) => theme.colors.Background.Button.highlightDark};
   }
 `
 
