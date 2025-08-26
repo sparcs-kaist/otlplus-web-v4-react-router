@@ -112,6 +112,12 @@ export const commonI18nBase = {
       grade: "학년",
       department: "학과",
       term: "기간",
+    },
+    semesters: {
+      spring: "봄",
+      summer: "여름",
+      fall: "가을",
+      winter: "겨울"
     }
   },
   dictionary: {

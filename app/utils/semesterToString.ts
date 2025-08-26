@@ -1,14 +1,8 @@
+import i18n from "i18next";
+
 export function stringSemester(semester: number): string {
-  switch (semester) {
-    case 1:
-      return "봄";
-    case 2:
-      return "여름";
-    case 3:
-      return "가을";
-    case 4:
-      return "겨울";
-    default:
-      return "";
-  }
+  return [i18n.t('common.semesters.spring'),
+    i18n.t('common.semesters.summer'),
+    i18n.t('common.semesters.fall'),
+    i18n.t('common.semesters.winter')][semester - 1]
 }

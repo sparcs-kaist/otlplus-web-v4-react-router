@@ -112,6 +112,12 @@ export const commonI18nEn: CommonI18nBaseType = {
       grade: "Grade",
       department: "Department",
       term: "Term",
+    },
+    semesters: {
+      spring: "Spring",
+      summer: "Summer",
+      fall: "Fall",
+      winter: "Winter",
     }
   },
   dictionary: {
