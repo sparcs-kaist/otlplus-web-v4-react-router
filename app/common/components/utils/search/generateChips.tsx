@@ -3,6 +3,7 @@
 import React, { useEffect } from "react"
 
 import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
 import Chip from "../../search/Chip"
 
@@ -29,6 +30,8 @@ const OptionChipGrid: React.FC<OptionChipGridProps> = ({
   handleSelectAllClick = () => {},
   selectedAll,
 }) => {
+  const { t } = useTranslation()
+
   useEffect(() => {
     if (!chosenList.includes(false)) {
       handleSelectAllClick()
@@ -37,7 +40,11 @@ const OptionChipGrid: React.FC<OptionChipGridProps> = ({
 
   return (
     <OptionChipWrapper>
-      <Chip selected={selectedAll} chipText="전체" onClick={handleSelectAllClick} />
+      <Chip
+        selected={selectedAll}
+        chipText={t("common.search.all")}
+        onClick={handleSelectAllClick}
+      />
       {nameList.map((value, idx) => (
         <Chip
           key={idx}

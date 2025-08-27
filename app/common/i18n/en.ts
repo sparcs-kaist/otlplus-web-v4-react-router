@@ -1,4 +1,4 @@
-import { type CommonI18nBaseType, commonI18nBase } from "./_base";
+import { type CommonI18nBaseType, commonI18nBase } from "./_base"
 
 export const commonI18nEn: CommonI18nBaseType = {
   ...commonI18nBase,
@@ -54,11 +54,9 @@ export const commonI18nEn: CommonI18nBaseType = {
       otherElectiveShort: "OE",
       generalRequiredShort: "GR",
       electiveGraduateShort: "EG",
-      allShort: "ALL",
       etcShort: "ETC",
-      total: "Total",
       totalCredit: "Credit",
-      totalAu: "AU"
+      totalAu: "AU",
     },
     department: {
       hssShort: "HSS",
@@ -81,8 +79,7 @@ export const commonI18nEn: CommonI18nBaseType = {
       tsShort: "TS",
       ssShort: "SS",
       bcsShort: "BCS",
-      allShort: "ALL",
-      etcShort: "ETC"
+      etcShort: "ETC",
     },
     level: {
       "100sShort": "100s",
@@ -94,14 +91,12 @@ export const commonI18nEn: CommonI18nBaseType = {
       "700sShort": "700s",
       "800sShort": "800s",
       "900sShort": "900s",
-      allShort: "ALL",
-      etcShort: "ETC"
+      etcShort: "ETC",
     },
     term: {
       "3yearsShort": "In-3-Years",
       "1yearShort": "In-1-Year",
       thisSemesterShort: "This-Semester",
-      allShort: "ALL"
     },
     review: {
       writingPlaceholder: "Please describe your evaluation of grades, load, etc.",
@@ -112,13 +107,19 @@ export const commonI18nEn: CommonI18nBaseType = {
       grade: "Grade",
       department: "Department",
       term: "Term",
+      all: "All",
     },
     semesters: {
       spring: "Spring",
       summer: "Summer",
       fall: "Fall",
       winter: "Winter",
-    }
+    },
+  },
+  header: {
+    dictionary: "Dictionary",
+    writeReviews: "Write Reviews",
+    timetable: "Timetable",
   },
   dictionary: {
     courseHistory: "Course History",
@@ -137,6 +138,6 @@ export const commonI18nEn: CommonI18nBaseType = {
     reviewLanguageOptions: {
       all: "All",
       english: "English",
-    }
+    },
   },
 }

@@ -9,9 +9,6 @@ export const commonI18nBase = {
     license: "라이선스",
     privacyPolicy: "개인정보취급방침",
   },
-  search: {
-
-  },
   common: {
     class: "분류",
     professor: "교수",
@@ -54,11 +51,9 @@ export const commonI18nBase = {
       otherElectiveShort: "자선",
       generalRequiredShort: "공통",
       electiveGraduateShort: "석박",
-      allShort: "전체",
       etcShort: "기타",
-      total: "전체",
       totalCredit: "학점",
-      totalAu: "AU"
+      totalAu: "AU",
     },
     department: {
       hssShort: "인문",
@@ -81,8 +76,7 @@ export const commonI18nBase = {
       tsShort: "융인",
       ssShort: "반시공",
       bcsShort: "뇌인지",
-      allShort: "전체",
-      etcShort: "기타"
+      etcShort: "기타",
     },
     level: {
       "100sShort": "100번대",
@@ -94,14 +88,12 @@ export const commonI18nBase = {
       "700sShort": "700번대",
       "800sShort": "800번대",
       "900sShort": "900번대",
-      allShort: "전체",
-      etcShort: "기타"
+      etcShort: "기타",
     },
     term: {
       "3yearsShort": "3년이내",
       "1yearShort": "1년이내",
       thisSemesterShort: "이번학기",
-      allShort: "전체"
     },
     review: {
       writingPlaceholder: "학점, 로드 등의 평가에 대하여 설명해주세요.",
@@ -112,13 +104,19 @@ export const commonI18nBase = {
       grade: "학년",
       department: "학과",
       term: "기간",
+      all: "전체",
     },
     semesters: {
       spring: "봄",
       summer: "여름",
       fall: "가을",
-      winter: "겨울"
-    }
+      winter: "겨울",
+    },
+  },
+  header: {
+    dictionary: "과목사전",
+    timetable: "모의시간표",
+    writeReviews: "과목후기 작성하기",
   },
   dictionary: {
     courseHistory: "개설이력",
@@ -129,15 +127,15 @@ export const commonI18nBase = {
     sortOptions: {
       code: "과목코드순",
       popularity: "인기순",
-      enrollment: "수강자 많은 순"
+      enrollment: "수강자 많은 순",
     },
     review: "과목 후기",
     reviewLanguage: "언어",
     reviewLanguageOptions: {
       all: "전체",
-      english: "영어"
-    }
-  }
+      english: "영어",
+    },
+  },
 }
 
 export type CommonI18nBaseType = typeof commonI18nBase

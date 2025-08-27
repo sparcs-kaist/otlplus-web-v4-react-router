@@ -1,17 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react"
+import { useEffect, useRef, useState } from "react"
 
-import styled from "@emotion/styled";
-import { useTranslation } from "react-i18next";
+import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
-import Button from "@/common/components/Button";
-import FlexWrapper from "@/common/components/FlexWrapper";
-import Icon from "@/common/components/Icon";
-import Typography from "@/common/components/Typography";
-import TextInput from "@/common/components/search/TextInput";
+import Button from "@/common/components/Button"
+import FlexWrapper from "@/common/components/FlexWrapper"
+import Icon from "@/common/components/Icon"
+import Typography from "@/common/components/Typography"
+import TextInput from "@/common/components/search/TextInput"
 import OptionChipGrid from "@/common/components/utils/search/generateChips"
-import themes from "@/styles/themes";
-import { getDepartmentOptions, getLevelOptions, getTermOptions, getTypeOptions } from "@/common/searchOptions"
+import {
+  getDepartmentOptions,
+  getLevelOptions,
+  getTermOptions,
+  getTypeOptions,
+} from "@/common/searchOptions"
+import themes from "@/styles/themes"
 
 export type OptionProps = {
   nameList: string[]
@@ -49,17 +54,6 @@ const OptionAreaWrapper = styled.div`
   font-weight: 700;
 `
 
-const SearchParamWrapper = styled.div`
-  display: "inline-block";
-  flex-shrink: 1;
-  flex-direction: column;
-  padding-left: 36px;
-  line-height: 17.5px;
-  overflow: hidden;
-  white-space: normal;
-  word-break: keep-all;
-`
-
 const CustomTextInput = styled(TextInput)`
   width: 100%;
   border: 0;
@@ -80,7 +74,7 @@ const SearchAreaWrapperInner = styled.div<{ isOpen: boolean }>`
 `
 
 const DictionarySearchArea: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const [open, setOpen] = useState<boolean>(false)
   const [value, setValue] = useState<string>("")
@@ -95,14 +89,16 @@ const DictionarySearchArea: React.FC = () => {
   )
 
   const departmentList = getDepartmentOptions()
-  const [majorSelect, setMajor] = useState<boolean[]>(Array(departmentList.length).fill(false))
+  const [majorSelect, setMajor] = useState<boolean[]>(
+    Array(departmentList.length).fill(false),
+  )
 
   const termList = getTermOptions()
   const [termSelect, setTerm] = useState<boolean[]>(Array(termList.length).fill(false))
 
   const OptionMap: Map<string, OptionProps> = new Map([
     [
-      t('common.class'),
+      t("common.class"),
       {
         nameList: divisionList.map((item) => item[1]),
         selectedList: divisionSelect,
@@ -110,14 +106,29 @@ const DictionarySearchArea: React.FC = () => {
       },
     ],
     [
-      t('common.search.grade'),
-      { nameList: gradeList.map((item) => item[1]), selectedList: gradeSelect, setSelectedList: setGrade },
+      t("common.search.grade"),
+      {
+        nameList: gradeList.map((item) => item[1]),
+        selectedList: gradeSelect,
+        setSelectedList: setGrade,
+      },
     ],
     [
-      t('common.search.department'),
-      { nameList: departmentList.map((item) => item[1]), selectedList: majorSelect, setSelectedList: setMajor },
+      t("common.search.department"),
+      {
+        nameList: departmentList.map((item) => item[1]),
+        selectedList: majorSelect,
+        setSelectedList: setMajor,
+      },
     ],
-    [t('common.search.term'), { nameList: termList.map((item) => item[1]), selectedList: termSelect, setSelectedList: setTerm }],
+    [
+      t("common.search.term"),
+      {
+        nameList: termList.map((item) => item[1]),
+        selectedList: termSelect,
+        setSelectedList: setTerm,
+      },
+    ],
   ])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -167,27 +178,6 @@ const DictionarySearchArea: React.FC = () => {
     }
   }, [open])
 
-  function getOptionList(key: string) {
-    let res: string = ""
-    const option = OptionMap.get(key)!
-
-    option.selectedList.forEach((val, idx) => {
-      if (val) {
-        res += `${option.nameList[idx]} `
-      }
-    })
-
-    if (res.endsWith(" ")) {
-      res = res.slice(0, -1)
-    }
-
-    if (res.length <= 0) {
-      return res
-    }
-
-    return `(${key} : ${res})`
-  }
-
   return (
     <PageWrapper>
       {/* 위쪽 검색어 입력 부분 */}
@@ -199,35 +189,24 @@ const DictionarySearchArea: React.FC = () => {
         }}
       >
         <FlexWrapper direction="row" gap={0} align="center">
-          <Icon type={"Search"} size={20} color={themes.light.colors.Highlight.default}/>
+          <Icon type={"Search"} size={20} color={themes.light.colors.Highlight.default} />
           <CustomTextInput
             ref={inputRef}
             value={value}
-            placeholder={open ? "" : t('common.search.search')}
+            placeholder={open ? "" : t("common.search.search")}
             handleChange={(newValue) => {
               setValue(newValue)
             }}
             onKeyDown={handleKeyDown}
           />
         </FlexWrapper>
-        <SearchParamWrapper>
-          <span
-            style={{
-              color: "#555555",
-              fontSize: "12px",
-              lineHeight: "15px",
-            }}
-          >
-            {`${getOptionList(t('common.class'))} ${getOptionList(t('common.search.department'))} ${getOptionList(t('common.search.grade'))} ${getOptionList(t('common.search.term'))}`}
-          </span>
-        </SearchParamWrapper>
       </SearchInputAreaWrapper>
 
       <SearchAreaWrapperInner isOpen={open}>
         <div
           style={{
             width: "100%",
-            minHeight: "8px",
+            minHeight: "4px",
             display: "block",
           }}
         >
@@ -251,7 +230,7 @@ const DictionarySearchArea: React.FC = () => {
         ))}
         <ButtonArea>
           <Button $paddingLeft={24} $paddingTop={8} onClick={handleReset}>
-            {t('common.cancel')}
+            {t("common.cancel")}
           </Button>
           <Button
             type="selected"
@@ -259,10 +238,10 @@ const DictionarySearchArea: React.FC = () => {
             $paddingTop={8}
             onClick={handleSubmit}
           >
-            {t('common.search.search')}
+            {t("common.search.search")}
           </Button>
         </ButtonArea>
-        <div style={{width: "100%", minHeight: "8px", display: "block"}}></div>
+        <div style={{ width: "100%", minHeight: "8px", display: "block" }}></div>
       </SearchAreaWrapperInner>
     </PageWrapper>
   )
