@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
+import FlexWrapper, { type FlexWrapperProps } from "@/common/components/FlexWrapper"
 
 const WidgetInner = styled(FlexWrapper)<{ width: number | undefined }>`
   width: ${(props) => (props.width ? `${props.width}px` : "auto")};
@@ -11,20 +11,15 @@ const WidgetInner = styled(FlexWrapper)<{ width: number | undefined }>`
   border-radius: 16px;
 `
 
-interface WidgetProps {
+interface WidgetProps extends FlexWrapperProps {
   width?: number | undefined
   children?: ReactNode | null
 }
 
-const Widget: React.FC<WidgetProps> = (
-  props = {
-    width: undefined,
-    children: null,
-  },
-) => {
+function Widget({ width = undefined, children = null, ...props }: WidgetProps) {
   return (
-    <WidgetInner width={props.width} direction="row" gap={16} padding="23px 30px">
-      {props.children}
+    <WidgetInner width={width} {...props}>
+      {children}
     </WidgetInner>
   )
 }

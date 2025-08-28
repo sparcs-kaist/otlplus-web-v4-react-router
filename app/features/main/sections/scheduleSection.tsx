@@ -5,48 +5,15 @@ import { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
 
+import FlexWrapper from "@/common/components/FlexWrapper"
+import Typography from "@/common/components/Typography"
+
 import Widget from "../components/Widget"
 
 interface ScheduleSectionProps {
   content: string
   dueDate: Date
 }
-
-const ScheduleSectionInner = styled.div`
-  width: 418px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-`
-
-const ScheduleContent = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-`
-
-const ContentTitle = styled.div`
-  color: ${({ theme }) => theme.colors.Text.default};
-  font-size: ${({ theme }) => theme.fonts.BiggerBold.fontSize}px;
-  font-weight: ${({ theme }) => theme.fonts.BiggerBold.fontWeight};
-  text-align: center;
-  line-height: ${({ theme }) => theme.fonts.BiggerBold.lineHeight}px;
-`
-
-const ContentDeadline = styled.p`
-  color: ${({ theme }) => theme.colors.Text.placeholder};
-  font-size: ${({ theme }) => theme.fonts.Normal.fontSize}px;
-  font-weight: ${({ theme }) => theme.fonts.Normal.fontWeight};
-  line-height: ${({ theme }) => theme.fonts.Normal.lineHeight}px;
-`
-
-const ScheduleLink = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`
 
 const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.Highlight.default};
@@ -61,7 +28,7 @@ const StyledLink = styled(Link)`
 
 const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
   const [now, setNow] = useState(new Date())
-  const [timeLeft, setTimeLeft] = useState("")
+  const [timeLeft, setTimeLeft] = useState<String>("")
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000)
@@ -80,25 +47,34 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
   }, [now, props.dueDate])
 
   return (
-    <Widget width={418}>
-      <ScheduleSectionInner>
-        <ScheduleContent>
-          <ContentTitle>
-            <p>{props.content}까지</p>
-            <p>{timeLeft}</p>
-          </ContentTitle>
-          <ContentDeadline>
-            {props.content} {props.dueDate.getFullYear()}.
-            {String(props.dueDate.getMonth() + 1).padStart(2, "0")}.
-            {String(props.dueDate.getDate()).padStart(2, "0")}
-          </ContentDeadline>
-        </ScheduleContent>
-        <ScheduleLink>
+    <Widget width={418} direction="column" align="stretch" gap={0} padding="23px 30px">
+      <FlexWrapper direction="column" align="stretch" gap={16}>
+        <FlexWrapper direction="column" align="center" gap={10}>
+          <FlexWrapper direction="column" align="stretch" gap={0}>
+            <FlexWrapper direction="row" gap={0}>
+              <Typography type="BiggerBold" color="Text.dark">
+                {props.content}
+              </Typography>
+              <Typography type="BiggerBold">까지</Typography>
+            </FlexWrapper>
+            <FlexWrapper direction="row" justify="center" gap={0}>
+              <Typography type="BiggerBold">{timeLeft}</Typography>
+            </FlexWrapper>
+          </FlexWrapper>
+          <FlexWrapper direction="column" gap={0}>
+            <Typography type="Normal" color="Text.placeholder">
+              {props.content} {props.dueDate.getFullYear()}.
+              {String(props.dueDate.getMonth() + 1).padStart(2, "0")}.
+              {String(props.dueDate.getDate()).padStart(2, "0")}
+            </Typography>
+          </FlexWrapper>
+        </FlexWrapper>
+        <FlexWrapper direction="column" align="flex-end" gap={0}>
           <StyledLink to="https://erp.kaist.ac.kr" target="_blank">
             학사 시스템 바로가기
           </StyledLink>
-        </ScheduleLink>
-      </ScheduleSectionInner>
+        </FlexWrapper>
+      </FlexWrapper>
     </Widget>
   )
 }

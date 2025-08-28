@@ -2,11 +2,15 @@ import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
 
-import DividedLayoutRight from "@/common/components/DividedLayoutRight"
 import FlexWrapper from "@/common/components/FlexWrapper"
 import type TimeBlock from "@/common/components/interface/Timeblock"
 import type { LectureSummary } from "@/common/components/interface/Timetable"
+import Footer from "@/common/guideline/components/Footer"
+import AdFeedSection from "@/features/main/sections/adFeedSection"
+import PopularFeedSection from "@/features/main/sections/popularFeedSection"
+import ReviewFeedSection from "@/features/main/sections/reviewFeedSection"
 import ReviewSection from "@/features/main/sections/reviewSection"
+import ScheduleFeedSection from "@/features/main/sections/scheduleFeedSection"
 import ScheduleSection from "@/features/main/sections/scheduleSection"
 import SearchSection from "@/features/main/sections/searchSection"
 import TimeTableSection from "@/features/main/sections/timeTableSection"
@@ -21,15 +25,18 @@ const MainWrapper = styled(FlexWrapper)`
   margin-top: 60px;
 `
 
+const MainWrapperInner = styled(FlexWrapper)`
+  width: 1298px;
+`
+
 const SearchSectionWrapper = styled(FlexWrapper)`
   width: 100%;
   height: 68px;
   z-index: 2;
 `
 
-const WidgetSectionWrapper = styled(FlexWrapper)`
-  display: flex;
-  gap: 24px;
+const StretechedFlexWrapper = styled(FlexWrapper)`
+  flex: 1 1 auto;
 `
 
 const exampleLectureSummary: LectureSummary[] = [
@@ -113,32 +120,123 @@ const exampleLectureSummary: LectureSummary[] = [
   },
 ]
 
+const exampleReviewFeed = [
+  {
+    reviewId: 3678,
+    lectureName: "화학 및 생물 제품디자인",
+    professorName: "장용근",
+    year: 2025,
+    semester: 1,
+    content:
+      "이 부분에는 강의에 대한 Review 내용이 들어갑니다. 2024 OTL Web Clonning과정으로, 정확한 강의명, 리뷰 내용을 별도로 첨부하지 않았습니다.",
+    like: 5,
+    isDeleted: false,
+    grade: 1,
+    load: 2,
+    speech: 1,
+    userspecificIsLiked: false,
+  },
+  {
+    reviewId: 3678,
+    lectureName: "화학 및 생물 제품디자인",
+    professorName: "장용근",
+    year: 2025,
+    semester: 1,
+    content:
+      "이 부분에는 강의에 대한 Review 내용이 들어갑니다. 2024 OTL Web Clonning과정으로, 정확한 강의명, 리뷰 내용을 별도로 첨부하지 않았습니다.",
+    like: 5,
+    isDeleted: false,
+    grade: 4,
+    load: 1,
+    speech: 3,
+    userspecificIsLiked: true,
+  },
+  {
+    reviewId: 3678,
+    lectureName: "화학 및 생물 제품디자인",
+    professorName: "장용근",
+    year: 2025,
+    semester: 1,
+    content:
+      "이 부분에는 강의에 대한 Review 내용이 들어갑니다. 2024 OTL Web Clonning과정으로, 정확한 강의명, 리뷰 내용을 별도로 첨부하지 않았습니다.",
+    like: 5,
+    isDeleted: false,
+    grade: 1,
+    load: 1,
+    speech: 1,
+    userspecificIsLiked: false,
+  },
+  {
+    reviewId: 3678,
+    lectureName: "화학 및 생물 제품디자인",
+    professorName: "장용근",
+    year: 2025,
+    semester: 1,
+    content:
+      "이 부분에는 강의에 대한 Review 내용이 들어갑니다. 2024 OTL Web Clonning과정으로, 정확한 강의명, 리뷰 내용을 별도로 첨부하지 않았습니다.",
+    like: 5,
+    isDeleted: false,
+    grade: 1,
+    load: 1,
+    speech: 1,
+    userspecificIsLiked: true,
+  },
+]
+
+const exampleScheduleFeed = [
+  {
+    from: new Date("2024-12-16"),
+    to: new Date("2024-12-20"),
+    title: "2024 겨울 기말고사",
+  },
+  {
+    from: new Date("2025-01-20"),
+    to: new Date("2025-01-24"),
+    title: "2025 겨울 계절학기",
+  },
+]
+
 export default function Home() {
   const [timeFilter, setTimeFilter] = useState<TimeBlock | null>(null)
 
+  function likeReview(reviewId: number) {
+    alert("like review " + reviewId)
+  }
+
   return (
     <>
-      <MainWrapper direction="column" align="center" gap={60}>
-        <SearchSectionWrapper direction="row" justify="center" gap={0}>
-          <SearchSection timeFilter={timeFilter} setTimeFilter={setTimeFilter} />
-        </SearchSectionWrapper>
-        <WidgetSectionWrapper direction="row" justify="center" gap={0}>
-          <DividedLayoutRight>
-            <FlexWrapper direction="column" gap={24}>
-              <TimeTableSection lectureSummary={exampleLectureSummary} />
+      <MainWrapper direction="column" align="center" gap={240}>
+        <MainWrapperInner direction="column" align="center" gap={60}>
+          <SearchSectionWrapper direction="row" justify="center" gap={0}>
+            <SearchSection timeFilter={timeFilter} setTimeFilter={setTimeFilter} />
+          </SearchSectionWrapper>
+          <FlexWrapper direction="column" justify="center" gap={24}>
+            <FlexWrapper direction="row" align="stretch" gap={24}>
+              <FlexWrapper direction="column" align="stretch" gap={0}>
+                <TimeTableSection lectureSummary={exampleLectureSummary} />
+              </FlexWrapper>
+              <FlexWrapper direction="column" align="stretch" gap={24}>
+                <FlexWrapper direction="column" align="stretch" gap={24}>
+                  <ScheduleSection
+                    content="2025 봄 수강신청 마감"
+                    dueDate={new Date("2025-04-11")}
+                  />
+                  <ReviewSection lectureId={3678} lectureName="이산구조" />
+                </FlexWrapper>
+                <StretechedFlexWrapper direction="column" align="stretch" gap={24}>
+                  <AdFeedSection src="/ad.png" />
+                  <AdFeedSection src="/ad.png" />
+                </StretechedFlexWrapper>
+              </FlexWrapper>
             </FlexWrapper>
-            <FlexWrapper direction="column" gap={24}>
-              <ScheduleSection
-                content="2025 봄 수강신청 마감"
-                dueDate={new Date("2025-04-11")}
-              />
-              <ReviewSection
-                content="2025 봄 수강신청 마감"
-                dueDate={new Date("2025-04-11")}
-              />
+            <FlexWrapper direction="row" align="stretch" gap={24}>
+              <ReviewFeedSection reviews={exampleReviewFeed} likeReview={likeReview} />
+              <PopularFeedSection reviews={exampleReviewFeed} likeReview={likeReview} />
+              <ScheduleFeedSection schedules={exampleScheduleFeed} />
             </FlexWrapper>
-          </DividedLayoutRight>
-        </WidgetSectionWrapper>
+          </FlexWrapper>
+        </MainWrapperInner>
+        <Footer />
       </MainWrapper>
     </>
   )

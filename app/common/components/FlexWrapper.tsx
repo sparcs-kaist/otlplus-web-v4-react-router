@@ -1,7 +1,7 @@
 import isPropValid from "@emotion/is-prop-valid"
 import styled from "@emotion/styled"
 
-interface FlexWrapperProps {
+export interface FlexWrapperProps {
   direction: "row" | "column"
   gap: number
   justify?: string

@@ -42,6 +42,7 @@ interface TypographyProps extends TypographyPropsBase {
 
 const TypographyInner = styled.div<TypographyProps>`
   color: ${({ color, theme }) => (color ? getColorFromTheme(theme, color) : "inherit")};
+  font-family: ${({ theme }) => theme.fonts.family.primary};
   font-size: ${({ type, theme }) => {
     if (
       type &&
