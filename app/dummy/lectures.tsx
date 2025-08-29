@@ -55,7 +55,7 @@ const lectures: Lecture[] = [
     ],
     classroom: "(E2) 산업경영학동 1225",
     classroom_en: "B102",
-    course: 0,
+    course: 1,
     class_no: "",
     year: 0,
     semester: SemesterEnum.SPRING,
