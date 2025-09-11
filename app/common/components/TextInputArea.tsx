@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
 import type { ChangeEvent, InputHTMLAttributes } from "react"
 
-import { css } from "@emotion/css"
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
+
+import { type ThemeType } from "@/styles/themes"
 
 // PhoneInput, RentalInput에서 사용하기 위해 export
 export interface TextInputProps
@@ -25,10 +27,18 @@ const disabledStyle = css`
   background-color: rgba(245, 245, 245, 1);
 `
 
-const areaInputStyle = css`
-  height: 100px;
+const areaInputStyle = (theme: ThemeType) => css`
+  height: 173px;
   resize: none;
   overflow: auto;
+  background: transparent;
+  border: 1px solid ${theme.colors.Line.block};
+  padding: 8px;
+  border-radius: 6px;
+
+  &::placeholder {
+    color: ${theme.colors.Text.placeholder};
+  }
 `
 
 const Input = styled.input<TextInputProps & { hasError: boolean }>`
@@ -44,7 +54,7 @@ const Input = styled.input<TextInputProps & { hasError: boolean }>`
   background-color: rgba(245, 245, 245, 1);
   ${({ disabled }) => disabled && disabledStyle}
   ${({ hasError }) => hasError && errorBorderStyle}
-  ${({ area }) => area && areaInputStyle} // TextAreaInput
+  ${({ theme, area }) => area && areaInputStyle(theme)}
 `
 
 const InputWrapper = styled.div`
@@ -93,7 +103,7 @@ const TextInput: React.FC<TextInputProps> = ({
           hasError={!!errorMessage}
           area={area}
           disabled={disabled}
-          value={value}
+          defaultValue={value}
           onChange={handleValueChange}
           {...props}
         />

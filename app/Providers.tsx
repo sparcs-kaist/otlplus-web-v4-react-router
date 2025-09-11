@@ -4,7 +4,6 @@ import { ThemeProvider } from "@emotion/react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { I18nextProvider } from "react-i18next"
 
-import Header from "@/common/guideline/components/Header"
 import i18n from "@/libs/i18n"
 import themes, { type ThemeKeys } from "@/styles/themes"
 

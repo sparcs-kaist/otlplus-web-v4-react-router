@@ -72,11 +72,8 @@ const CustomTimeTableGrid: React.FC<GridProps> = ({
   // 전체 셀 크기를 반응형으로 조정하는 부분
   useEffect(() => {
     const handleResize = () => {
-      const fullHeight = window.innerHeight - 55 - 20 - 32 - 35.5 - 30 // 대충 스크롤이 안 넘어가게 맞춰준 거...
-      const cellHeightUnscroll = isAnyOver24 ? fullHeight / 38 : fullHeight / 32
-      setCellHeight(
-        isAnyOver24 ? Math.max(cellHeightUnscroll, 22) : Math.max(cellHeightUnscroll, 25),
-      )
+      const fullHeight = 926.5
+      setCellHeight(fullHeight / 32)
     }
 
     window.addEventListener("resize", handleResize)
