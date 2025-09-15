@@ -9,7 +9,7 @@ import { ThemeProvider, createTheme } from "@mui/material"
 interface IconProps {
   type: string
   size: number
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent) => void
   color?: string
 }
 

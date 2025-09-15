@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
@@ -6,6 +6,10 @@ import { Link } from "react-router-dom"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Icon from "@/common/components/Icon"
+import Typography from "@/common/components/Typography"
+import type NewUser from "@/common/components/interface/NewUser"
+import UserExample from "@/dummy/UserExample"
+import AccountPageModal from "@/features/account/AccountPageModal"
 
 const HeaderWrapper = styled.div`
   height: max-content;
@@ -48,13 +52,25 @@ const ContentRight = styled(FlexWrapper)`
   color: ${({ theme }) => theme.colors.Text.default};
 `
 
-const Header = () => {
+const AccountButtonWrapper = styled(FlexWrapper)`
+  cursor: pointer;
+`
+
+const Header: React.FC = () => {
   const [language, setLanguage] = useState<string>("ko")
+  const [accountPageOpen, setAccountPageOpen] = useState<boolean>(false)
+  const [userInfo, setUserInfo] = useState<NewUser | null>(UserExample)
 
   const { t, i18n } = useTranslation()
 
   return (
     <HeaderWrapper>
+      <AccountPageModal
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
+        accountPageOpen={accountPageOpen}
+        setAccountPageOpen={setAccountPageOpen}
+      />
       <HeaderBar />
       <HeaderInner>
         <ContentLeft direction="row" justify="space-between" align="center" gap={231}>
@@ -82,6 +98,19 @@ const Header = () => {
               }
             }}
           />
+          <AccountButtonWrapper
+            direction="row"
+            gap={4}
+            align="center"
+            onClick={() => {
+              setAccountPageOpen(true)
+            }}
+          >
+            <Icon type="Person" size={16} />
+            <Typography type={"Normal"} color={"Text.default"}>
+              {userInfo?.name}
+            </Typography>
+          </AccountButtonWrapper>
         </ContentRight>
       </HeaderInner>
     </HeaderWrapper>

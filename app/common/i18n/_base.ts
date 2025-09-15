@@ -21,6 +21,8 @@ export const commonI18nBase = {
     numLabs: "실험",
     credit: "학점",
     cancel: "취소",
+    save: "저장",
+    edit: "수정",
     type: {
       basic: "기초",
       major: "전공",
@@ -105,6 +107,7 @@ export const commonI18nBase = {
       department: "학과",
       term: "기간",
       all: "전체",
+      placeholder: "검색어를 입력하세요",
     },
     semesters: {
       spring: "봄",
@@ -135,6 +138,19 @@ export const commonI18nBase = {
       all: "전체",
       english: "영어",
     },
+  },
+  account: {
+    title: "내 정보",
+    name: "이름",
+    email: "메일",
+    schoolId: "학번",
+    course: "과정",
+    major: "전공",
+    interestedDepartments: "관심 학과",
+    logout: "로그아웃",
+    sparcsssoCaption: "이 정보는 <bold>SPARCS SSO</bold>에서 변경할 수 있습니다",
+    kaistPortalCaption:
+      "이 정보는 KAIST Portal과 연동됩니다. 정보가 일치하지 않을 경우 <bold>otlplus@sparcs.org</bold>로 문의해주세요",
   },
 }
 
