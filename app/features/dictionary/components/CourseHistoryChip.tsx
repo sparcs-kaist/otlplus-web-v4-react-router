@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+
 import Typography from "@/common/components/Typography"
 
 type ChipProps = {
@@ -49,7 +50,12 @@ const ChipContentWrapper = styled.div`
   align-items: center;
 `
 
-const CourseHistoryChip = ({ selected = false, chipIndex = "", chipText = "", ...divProps }: ChipProps) => {
+const CourseHistoryChip = ({
+  selected = false,
+  chipIndex = "",
+  chipText = "",
+  ...divProps
+}: ChipProps) => {
   const ChipContent = () => (
     <ChipContentWrapper>
       <Typography type={"NormalBold"}>{chipIndex}</Typography>

@@ -1,4 +1,8 @@
-import type { CourseSearchResult } from "@/common/components/interface/CourseSearchResult";
+import type { CourseSearchResult } from "@/common/components/interface/CourseSearchResult"
+
+
+
+
 
 const CourseSearchResults: CourseSearchResult[] = [
   {
@@ -282,4 +286,4 @@ const CourseSearchResults: CourseSearchResult[] = [
   },
 ]
 
-export default CourseSearchResults;
+export default CourseSearchResults

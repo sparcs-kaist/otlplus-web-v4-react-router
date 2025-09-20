@@ -1,11 +1,13 @@
-import Typography from "@/common/components/Typography"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import CourseHistoryChip from "@/features/dictionary/components/CourseHistoryChip"
 import React, { useEffect, useRef } from "react"
+
 import styled from "@emotion/styled"
-import type { NewCourse } from "@/common/components/interface/NewCourse"
-import { stringSemester } from "@/utils/semesterToString"
 import { useTranslation } from "react-i18next"
+
+import FlexWrapper from "@/common/components/FlexWrapper"
+import Typography from "@/common/components/Typography"
+import type { NewCourse } from "@/common/components/interface/NewCourse"
+import CourseHistoryChip from "@/features/dictionary/components/CourseHistoryChip"
+import { stringSemester } from "@/utils/semesterToString"
 
 const CourseHistory = styled(FlexWrapper)`
   width: 100%;
@@ -45,47 +47,64 @@ const NoHistoryText = styled(Typography)`
 `
 
 interface CourseHistorySubsectionProps {
-  courseDetail: NewCourse | null;
-  selectedProfessorId: number | null;
-  setSelectedProfessorId: React.Dispatch<React.SetStateAction<number | null>>;
+  courseDetail: NewCourse | null
+  selectedProfessorId: number | null
+  setSelectedProfessorId: React.Dispatch<React.SetStateAction<number | null>>
 }
 
-const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({ courseDetail, selectedProfessorId, setSelectedProfessorId }) => {
-  const { t } = useTranslation();
+const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({
+  courseDetail,
+  selectedProfessorId,
+  setSelectedProfessorId,
+}) => {
+  const { t } = useTranslation()
 
-  const historyScroll = useRef<HTMLDivElement | null>(null);
+  const historyScroll = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (historyScroll.current) {
-      historyScroll.current.scrollLeft = historyScroll.current.scrollWidth;
+      historyScroll.current.scrollLeft = historyScroll.current.scrollWidth
     }
-  }, [courseDetail]);
+  }, [courseDetail])
 
   return (
     <>
-      <Typography type={"NormalBold"} color={"Text.default"}>{t('dictionary.courseHistory')}</Typography>
+      <Typography type={"NormalBold"} color={"Text.default"}>
+        {t("dictionary.courseHistory")}
+      </Typography>
       <CourseHistory direction="row" gap={20} ref={historyScroll}>
         {courseDetail?.history.map((history, index) => (
           <CourseHistoryBlock key={index} direction="column" gap={6} align={"center"}>
-            <Typography type={"Normal"} color={"Text.default"}>{history.year} {stringSemester(history.semester)}</Typography>
+            <Typography type={"Normal"} color={"Text.default"}>
+              {history.year} {stringSemester(history.semester)}
+            </Typography>
             {history.professors.length === 0 ? (
-              <NoHistoryText color={"Text.disable"} type={"Normal"}>{t('dictionary.notOffered')}</NoHistoryText>
-            ) : <FlexWrapper direction="column" gap={4} align={"center"}>
-              {history.professors.map((professor, profIndex) => (
-                <CourseHistoryChip selected={selectedProfessorId == professor.id} chipIndex={professor.classNo} chipText={professor.name} onClick={() => {
-                  if (selectedProfessorId === professor.id) {
-                    setSelectedProfessorId(null);
-                  } else {
-                    setSelectedProfessorId(professor.id);
-                  }
-                }}/>
-              ))}
-            </FlexWrapper>}
+              <NoHistoryText color={"Text.disable"} type={"Normal"}>
+                {t("dictionary.notOffered")}
+              </NoHistoryText>
+            ) : (
+              <FlexWrapper direction="column" gap={4} align={"center"}>
+                {history.professors.map((professor, profIndex) => (
+                  <CourseHistoryChip
+                    selected={selectedProfessorId == professor.id}
+                    chipIndex={professor.classNo}
+                    chipText={professor.name}
+                    onClick={() => {
+                      if (selectedProfessorId === professor.id) {
+                        setSelectedProfessorId(null)
+                      } else {
+                        setSelectedProfessorId(professor.id)
+                      }
+                    }}
+                  />
+                ))}
+              </FlexWrapper>
+            )}
           </CourseHistoryBlock>
         ))}
       </CourseHistory>
     </>
-  );
+  )
 }
 
-export default CourseHistorySubsection;
+export default CourseHistorySubsection

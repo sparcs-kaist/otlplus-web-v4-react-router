@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import themes from "@/styles/themes"
 
 type ChipProps = {
   selected?: boolean
@@ -29,7 +28,7 @@ const ChipDefaultInner = styled(ChipInner)`
   }
 `
 
-const ChipSelectedInner = styled(ChipInner) `
+const ChipSelectedInner = styled(ChipInner)`
   color: ${({ theme }) => theme.colors.Highlight.default};
   background: ${({ theme }) => theme.colors.Background.Button.highlight};
   cursor: pointer;
@@ -49,12 +48,12 @@ const ChipContentWrapper = styled.div`
   align-items: center;
 `
 
-const CourseReviewLanguageChip = ({ selected = false, chipText = "", ...divProps }: ChipProps) => {
-  const ChipContent = () => (
-    <ChipContentWrapper>
-      {chipText}
-    </ChipContentWrapper>
-  )
+const CourseReviewLanguageChip = ({
+  selected = false,
+  chipText = "",
+  ...divProps
+}: ChipProps) => {
+  const ChipContent = () => <ChipContentWrapper>{chipText}</ChipContentWrapper>
 
   const ChipChosenInner = selected ? ChipSelectedInner : ChipDefaultInner
   return (
