@@ -40,11 +40,6 @@ export const fonts = {
     lineHeight: 17.5,
     fontWeight: 500,
   },
-  NormalMedium: {
-    fontSize: 14,
-    lineHeight: 17.5,
-    fontWeight: 600,
-  },
   NormalBold: {
     fontSize: 14,
     lineHeight: 17.5,
