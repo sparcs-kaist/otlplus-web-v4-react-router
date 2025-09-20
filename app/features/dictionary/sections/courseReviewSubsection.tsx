@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 
 import styled from "@emotion/styled"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
 import { useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -128,11 +130,9 @@ const CourseReviewSubsection: React.FC<CourseReviewSubsectionProps> = ({
               <Typography type={"Normal"} color={"Highlight.default"}>
                 {t("common.review.like")}
               </Typography>
-              <Icon
-                type={review.userspecificIsLiked ? "Favorite" : "FavoriteBorder"}
-                size={14}
-                color={themes.light.colors.Highlight.default}
-              />
+              <Icon size={14} color={themes.light.colors.Highlight.default}>
+                {review.userspecificIsLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </Icon>
             </FlexWrapper>
           </FlexWrapper>
         </ReviewWrapper>

@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 
 import styled from "@emotion/styled"
+import LanguageIcon from "@mui/icons-material/Language"
+import PersonIcon from "@mui/icons-material/Person"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
@@ -86,7 +88,6 @@ const Header: React.FC = () => {
 
         <ContentRight direction="row" justify="space-between" align="center" gap={16}>
           <Icon
-            type={"Language"}
             size={16}
             onClick={() => {
               if (language === "ko") {
@@ -97,7 +98,9 @@ const Header: React.FC = () => {
                 i18n.changeLanguage("ko")
               }
             }}
-          />
+          >
+            <LanguageIcon />
+          </Icon>
           <AccountButtonWrapper
             direction="row"
             gap={4}
@@ -106,7 +109,9 @@ const Header: React.FC = () => {
               setAccountPageOpen(true)
             }}
           >
-            <Icon type="Person" size={16} />
+            <Icon size={16}>
+              <PersonIcon />
+            </Icon>
             <Typography type={"Normal"} color={"Text.default"}>
               {userInfo?.name}
             </Typography>

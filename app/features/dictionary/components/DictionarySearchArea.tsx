@@ -2,6 +2,7 @@ import type { Dispatch, SetStateAction } from "react"
 import { useEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
+import SearchIcon from "@mui/icons-material/Search"
 import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
@@ -10,12 +11,7 @@ import Icon from "@/common/components/Icon"
 import Typography from "@/common/components/Typography"
 import TextInput from "@/common/components/search/TextInput"
 import OptionChipGrid from "@/common/components/utils/search/generateChips"
-import {
-  getDepartmentOptions,
-  getLevelOptions,
-  getTermOptions,
-  getTypeOptions,
-} from "@/common/searchOptions"
+import { getDepartmentOptions, getLevelOptions, getTermOptions, getTypeOptions, } from "@/common/searchOptions"
 import themes from "@/styles/themes"
 
 export type OptionProps = {
@@ -189,7 +185,9 @@ const DictionarySearchArea: React.FC = () => {
         }}
       >
         <FlexWrapper direction="row" gap={0} align="center">
-          <Icon type={"Search"} size={20} color={themes.light.colors.Highlight.default} />
+          <Icon size={20} color={themes.light.colors.Highlight.default}>
+            <SearchIcon />
+          </Icon>
           <CustomTextInput
             ref={inputRef}
             value={value}

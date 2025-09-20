@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import styled from "@emotion/styled"
+import CircleIcon from "@mui/icons-material/Circle"
 import { Trans, useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -106,11 +107,9 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
                     />
                   ),
                   icon: (
-                    <Icon
-                      type={"Circle"}
-                      size={12}
-                      color={themes.light.colors.Highlight.default}
-                    />
+                    <Icon size={12} color={themes.light.colors.Highlight.default}>
+                      <CircleIcon />
+                    </Icon>
                   ),
                 }}
               />

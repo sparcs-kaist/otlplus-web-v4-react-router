@@ -1,8 +1,9 @@
-/* eslint-disable no-console */
-import { useEffect, useRef, useState } from "react"
 import type { Dispatch, SetStateAction } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
+import CloseIcon from "@mui/icons-material/Close"
+import SearchIcon from "@mui/icons-material/Search"
 import { AnimatePresence, motion } from "framer-motion"
 
 import Button from "../Button"
@@ -249,7 +250,9 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
           }
         }}
       >
-        <Icon type="Search" size={17.5} color="#E54C65" onClick={() => {}} />
+        <Icon size={17.5} color="#E54C65" onClick={() => {}}>
+          <SearchIcon />
+        </Icon>
         <SearchParamWrapper>
           <TextInput
             ref={inputRef}
@@ -322,12 +325,13 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
                   <TimeFilterArea>
                     {`${formatTimeAreaToString(timeFilter)}`}
                     <Icon
-                      type={"Close"}
                       size={17.5}
                       onClick={() => {
                         setTimeFilter(null)
                       }}
-                    />
+                    >
+                      <CloseIcon />
+                    </Icon>
                   </TimeFilterArea>
                 )}
               </div>

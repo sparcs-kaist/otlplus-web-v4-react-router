@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Icon from "@/common/components/Icon"
@@ -56,11 +57,13 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
           <Typography type="Normal" color="Highlight.default">
             좋아요
           </Typography>
-          <Icon
-            type={review.userspecificIsLiked ? "Favorite" : "FavoriteBorderOutlined"}
-            size={18}
-            color="crimson"
-          />
+          <Icon size={18} color="crimson">
+            {review.userspecificIsLiked ? (
+              <FavoriteIcon />
+            ) : (
+              <FavoriteBorderOutlinedIcon />
+            )}
+          </Icon>
         </FlexWrapper>
       </FlexWrapper>
     </FlexWrapper>
