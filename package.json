@@ -7,7 +7,8 @@
     "dev": "react-router dev",
     "start:client": "vite preview --outDir ./build/client",
     "start:server": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "generate:iconMap": "node ./app/common/components/utils/generate-icon-map.js"
   },
   "dependencies": {
     "@emotion/css": "^11.13.5",

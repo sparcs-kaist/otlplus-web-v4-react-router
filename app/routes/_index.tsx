@@ -4,7 +4,6 @@ import styled from "@emotion/styled"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import type TimeBlock from "@/common/components/interface/Timeblock"
-import type { LectureSummary } from "@/common/components/interface/Timetable"
 import Footer from "@/common/guideline/components/Footer"
 import exampleReviewFeed from "@/dummy/reviewFeed"
 import exampleScheduleFeed from "@/dummy/scheduleFeed"

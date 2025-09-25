@@ -40,6 +40,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1,wght@100..700,GRAD@-25..200,opsz@20..48"
+          rel="stylesheet"
+        />
+
         <Meta />
         <Links />
       </head>

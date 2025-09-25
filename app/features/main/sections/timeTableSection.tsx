@@ -18,11 +18,6 @@ const TimeTableInner = styled(FlexWrapper)`
   width: 100%;
 `
 
-const DropDownWrapper = styled.div`
-  width: 150px;
-  height: 36px;
-`
-
 interface TimeTableSectionProps {
   user: UserProfile
 }
@@ -71,13 +66,6 @@ const TimeTableSection = ({ user }: TimeTableSectionProps) => {
               &nbsp;님의 시간표
             </Typography>
           </FlexWrapper>
-          <DropDownWrapper>
-            <ScrollableDropdown
-              options={["시간표 1", "시간표 2", "시간표 3", "시간표 4"]}
-              selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
-            />
-          </DropDownWrapper>
         </FlexWrapper>
         <CustomTimeTableGrid
           cellWidth={150}

@@ -79,8 +79,8 @@ const Header: React.FC = () => {
           </StyledLink>
           <Menu direction="row" gap={24}>
             <StyledLink to="/dictionary">{t("header.dictionary")}</StyledLink>
-            <StyledLink to="/timetable">{t("header.writeReviews")}</StyledLink>
-            <StyledLink to="/write-reviews">{t("header.timetable")}</StyledLink>
+            <StyledLink to="/write-reviews">{t("header.writeReviews")}</StyledLink>
+            <StyledLink to="/timetable">{t("header.timetable")}</StyledLink>
           </Menu>
         </ContentLeft>
 

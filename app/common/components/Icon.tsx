@@ -2,9 +2,11 @@
 
 import React from "react"
 
-import * as MuiIcons from "@mui/icons-material"
+//import * as MuiIcons from "@mui/icons-material"
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline"
 import { ThemeProvider, createTheme } from "@mui/material"
+
+const MuiIcons = {}
 
 interface IconProps {
   type: string
@@ -15,12 +17,7 @@ interface IconProps {
 
 const theme = createTheme()
 
-const Icon: React.FC<IconProps> = ({
-  type,
-  size,
-  onClick = undefined,
-  color = "inherit",
-}) => {
+function Icon({ type, size, onClick = undefined, color = "inherit" }: IconProps) {
   const IconComponent = MuiIcons[type as keyof typeof MuiIcons]
 
   const wrapperStyle = {
@@ -30,6 +27,7 @@ const Icon: React.FC<IconProps> = ({
     color,
   }
 
+  /*
   if (!IconComponent) {
     return (
       <div style={wrapperStyle} onClick={onClick}>
@@ -44,6 +42,14 @@ const Icon: React.FC<IconProps> = ({
     <div style={wrapperStyle} onClick={onClick}>
       <ThemeProvider theme={theme}>
         <IconComponent style={{ fontSize: `${size}px`, color, cursor: "pointer" }} />
+      </ThemeProvider>
+    </div>
+  )
+    */
+  return (
+    <div style={wrapperStyle} onClick={onClick}>
+      <ThemeProvider theme={theme}>
+        <ErrorOutlineIcon style={{ fontSize: `${size}px`, color }} />
       </ThemeProvider>
     </div>
   )

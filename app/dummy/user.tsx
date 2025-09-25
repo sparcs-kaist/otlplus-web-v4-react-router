@@ -1,6 +1,6 @@
 import type UserProfile from "@/common/components/interface/User"
 
-import lectures from "./lectures"
+import UserLectures from "./userLectures"
 
 const user: UserProfile = {
   departments: [],
@@ -17,7 +17,7 @@ const user: UserProfile = {
       code: "industrial",
     },
   ],
-  my_timetable_lectures: lectures,
+  my_timetable_lectures: UserLectures,
   review_writable_lectures: [],
   reviews: [],
   student_id: "20200104",
