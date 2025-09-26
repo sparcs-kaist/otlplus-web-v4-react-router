@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
+import { Trans, useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
-import ScrollableDropdown from "@/common/components/ScrollableDropdown"
 import Typography from "@/common/components/Typography"
 import type Lecture from "@/common/components/interface/Lecture"
 import type TimeBlock from "@/common/components/interface/Timeblock"
@@ -30,6 +30,8 @@ const TimeTableSection = ({ user }: TimeTableSectionProps) => {
   const [selectedOption, setSelectedOption] = useState<number>(0)
 
   const [lectureSummary, setLectureSummary] = useState<LectureSummary[]>()
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     setLectureSummary(
@@ -58,13 +60,22 @@ const TimeTableSection = ({ user }: TimeTableSectionProps) => {
       <TimeTableInner direction="column" align="stretch" gap={16}>
         <FlexWrapper direction="row" justify="space-between" align="center" gap={0}>
           <FlexWrapper direction="row" gap={0}>
-            <Typography type="BiggerBold" color="Highlight.default">
-              {user.firstName}
-              {user.lastName}
-            </Typography>
-            <Typography type="BiggerBold" color="Text.dark">
-              &nbsp;님의 시간표
-            </Typography>
+            <Trans
+              i18nKey="main.hisTimeTable"
+              values={{ name: user.firstName + user.lastName }}
+              components={{
+                name: (
+                  <Typography
+                    type="BiggerBold"
+                    color="Highlight.default"
+                    children={undefined}
+                  />
+                ),
+                normal: (
+                  <Typography type="BiggerBold" color="Text.dark" children={undefined} />
+                ),
+              }}
+            />
           </FlexWrapper>
         </FlexWrapper>
         <CustomTimeTableGrid

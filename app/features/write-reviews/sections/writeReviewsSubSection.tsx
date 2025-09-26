@@ -1,5 +1,5 @@
 import FlexWrapper from "@/common/components/FlexWrapper"
-import { type TabType } from "@/common/components/interface/reviewWriteTabs"
+import { type TabType } from "@/common/components/interface/ReviewWriteTabs"
 import exampleReviewFeed from "@/dummy/reviewFeed"
 
 import LikedReviewsSection from "./likedReviewsSubSection"

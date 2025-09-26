@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
+import { Trans, useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -30,6 +31,8 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
   const [now, setNow] = useState(new Date())
   const [timeLeft, setTimeLeft] = useState<String>("")
 
+  const { t } = useTranslation()
+
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(timer)
@@ -43,7 +46,9 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
     const hours = Math.floor((absDiff / (1000 * 60 * 60)) % 24)
     const minutes = Math.floor((absDiff / (1000 * 60)) % 60)
     const seconds = Math.floor((absDiff / 1000) % 60)
-    setTimeLeft(`D${isPast ? "+" : "-"}${days} ${hours}시간 ${minutes}분 ${seconds}초`)
+    setTimeLeft(
+      `D${isPast ? "+" : "-"}${days} ${hours}${t("common.hours")} ${minutes}${t("common.minutes")} ${seconds}${t("common.seconds")}`,
+    )
   }, [now, props.dueDate])
 
   return (
@@ -53,9 +58,11 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
           <FlexWrapper direction="column" align="stretch" gap={0}>
             <FlexWrapper direction="row" gap={0}>
               <Typography type="BiggerBold" color="Text.dark">
-                {props.content}
+                <Trans
+                  i18nKey="main.schedule.title"
+                  values={{ content: props.content }}
+                />
               </Typography>
-              <Typography type="BiggerBold">까지</Typography>
             </FlexWrapper>
             <FlexWrapper direction="row" justify="center" gap={0}>
               <Typography type="BiggerBold">{timeLeft}</Typography>
@@ -71,7 +78,7 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
         </FlexWrapper>
         <FlexWrapper direction="column" align="flex-end" gap={0}>
           <StyledLink to="https://erp.kaist.ac.kr" target="_blank">
-            학사 시스템 바로가기
+            {t("main.schedule.link")}
           </StyledLink>
         </FlexWrapper>
       </FlexWrapper>

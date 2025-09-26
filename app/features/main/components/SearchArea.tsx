@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import type { Dispatch, SetStateAction } from "react"
 
 import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -10,6 +11,11 @@ import type TimeBlock from "@/common/components/interface/Timeblock"
 import TextInput from "@/common/components/search/TextInput"
 import { formatTimeAreaToString } from "@/common/components/utils/formatTimeblockToString"
 import OptionChipGrid from "@/common/components/utils/search/generateChips"
+import {
+  getDepartmentOptions,
+  getLevelOptions,
+  getTermOptions,
+} from "@/common/searchOptions"
 
 export type OptionProps = {
   nameList: string[]
@@ -89,7 +95,10 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
   const [value, setValue] = useState<string>("")
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const gradeList = ["100번대", "200번대", "300번대", "400번대"]
+  const { t } = useTranslation()
+
+  const gradeList = getLevelOptions().map((option) => option[1])
+  const departmentOptions = getDepartmentOptions().map((option) => option[1])
   const [gradeSelect, setGrade] = useState<boolean[]>(Array(gradeList.length).fill(false))
 
   const divisionList = [
@@ -108,37 +117,15 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
     Array(divisionList.length).fill(false),
   )
 
-  const majorList = [
-    "인문",
-    "건환",
-    "기경",
-    "기계",
-    "뇌인지",
-    "물리",
-    "바공",
-    "반시공",
-    "상공",
-    "산디",
-    "생명",
-    "생화공",
-    "수리",
-    "신소재",
-    "원양",
-    "융인",
-    "전산",
-    "전자",
-    "항공",
-    "화학",
-    "기타",
-  ]
+  const majorList = departmentOptions
   const [majorSelect, setMajor] = useState<boolean[]>(Array(majorList.length).fill(false))
 
-  const termList = ["3년이내", "1년이내", "이번 학기"]
+  const termList = getTermOptions().map((option) => option[1])
   const [termSelect, setTerm] = useState<boolean[]>(Array(termList.length).fill(false))
 
   const OptionMap: Map<string, OptionProps> = new Map([
     [
-      "분류",
+      t("common.search.groups"),
       {
         nameList: divisionList,
         selectedList: divisionSelect,
@@ -146,14 +133,17 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
       },
     ],
     [
-      "학년",
+      t("common.search.grade"),
       { nameList: gradeList, selectedList: gradeSelect, setSelectedList: setGrade },
     ],
     [
-      "학과",
+      t("common.search.department"),
       { nameList: majorList, selectedList: majorSelect, setSelectedList: setMajor },
     ],
-    ["기간", { nameList: termList, selectedList: termSelect, setSelectedList: setTerm }],
+    [
+      t("common.search.term"),
+      { nameList: termList, selectedList: termSelect, setSelectedList: setTerm },
+    ],
   ])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -266,7 +256,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
           <CustomTextInput
             ref={inputRef}
             value={value}
-            placeholder={open ? "" : "과목명, 교수명 등을 검색해보세요"}
+            placeholder={open ? "" : t("common.search.placeholder")}
             handleChange={(newValue) => {
               setValue(newValue)
             }}
@@ -281,7 +271,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
               lineHeight: "15px",
             }}
           >
-            {`${getOptionList("분류")} ${getOptionList("학과")} ${getOptionList("학년")} ${getOptionList("기간")} ${
+            {`${getOptionList(t("common.search.groups"))} ${getOptionList(t("common.search.department"))} ${getOptionList(t("common.search.grade"))} ${getOptionList(t("common.search.term"))} ${
               timeFilter ? `(${formatTimeAreaToString(timeFilter)})` : ""
             }`}
           </span>
@@ -316,7 +306,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
         ))}
         <ButtonArea>
           <Button $paddingLeft={24} $paddingTop={8} onClick={handleReset}>
-            취소
+            {t("common.search.cancel")}
           </Button>
           <Button
             type="selected"
@@ -324,7 +314,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
             $paddingTop={8}
             onClick={handleSubmit}
           >
-            검색
+            {t("common.search.search")}
           </Button>
         </ButtonArea>
       </SearchAreaWrapperInner>

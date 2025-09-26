@@ -26,6 +26,9 @@ export const commonI18nEn: CommonI18nBaseType = {
     cancel: "Cancel",
     save: "Save",
     edit: "Edit",
+    hours: "Hours",
+    minutes: "Min",
+    seconds: "Sec",
     type: {
       basic: "Basic",
       major: "Major",
@@ -106,10 +109,12 @@ export const commonI18nEn: CommonI18nBaseType = {
     },
     search: {
       search: "Search",
+      cancel: "Cancel",
       grade: "Grade",
       department: "Department",
       term: "Term",
       all: "All",
+      groups: "Groups",
       placeholder: "Enter keywords",
     },
     semesters: {
@@ -123,6 +128,27 @@ export const commonI18nEn: CommonI18nBaseType = {
     dictionary: "Dictionary",
     writeReviews: "Write Reviews",
     timetable: "Timetable",
+  },
+  main: {
+    hisTimeTable: "<name>{{name}}</name><normal>'s Timetable</normal>",
+    schedule: {
+      title: "Due to {{content}}",
+      link: "Go to Student Portal",
+    },
+    reviewSection: {
+      title: "How did you find the {{lectureName}} course?",
+      placeholder:
+        "How did you find the gradings and workload — fair, heavy, or just right?",
+    },
+    reviewFeed: {
+      title: "<bold>Fresh</bold><normal>Course Reviews</normal>",
+    },
+    popularFeed: {
+      title: "<bold>Popular</bold><normal>Course Reviews</normal>",
+    },
+    scheduleFeed: {
+      title: "School Schedules",
+    },
   },
   dictionary: {
     courseHistory: "Course History",

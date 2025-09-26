@@ -1,13 +1,12 @@
 import { type Dispatch, type SetStateAction, useRef, useState } from "react"
 
-import { set } from "zod"
+import { Trans, useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Grade from "@/common/components/Grade"
 import TextInputArea from "@/common/components/TextInputArea"
 import Typography from "@/common/components/Typography"
-import i18n from "@/libs/i18n"
 
 import Widget from "../components/Widget"
 
@@ -23,6 +22,8 @@ function ReviewSection({ lectureId, lectureName }: ReviewSectionProps) {
   const [reviewGrade, setReviewGrade] = useState<ReviewValue | null>(null)
   const [reviewLoad, setReviewLoad] = useState<ReviewValue | null>(null)
   const [reviewSpeech, setReviewSpeech] = useState<ReviewValue | null>(null)
+
+  const { t } = useTranslation()
 
   function submitReview() {
     const submitData = {
@@ -40,10 +41,10 @@ function ReviewSection({ lectureId, lectureName }: ReviewSectionProps) {
   return (
     <Widget direction="column" gap={20} padding="23px 30px" align="stretch">
       <Typography type="BiggerBold" color="Text.default">
-        {lectureName} 강의는 어땠나요?
+        <Trans i18nKey="main.reviewSection.title" values={{ lectureName: lectureName }} />
       </Typography>
       <TextInputArea
-        placeholder="학점, 로드 등의 평가에 대해 설명해주세요."
+        placeholder={t("main.reviewSection.placeholder")}
         type="text"
         readOnly={false}
         handleChange={(value) => {
@@ -55,12 +56,12 @@ function ReviewSection({ lectureId, lectureName }: ReviewSectionProps) {
         <FlexWrapper direction="column" gap={12}>
           {(
             [
-              ["성적", reviewGrade, setReviewGrade],
-              ["널널", reviewLoad, setReviewLoad],
-              ["강의", reviewSpeech, setReviewSpeech],
+              [t("common.grade"), reviewGrade, setReviewGrade],
+              [t("common.load"), reviewLoad, setReviewLoad],
+              [t("common.speech"), reviewSpeech, setReviewSpeech],
             ] as [string, string, Dispatch<SetStateAction<string>>][]
           ).map(([tag, currentState, DispatchFunction]) => (
-            <FlexWrapper key={tag as string} direction="row" gap={10}>
+            <FlexWrapper key={tag as string} direction="row" align="center" gap={10}>
               <Typography type="Normal" color="Text.light">
                 {tag as string}
               </Typography>
@@ -82,7 +83,7 @@ function ReviewSection({ lectureId, lectureName }: ReviewSectionProps) {
         </FlexWrapper>
         <FlexWrapper direction="row" justify="flex-end" gap={12}>
           <Button type="default" $paddingLeft={8} $paddingTop={8}>
-            <Typography type="Normal">다른 과목 작성</Typography>
+            <Typography type="Normal">{t("main.reviewSection.writeAnother")}</Typography>
           </Button>
           <Button
             type={
@@ -102,7 +103,7 @@ function ReviewSection({ lectureId, lectureName }: ReviewSectionProps) {
                   : "Text.disable"
               }
             >
-              업로드
+              {t("common.upload")}
             </Typography>
           </Button>
         </FlexWrapper>

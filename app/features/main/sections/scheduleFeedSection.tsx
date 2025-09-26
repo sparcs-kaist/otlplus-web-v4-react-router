@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-
 import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Line from "@/common/components/Line"
@@ -23,10 +22,12 @@ interface ScheduleFeedSectionProps {
 }
 
 function ScheduleFeedSection({ schedules }: ScheduleFeedSectionProps) {
+  const { t } = useTranslation()
+
   return (
     <UniformWidget direction="column" gap={20} align="stretch" padding="30px">
       <FlexWrapper direction="row" gap={0}>
-        <Typography type="BiggerBold">주요 일정</Typography>
+        <Typography type="BiggerBold">{t("main.scheduleFeed.title")}</Typography>
       </FlexWrapper>
       <FlexWrapper direction="column" align="stretch" gap={15}>
         {schedules.map((schedule, idx) => (

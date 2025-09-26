@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
+import { Trans } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Typography from "@/common/components/Typography"
@@ -22,10 +23,19 @@ function PopularFeedSection({ reviews, likeReview }: PopularFeedSectionProps) {
   return (
     <UniformWidget direction="column" gap={20} padding="30px">
       <FlexWrapper direction="row" gap={0}>
-        <Typography type="BiggerBold" color="Highlight.default">
-          사랑받는&nbsp;
-        </Typography>
-        <Typography type="BiggerBold">전공후기</Typography>
+        <Trans
+          i18nKey="main.popularFeed.title"
+          components={{
+            bold: (
+              <Typography
+                type="BiggerBold"
+                color="Highlight.default"
+                children={undefined}
+              />
+            ),
+            normal: <Typography type="BiggerBold" children={undefined} />,
+          }}
+        />
       </FlexWrapper>
       <FlexWrapper direction="column" gap={15}>
         {reviews.map((review, idx) => (

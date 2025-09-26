@@ -1,3 +1,5 @@
+import { write } from "fs"
+
 export const commonI18nBase = {
   example: "예시 번역",
   toggleTheme: {
@@ -23,6 +25,9 @@ export const commonI18nBase = {
     cancel: "취소",
     save: "저장",
     edit: "수정",
+    hours: "시간",
+    minutes: "분",
+    seconds: "초",
     type: {
       basic: "기초",
       major: "전공",
@@ -103,11 +108,13 @@ export const commonI18nBase = {
     },
     search: {
       search: "검색",
+      cancel: "취소",
       grade: "학년",
       department: "학과",
       term: "기간",
       all: "전체",
-      placeholder: "검색어를 입력하세요",
+      groups: "분류",
+      placeholder: "과목명, 교수명을 등을 검색해보세요",
     },
     semesters: {
       spring: "봄",
@@ -120,6 +127,26 @@ export const commonI18nBase = {
     dictionary: "과목사전",
     timetable: "모의시간표",
     writeReviews: "과목후기 작성하기",
+  },
+  main: {
+    hisTimeTable: "<name>{{name}}</name><normal>님의 시간표</normal>",
+    schedule: {
+      title: "{{content}}까지",
+      link: "학사 시스템 바로가기",
+    },
+    reviewSection: {
+      title: "{{lectureName}} 강의는 어땠나요?",
+      placeholder: "학점, 로드 등의 평가에 대해 설명해주세요.",
+    },
+    reviewFeed: {
+      title: "<bold>따끈따끈</bold><normal>과목후기</normal>",
+    },
+    popularFeed: {
+      title: "<bold>사랑받는</bold><normal>과목후기</normal>",
+    },
+    scheduleFeed: {
+      title: "주요 일정",
+    },
   },
   dictionary: {
     courseHistory: "개설이력",

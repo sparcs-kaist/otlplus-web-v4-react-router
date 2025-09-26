@@ -1,5 +1,6 @@
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined"
+import { useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Icon from "@/common/components/Icon"
@@ -14,6 +15,8 @@ interface ReviewBlockProps {
 }
 
 function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
+  const { t } = useTranslation()
+
   if (!review) return
 
   return (
@@ -26,7 +29,7 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
           {review.professorName}
         </Typography>
         <Typography type="Normal" color="Text.lighter">
-          {review.year}년도 {review.semester}학기
+          {review.year} {review.semester}
         </Typography>
       </FlexWrapper>
       <FlexWrapper direction="row" gap={0}>
@@ -37,16 +40,16 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
       <FlexWrapper direction="row" justify="space-between" gap={0}>
         <FlexWrapper direction="row" gap={8}>
           <Typography type="Normal" color="Text.lighter">
-            좋아요 {review.like}
+            {t("common.review.like")} {review.like}
           </Typography>
           <Typography type="Normal" color="Text.lighter">
-            성적 {ReviewEnum[review.grade]}
+            {t("common.grade")} {ReviewEnum[review.grade]}
           </Typography>
           <Typography type="Normal" color="Text.lighter">
-            널널 {ReviewEnum[review.load]}
+            {t("common.load")} {ReviewEnum[review.load]}
           </Typography>
           <Typography type="Normal" color="Text.lighter">
-            강의 {ReviewEnum[review.speech]}
+            {t("common.speech")} {ReviewEnum[review.speech]}
           </Typography>
         </FlexWrapper>
         <FlexWrapper
@@ -55,7 +58,7 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
           onClick={() => likeReview && likeReview(review.reviewId)}
         >
           <Typography type="Normal" color="Highlight.default">
-            좋아요
+            {t("common.review.like")}
           </Typography>
           <Icon size={18} color="crimson">
             {review.userspecificIsLiked ? (
