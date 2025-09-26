@@ -1,5 +1,3 @@
-import { write } from "fs"
-
 export const commonI18nBase = {
   example: "예시 번역",
   toggleTheme: {
