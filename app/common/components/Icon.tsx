@@ -1,15 +1,9 @@
-"use client"
-
-import React from "react"
-
-//import * as MuiIcons from "@mui/icons-material"
+import styled from "@emotion/styled"
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline"
 import { ThemeProvider, createTheme } from "@mui/material"
 
-const MuiIcons = {}
-
 interface IconProps {
-  type: string
+  children: React.ReactNode
   size: number
   onClick?: (e: React.MouseEvent) => void
   color?: string
@@ -17,41 +11,52 @@ interface IconProps {
 
 const theme = createTheme()
 
-function Icon({ type, size, onClick = undefined, color = "inherit" }: IconProps) {
-  const IconComponent = MuiIcons[type as keyof typeof MuiIcons]
+const IconWrapper = styled.div<{ size: string; clickable: boolean; color: string }>`
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
+  display: flex;
+  cursor: ${({ clickable }) => (clickable ? "pointer" : "default")};
+  font-size: ${({ size }) => size};
+  color: ${({ color }) => color};
 
-  const wrapperStyle = {
-    display: "flex",
-    cursor: onClick ? "pointer" : "default",
-    fontSize: `${size}px`,
-    color,
+  & > svg {
+    width: 100%;
+    height: 100%;
   }
+`
 
-  /*
-  if (!IconComponent) {
+const Icon: React.FC<IconProps> = ({
+  children,
+  size,
+  onClick = undefined,
+  color = "inherit",
+}) => {
+  if (!children) {
     return (
-      <div style={wrapperStyle} onClick={onClick}>
+      <IconWrapper
+        onClick={onClick}
+        size={`${size}px`}
+        clickable={!!onClick}
+        color={color}
+      >
         <ThemeProvider theme={theme}>
           <ErrorOutlineIcon style={{ fontSize: `${size}px`, color }} />
         </ThemeProvider>
-      </div>
+      </IconWrapper>
     )
   }
 
+  /*
   return (
-    <div style={wrapperStyle} onClick={onClick}>
-      <ThemeProvider theme={theme}>
-        <IconComponent style={{ fontSize: `${size}px`, color, cursor: "pointer" }} />
-      </ThemeProvider>
-    </div>
+    <IconWrapper onClick={onClick} size={`${size}px`} clickable={!!onClick} color={color}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </IconWrapper>
   )
     */
   return (
-    <div style={wrapperStyle} onClick={onClick}>
-      <ThemeProvider theme={theme}>
-        <ErrorOutlineIcon style={{ fontSize: `${size}px`, color }} />
-      </ThemeProvider>
-    </div>
+    <IconWrapper onClick={onClick} size={`${size}px`} clickable={!!onClick} color={color}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </IconWrapper>
   )
 }
 

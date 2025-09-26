@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import CircleIcon from "@mui/icons-material/Circle"
 import { useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -55,14 +56,15 @@ const CourseBlock: React.FC<CourseBlockProps> = ({
     >
       <FlexWrapper direction="row" gap={6} align={"center"}>
         <Icon
-          type={"Circle"}
           size={12}
           color={
             course.open
               ? themes.light.colors.Highlight.default
               : themes.light.colors.Text.disable
           }
-        />
+        >
+          <CircleIcon />
+        </Icon>
         <Typography type={"NormalBold"} color={"Text.default"}>
           {course.title}
         </Typography>

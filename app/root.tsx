@@ -1,5 +1,6 @@
 import React from "react"
 
+import styled from "@emotion/styled"
 import {
   Links,
   Meta,
@@ -13,6 +14,7 @@ import Header from "@/common/guideline/components/Header"
 
 import type { Route } from "./+types/root"
 import Providers from "./Providers"
+import FlexWrapper from "./common/components/FlexWrapper"
 import "./globals.css"
 
 export const links: Route.LinksFunction = () => [
@@ -40,10 +42,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1,wght@100..700,GRAD@-25..200,opsz@20..48"
-          rel="stylesheet"
-        />
 
         <Meta />
         <Links />
@@ -57,12 +55,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
+const AppWrapper = styled(FlexWrapper)`
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+`
+
 export default function App() {
   return (
-    <>
+    <AppWrapper direction="column" align="stretch" justify="stretch" gap={0}>
       <Header />
       <Outlet />
-    </>
+    </AppWrapper>
   )
 }
 

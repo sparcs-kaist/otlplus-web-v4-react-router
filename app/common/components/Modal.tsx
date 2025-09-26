@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 
 import styled from "@emotion/styled"
+import CloseIcon from "@mui/icons-material/Close"
 import ReactDOM from "react-dom"
 
 import Icon from "@/common/components/Icon"
@@ -87,7 +88,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title = "" }) 
           <HeaderWrapper>
             <Typography type="BigBold">{title}</Typography>
             <CloseIconWrapper>
-              <Icon onClick={onClose} type="Close" size={20} />
+              <Icon onClick={onClose} size={20}>
+                <CloseIcon />
+              </Icon>
             </CloseIconWrapper>
           </HeaderWrapper>
           {children}

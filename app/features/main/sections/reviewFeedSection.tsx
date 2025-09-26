@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-
 import styled from "@emotion/styled"
 
 import FlexWrapper from "@/common/components/FlexWrapper"

@@ -3,6 +3,8 @@
 import React from "react"
 
 import styled from "@emotion/styled"
+import AddIcon from "@mui/icons-material/Add"
+import CheckIcon from "@mui/icons-material/Check"
 
 import Icon from "../Icon"
 
@@ -56,7 +58,15 @@ const Chip = ({ selected = false, chipText = "", ...divProps }: ChipProps) => {
   const ChipContent = () => (
     <ChipContentWrapper>
       {chipText}
-      {selected ? <Icon type="Check" size={13} /> : <Icon type="Add" size={13} />}
+      {selected ? (
+        <Icon size={13}>
+          <CheckIcon />
+        </Icon>
+      ) : (
+        <Icon size={13}>
+          <AddIcon />
+        </Icon>
+      )}
     </ChipContentWrapper>
   )
 

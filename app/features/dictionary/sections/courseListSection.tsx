@@ -1,15 +1,18 @@
-import styled from "@emotion/styled"
-import DictionarySearchArea from "@/features/dictionary/components/DictionarySearchArea"
 import { useState } from "react"
-import type { CourseSearchResult } from "@/common/components/interface/CourseSearchResult"
-import Typography from "@/common/components/Typography"
+
+import styled from "@emotion/styled"
+import CircleIcon from "@mui/icons-material/Circle"
+import { Trans, useTranslation } from "react-i18next"
+
 import FlexWrapper from "@/common/components/FlexWrapper"
-import CourseSearchResults from "@/dummy/courseSearchResults"
 import Icon from "@/common/components/Icon"
-import themes from "@/styles/themes"
 import ScrollableDropdown from "@/common/components/ScrollableDropdown"
+import Typography from "@/common/components/Typography"
+import type { CourseSearchResult } from "@/common/components/interface/CourseSearchResult"
+import CourseSearchResults from "@/dummy/courseSearchResults"
 import CourseBlock from "@/features/dictionary/components/CourseBlock"
-import { useTranslation, Trans } from "react-i18next"
+import DictionarySearchArea from "@/features/dictionary/components/DictionarySearchArea"
+import themes from "@/styles/themes"
 
 const CourseListSectionInner = styled(FlexWrapper)`
   width: 100%;
@@ -55,7 +58,7 @@ const DropDownWrapper = styled.div`
 const CourseBlockWrapper = styled(FlexWrapper)`
   flex-grow: 1;
   overflow-y: auto;
-  
+
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
@@ -63,48 +66,89 @@ const CourseBlockWrapper = styled(FlexWrapper)`
 `
 
 interface CourseListSectionProps {
-  selectedCourseId: number | null;
-  setSelectedCourseId: React.Dispatch<React.SetStateAction<number | null>>;
+  selectedCourseId: number | null
+  setSelectedCourseId: React.Dispatch<React.SetStateAction<number | null>>
 }
 
-const CourseListSection: React.FC<CourseListSectionProps> = ({ selectedCourseId, setSelectedCourseId }) => {
-  const { t } = useTranslation();
-  
-  const [searchResult, setSearchResult] = useState<CourseSearchResult[] | null>(CourseSearchResults);
-  const [sortOption, setSortOption] = useState<number>(0);
+const CourseListSection: React.FC<CourseListSectionProps> = ({
+  selectedCourseId,
+  setSelectedCourseId,
+}) => {
+  const { t } = useTranslation()
+
+  const [searchResult, setSearchResult] = useState<CourseSearchResult[] | null>(
+    CourseSearchResults,
+  )
+  const [sortOption, setSortOption] = useState<number>(0)
 
   return (
     <CourseListSectionInner direction="column" gap={8}>
       <SearchSubSection>
-        <DictionarySearchArea/>
+        <DictionarySearchArea />
       </SearchSubSection>
-      {searchResult ? <>
-        <CourseListHeader direction="row" gap={0} justify={"space-between"} align={"center"}>
-          <HeaderText color={"Text.default"}>
-            <Trans
-              i18nKey="dictionary.courseCountInfo"
-              count={searchResult.length}
-              components={{
-                bold: <Typography type={"NormalBold"} style={{ marginLeft: "4px" }}/>,
-                icon: <Icon type={"Circle"} size={12} color={themes.light.colors.Highlight.default} />,
-              }}
-            />
-          </HeaderText>
-          <SortWrapper direction="row" gap={8} align={"center"}>
-            <Typography type={"NormalBold"} color={"Text.default"}>{t('dictionary.sort')}</Typography>
-            <DropDownWrapper>
-              <ScrollableDropdown options={[t('dictionary.sortOptions.code'), t('dictionary.sortOptions.popularity'), t('dictionary.sortOptions.enrollment')]} setSelectedOption={setSortOption} selectedOption={sortOption}/>
-            </DropDownWrapper>
-          </SortWrapper>
-        </CourseListHeader>
-        <CourseBlockWrapper direction="column" gap={12}>
-          {searchResult.map((course) => (
-            <CourseBlock key={course.id} course={course} isSelected={selectedCourseId == course.id} selectCourseId={setSelectedCourseId}/>
-          ))}
-        </CourseBlockWrapper>
-      </> : <NoResultText type={"Bigger"} color={"Text.placeholder"}>{t('dictionary.noResults')}</NoResultText>}
+      {searchResult ? (
+        <>
+          <CourseListHeader
+            direction="row"
+            gap={0}
+            justify={"space-between"}
+            align={"center"}
+          >
+            <HeaderText color={"Text.default"}>
+              <Trans
+                i18nKey="dictionary.courseCountInfo"
+                count={searchResult.length}
+                components={{
+                  bold: (
+                    <Typography
+                      type={"NormalBold"}
+                      style={{ marginLeft: "4px" }}
+                      children={undefined}
+                    />
+                  ),
+                  icon: (
+                    <Icon size={12} color={themes.light.colors.Highlight.default}>
+                      <CircleIcon />
+                    </Icon>
+                  ),
+                }}
+              />
+            </HeaderText>
+            <SortWrapper direction="row" gap={8} align={"center"}>
+              <Typography type={"NormalBold"} color={"Text.default"}>
+                {t("dictionary.sort")}
+              </Typography>
+              <DropDownWrapper>
+                <ScrollableDropdown
+                  options={[
+                    t("dictionary.sortOptions.code"),
+                    t("dictionary.sortOptions.popularity"),
+                    t("dictionary.sortOptions.enrollment"),
+                  ]}
+                  setSelectedOption={setSortOption}
+                  selectedOption={sortOption}
+                />
+              </DropDownWrapper>
+            </SortWrapper>
+          </CourseListHeader>
+          <CourseBlockWrapper direction="column" gap={12}>
+            {searchResult.map((course) => (
+              <CourseBlock
+                key={course.id}
+                course={course}
+                isSelected={selectedCourseId == course.id}
+                selectCourseId={setSelectedCourseId}
+              />
+            ))}
+          </CourseBlockWrapper>
+        </>
+      ) : (
+        <NoResultText type={"Bigger"} color={"Text.placeholder"}>
+          {t("dictionary.noResults")}
+        </NoResultText>
+      )}
     </CourseListSectionInner>
-  );
+  )
 }
 
-export default CourseListSection;
+export default CourseListSection

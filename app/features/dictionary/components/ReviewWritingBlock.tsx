@@ -1,18 +1,20 @@
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import TextInput from "@/common/components/TextInputArea"
 import React, { useState } from "react"
-import { stringSemester } from "@/utils/semesterToString"
+
 import styled from "@emotion/styled"
-import Button from "@/common/components/Button"
-import ReviewGradeCircles from "@/features/dictionary/components/ReviewGradeCircles"
 import { useTranslation } from "react-i18next"
+
+import Button from "@/common/components/Button"
+import FlexWrapper from "@/common/components/FlexWrapper"
+import TextInput from "@/common/components/TextInputArea"
+import Typography from "@/common/components/Typography"
+import ReviewGradeCircles from "@/features/dictionary/components/ReviewGradeCircles"
+import { stringSemester } from "@/utils/semesterToString"
 
 const ReviewWrapper = styled(FlexWrapper)`
   padding: 8px 10px;
   width: 100%;
   border-radius: 6px;
-  border: 1px ${({theme} ) => theme.colors.Background.Block.dark} solid;
+  border: 1px ${({ theme }) => theme.colors.Background.Block.dark} solid;
   background-color: ${({ theme }) => theme.colors.Background.Block.default};
 `
 
@@ -23,45 +25,81 @@ const ReviewTextInput = styled(TextInput)`
 `
 
 interface ReviewWritingBlockProps {
-  courseName?: string;
+  courseName?: string
 }
 
 const ReviewWritingBlock: React.FC<ReviewWritingBlockProps> = ({ courseName }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
-  const [writingReviewContent, setWritingReviewContent] = useState<string>("");
-  const [writingReviewScores, setWritingReviewScores] = useState({ grade: 0, load: 0, speech: 0 });
+  const [writingReviewContent, setWritingReviewContent] = useState<string>("")
+  const [writingReviewScores, setWritingReviewScores] = useState({
+    grade: 0,
+    load: 0,
+    speech: 0,
+  })
 
   return (
     <>
       <ReviewWrapper direction="column" gap={8}>
         <FlexWrapper direction="row" gap={6} align={"center"} justify={"center"}>
-          <Typography type={"NormalBold"} color={"Text.default"}>{courseName}</Typography>
+          <Typography type={"NormalBold"} color={"Text.default"}>
+            {courseName}
+          </Typography>
           {["스팍스", "2025", stringSemester(3)].map((text) => (
-            <Typography type={"Normal"} color={"Text.lighter"}>{text}</Typography>
+            <Typography type={"Normal"} color={"Text.lighter"}>
+              {text}
+            </Typography>
           ))}
         </FlexWrapper>
-        <ReviewTextInput placeholder={t('common.review.writingPlaceholder')} value={writingReviewContent} handleChange={setWritingReviewContent} area={true}/>
+        <ReviewTextInput
+          placeholder={t("common.review.writingPlaceholder")}
+          value={writingReviewContent}
+          handleChange={setWritingReviewContent}
+          area={true}
+        />
         <FlexWrapper direction="row" gap={12}>
           <FlexWrapper direction="row" gap={6} align="center">
-            <Typography type="Normal" color="Text.default">{t('common.grade')}</Typography>
-            <ReviewGradeCircles grade={writingReviewScores.grade} setGrade={(grade) => setWritingReviewScores({...writingReviewScores, grade: grade})}/>
+            <Typography type="Normal" color="Text.default">
+              {t("common.grade")}
+            </Typography>
+            <ReviewGradeCircles
+              grade={writingReviewScores.grade}
+              setGrade={(grade) =>
+                setWritingReviewScores({ ...writingReviewScores, grade: grade })
+              }
+            />
           </FlexWrapper>
           <FlexWrapper direction="row" gap={6} align="center">
-            <Typography type="Normal" color="Text.default">{t('common.load')}</Typography>
-            <ReviewGradeCircles grade={writingReviewScores.load} setGrade={(load) => setWritingReviewScores({...writingReviewScores, load: load})}/>
+            <Typography type="Normal" color="Text.default">
+              {t("common.load")}
+            </Typography>
+            <ReviewGradeCircles
+              grade={writingReviewScores.load}
+              setGrade={(load) =>
+                setWritingReviewScores({ ...writingReviewScores, load: load })
+              }
+            />
           </FlexWrapper>
           <FlexWrapper direction="row" gap={6} align="center">
-            <Typography type="Normal" color="Text.default">{t('common.speech')}</Typography>
-            <ReviewGradeCircles grade={writingReviewScores.speech} setGrade={(speech) => setWritingReviewScores({...writingReviewScores, speech: speech})}/>
+            <Typography type="Normal" color="Text.default">
+              {t("common.speech")}
+            </Typography>
+            <ReviewGradeCircles
+              grade={writingReviewScores.speech}
+              setGrade={(speech) =>
+                setWritingReviewScores({ ...writingReviewScores, speech: speech })
+              }
+            />
           </FlexWrapper>
         </FlexWrapper>
-        <FlexWrapper direction="row" gap={0} justify={"end"} style={{ width : "100%" }}>
-          <Button type={"selected"} $paddingLeft={9}>{t('common.upload')}</Button>
+        <FlexWrapper direction="row" gap={0} justify={"end"} style={{ width: "100%" }}>
+          <Button type={"selected"} $paddingLeft={9}>
+            {t("common.upload")}
+          </Button>
         </FlexWrapper>
       </ReviewWrapper>
     </>
-  );
+  )
 }
 
-export default ReviewWritingBlock;
+export default ReviewWritingBlock

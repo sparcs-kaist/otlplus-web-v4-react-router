@@ -5,10 +5,8 @@ import globals from "globals"
 import tseslint from "typescript-eslint"
 
 export default defineConfig([
+  // Global ignores should be at the top level
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    plugins: { js },
-    extends: ["js/recommended"],
     ignores: [
       "**/node_modules/**",
       "**/dist/**",
@@ -16,19 +14,22 @@ export default defineConfig([
       "**/coverage/**",
       "**/+types/**",
     ],
+  },
+
+  // Base configurations
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  // This config is for projects using React 17's new JSX transform.
+  // It disables rules like `react/react-in-jsx-scope`.
+  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    languageOptions: { globals: { ...globals.browser } },
     rules: {
       "no-empty-pattern": "off",
     },
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
+    settings: { react: { version: "detect" } },
   },
-  {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    languageOptions: { globals: globals.browser },
-  },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+
+  // Custom configurations for your project
+  pluginReact.configs.flat["jsx-runtime"],
 ])

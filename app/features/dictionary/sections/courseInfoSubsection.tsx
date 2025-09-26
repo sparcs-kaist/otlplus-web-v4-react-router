@@ -1,9 +1,11 @@
-import Typography from "@/common/components/Typography"
-import FlexWrapper from "@/common/components/FlexWrapper"
 import React from "react"
-import type { NewCourse } from "@/common/components/interface/NewCourse"
+
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
+
+import FlexWrapper from "@/common/components/FlexWrapper"
+import Typography from "@/common/components/Typography"
+import type { NewCourse } from "@/common/components/interface/NewCourse"
 
 const CourseInfo = styled(FlexWrapper)`
   width: 100%;
@@ -19,32 +21,42 @@ const DetailHeaderText = styled(Typography)`
 `
 
 interface CourseInfoSubsectionProps {
-  courseDetail: NewCourse | null;
+  courseDetail: NewCourse | null
 }
 
 const CourseInfoSubsection: React.FC<CourseInfoSubsectionProps> = ({ courseDetail }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <>
       <CourseInfo direction="column" gap={8}>
-        {[[t('common.class'), courseDetail?.department.name + ", " + courseDetail?.type],
-          [t('common.description'), courseDetail?.summary]]
-          .map(([label, value], index) => (
+        {[
+          [t("common.class"), courseDetail?.department.name + ", " + courseDetail?.type],
+          [t("common.description"), courseDetail?.summary],
+        ].map(([label, value], index) => (
           <FlexWrapper key={index} direction="row" gap={6}>
-            <DetailHeaderText type={"NormalBold"} color={"Text.default"}>{label}</DetailHeaderText>
-            <Typography type={"Normal"} color={"Text.default"}>{value}</Typography>
+            <DetailHeaderText type={"NormalBold"} color={"Text.default"}>
+              {label}
+            </DetailHeaderText>
+            <Typography type={"Normal"} color={"Text.default"}>
+              {value}
+            </Typography>
           </FlexWrapper>
         ))}
       </CourseInfo>
       <NumberWrapper direction="row" gap={0} justify={"space-between"} align={"center"}>
-        {[[courseDetail?.num_classes, t('common.numClasses')],
-          [courseDetail?.num_labs, t('common.numLabs')],
-          [courseDetail?.credit, t('common.credit')]]
-          .map(([value, label], index) => (
+        {[
+          [courseDetail?.num_classes, t("common.numClasses")],
+          [courseDetail?.num_labs, t("common.numLabs")],
+          [courseDetail?.credit, t("common.credit")],
+        ].map(([value, label], index) => (
           <FlexWrapper key={index} direction="column" gap={0} align={"center"}>
-            <Typography type={"Bigger"} color={"Text.default"}>{value}</Typography>
-            <Typography type={"Smaller"} color={"Text.default"}>{label}</Typography>
+            <Typography type={"Bigger"} color={"Text.default"}>
+              {value}
+            </Typography>
+            <Typography type={"Smaller"} color={"Text.default"}>
+              {label}
+            </Typography>
           </FlexWrapper>
         ))}
       </NumberWrapper>
@@ -52,4 +64,4 @@ const CourseInfoSubsection: React.FC<CourseInfoSubsectionProps> = ({ courseDetai
   )
 }
 
-export default CourseInfoSubsection;
+export default CourseInfoSubsection

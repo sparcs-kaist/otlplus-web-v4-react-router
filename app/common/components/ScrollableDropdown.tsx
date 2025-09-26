@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
+import ExpandLessIcon from "@mui/icons-material/ExpandLess"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 import Icon from "@/common/components/Icon"
 import { IconButton } from "@/common/components/IconButton"
@@ -160,7 +162,7 @@ const ScrollableDropdown: React.FC<ScrollableDropdownProps> = ({
           }}
           styles={{ padding: 0 }}
         >
-          <Icon type={isExpand ? "ExpandLess" : "ExpandMore"} size={24} />
+          <Icon size={24}>{isExpand ? <ExpandLessIcon /> : <ExpandMoreIcon />}</Icon>
         </IconButton>
       </SelectedWrapper>
       {isExpand && (

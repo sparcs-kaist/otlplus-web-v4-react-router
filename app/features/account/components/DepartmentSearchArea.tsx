@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
+import CloseIcon from "@mui/icons-material/Close"
+import SearchIcon from "@mui/icons-material/Search"
 import { useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
@@ -136,7 +138,9 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
     <DepartmentSearchAreaInner direction={"column"} gap={12}>
       <SearchContainer direction={"row"} gap={8} align={"center"}>
         <SearchIconWrapper>
-          <Icon type="Search" size={18} />
+          <Icon size={18}>
+            <SearchIcon />
+          </Icon>
         </SearchIconWrapper>
         <TagList
           onClick={() => {
@@ -150,13 +154,14 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
             <TagItem key={index} direction={"row"} gap={8} align="center">
               {findDepartmentNameById(id)}
               <Icon
-                type="Close"
                 size={16}
                 onClick={(e) => {
                   e.stopPropagation()
                   removeDepartment(id)
                 }}
-              />
+              >
+                <CloseIcon />
+              </Icon>
             </TagItem>
           ))}
           <SearchInput
