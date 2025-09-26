@@ -31,24 +31,18 @@ export default function DictionaryPage() {
   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(745)
 
   return (
-    <DictionaryWrapper direction="column" gap={0} align="center">
-      <DictionaryWrapperInner
-        direction="row"
-        justify="center"
-        align="stretch"
-        gap={12}
-        padding="0 0 15px 0"
-      >
-        <SectionWrapper direction="row" justify="center" gap={0}>
+    <div>
+      <DictionaryWrapper direction={"row"} gap={12} justify={"center"}>
+        <SectionWrapper direction="column" align="stretch" gap={0}>
           <CourseListSection
             selectedCourseId={selectedCourseId}
             setSelectedCourseId={setSelectedCourseId}
           />
         </SectionWrapper>
-        <SectionWrapper direction="row" justify="center" gap={0}>
+        <SectionWrapper direction="column" align="stretch" gap={0}>
           <CourseDetailSection selectedCourseId={selectedCourseId} />
         </SectionWrapper>
-      </DictionaryWrapperInner>
-    </DictionaryWrapper>
+      </DictionaryWrapper>
+    </div>
   )
 }
