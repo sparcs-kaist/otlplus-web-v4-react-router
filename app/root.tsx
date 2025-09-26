@@ -1,5 +1,6 @@
 import React from "react"
 
+import styled from "@emotion/styled"
 import {
   Links,
   Meta,
@@ -9,8 +10,11 @@ import {
   isRouteErrorResponse,
 } from "react-router"
 
+import Header from "@/common/guideline/components/Header"
+
 import type { Route } from "./+types/root"
 import Providers from "./Providers"
+import FlexWrapper from "./common/components/FlexWrapper"
 import "./globals.css"
 
 export const links: Route.LinksFunction = () => [
@@ -38,6 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
+
         <Meta />
         <Links />
       </head>
@@ -50,8 +55,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
+const AppWrapper = styled(FlexWrapper)`
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+`
+
 export default function App() {
-  return <Outlet />
+  return (
+    <AppWrapper direction="column" align="stretch" justify="stretch" gap={0}>
+      <Header />
+      <Outlet />
+    </AppWrapper>
+  )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
