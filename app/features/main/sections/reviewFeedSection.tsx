@@ -32,6 +32,7 @@ function ReviewFeedSection({ reviews, likeReview }: ReviewFeedSectionProps) {
               />
             ),
             normal: <Typography type="BiggerBold" children={undefined} />,
+            space: <>&nbsp;</>,
           }}
         />
       </FlexWrapper>

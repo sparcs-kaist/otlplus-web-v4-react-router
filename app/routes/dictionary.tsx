@@ -7,15 +7,14 @@ import CourseDetailSection from "@/features/dictionary/sections/courseDetailSect
 import CourseListSection from "@/features/dictionary/sections/courseListSection"
 
 const DictionaryWrapper = styled(FlexWrapper)`
-  flex: 1 1 0;
+  flex: 1 0 0;
   min-height: 0;
-  max-height: 100%;
 `
 
 const DictionaryWrapperInner = styled(FlexWrapper)`
-  flex: 1 1 auto;
+  flex: 1 0 0;
+  overflow: auto;
   min-height: 0;
-  max-height: 100%;
 `
 
 const SectionWrapper = styled(FlexWrapper)`
@@ -31,8 +30,14 @@ export default function DictionaryPage() {
   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(745)
 
   return (
-    <div>
-      <DictionaryWrapper direction={"row"} gap={12} justify={"center"}>
+    <DictionaryWrapper direction="column" align="center" justify="stretch" gap={0}>
+      <DictionaryWrapperInner
+        direction="row"
+        gap={12}
+        align="stretch"
+        justify="center"
+        padding="0px 0px 15px 0px"
+      >
         <SectionWrapper direction="column" align="stretch" gap={0}>
           <CourseListSection
             selectedCourseId={selectedCourseId}
@@ -42,7 +47,7 @@ export default function DictionaryPage() {
         <SectionWrapper direction="column" align="stretch" gap={0}>
           <CourseDetailSection selectedCourseId={selectedCourseId} />
         </SectionWrapper>
-      </DictionaryWrapper>
-    </div>
+      </DictionaryWrapperInner>
+    </DictionaryWrapper>
   )
 }

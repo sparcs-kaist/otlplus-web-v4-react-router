@@ -46,11 +46,11 @@ const HeaderText = styled(Typography)`
 `
 
 const SortWrapper = styled(FlexWrapper)`
-  width: 30%;
+  width: 35%;
   white-space: nowrap;
 `
 
-const DropDownWrapper = styled.div`
+const DropDownWrapper = styled(FlexWrapper)`
   flex-grow: 1;
   height: 36px;
 `
@@ -99,18 +99,13 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
                 i18nKey="dictionary.courseCountInfo"
                 count={searchResult.length}
                 components={{
-                  bold: (
-                    <Typography
-                      type={"NormalBold"}
-                      style={{ marginLeft: "4px" }}
-                      children={undefined}
-                    />
-                  ),
+                  bold: <Typography type={"NormalBold"} children={undefined} />,
                   icon: (
                     <Icon size={12} color={themes.light.colors.Highlight.default}>
                       <CircleIcon />
                     </Icon>
                   ),
+                  space: <>&nbsp;</>,
                 }}
               />
             </HeaderText>
@@ -118,7 +113,7 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
               <Typography type={"NormalBold"} color={"Text.default"}>
                 {t("dictionary.sort")}
               </Typography>
-              <DropDownWrapper>
+              <DropDownWrapper direction="row" gap={0}>
                 <ScrollableDropdown
                   options={[
                     t("dictionary.sortOptions.code"),

@@ -123,6 +123,16 @@ export const commonI18nEn: CommonI18nBaseType = {
       fall: "Fall",
       winter: "Winter",
     },
+
+    days: {
+      monday: "Mon",
+      tuesday: "Tue",
+      wednesday: "Wed",
+      thursday: "Thu",
+      friday: "Fri",
+      saturday: "Sat",
+      sunday: "Sun",
+    },
   },
   header: {
     dictionary: "Dictionary",
@@ -139,12 +149,14 @@ export const commonI18nEn: CommonI18nBaseType = {
       title: "How did you find the {{lectureName}} course?",
       placeholder:
         "How did you find the gradings and workload — fair, heavy, or just right?",
+
+      writeAnother: "Another one",
     },
     reviewFeed: {
-      title: "<bold>Fresh</bold><normal>Course Reviews</normal>",
+      title: "<bold>Fresh</bold><space/><normal>Course Reviews</normal>",
     },
     popularFeed: {
-      title: "<bold>Popular</bold><normal>Course Reviews</normal>",
+      title: "<bold>Popular</bold><space/><normal>Course Reviews</normal>",
     },
     scheduleFeed: {
       title: "School Schedules",
@@ -154,7 +166,7 @@ export const commonI18nEn: CommonI18nBaseType = {
     courseHistory: "Course History",
     notOffered: "Not offered",
     courseCountInfo:
-      "Total <bold>{{count}}</bold> courses (<icon/>: offered this semester)",
+      "Total<space/><bold>{{count}}</bold><space/>courses<space/>(<icon/>: offered this semester)",
     sort: "Sort",
     noResults: "No results",
     sortOptions: {

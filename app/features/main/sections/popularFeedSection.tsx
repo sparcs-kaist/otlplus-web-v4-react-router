@@ -33,6 +33,7 @@ function PopularFeedSection({ reviews, likeReview }: PopularFeedSectionProps) {
                 children={undefined}
               />
             ),
+            space: <>&nbsp;</>,
             normal: <Typography type="BiggerBold" children={undefined} />,
           }}
         />

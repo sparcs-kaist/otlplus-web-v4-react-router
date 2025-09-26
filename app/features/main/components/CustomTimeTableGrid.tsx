@@ -1,6 +1,7 @@
 import React, { use, useEffect, useLayoutEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import type Lecture from "@/common/components/interface/Lecture"
@@ -59,11 +60,19 @@ const CustomTimeTableGrid: React.FC<GridProps> = ({
   selected,
   setSelected,
 }) => {
+  const { t } = useTranslation()
+
   const colPadding = 5
   const m = 5
   const begin = 8
   const gridRef = useRef<HTMLDivElement>(null)
-  const dateHeader = ["월요일", "화요일", "수요일", "목요일", "금요일"]
+  const dateHeader = [
+    t("common.days.monday"),
+    t("common.days.tuesday"),
+    t("common.days.wednesday"),
+    t("common.days.thursday"),
+    t("common.days.friday"),
+  ]
   const isAnyOver24 = checkAnyOver24(lectureSummary)
   const n = isAnyOver24 ? 38 : 32
   const end = isAnyOver24 ? 27 : 24

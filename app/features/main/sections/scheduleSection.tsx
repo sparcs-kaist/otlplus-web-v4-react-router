@@ -56,7 +56,7 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
       <FlexWrapper direction="column" align="stretch" gap={16}>
         <FlexWrapper direction="column" align="center" gap={10}>
           <FlexWrapper direction="column" align="stretch" gap={0}>
-            <FlexWrapper direction="row" gap={0}>
+            <FlexWrapper direction="row" justify="center" gap={0}>
               <Typography type="BiggerBold" color="Text.dark">
                 <Trans
                   i18nKey="main.schedule.title"

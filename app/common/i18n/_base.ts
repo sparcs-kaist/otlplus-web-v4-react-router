@@ -120,6 +120,15 @@ export const commonI18nBase = {
       fall: "가을",
       winter: "겨울",
     },
+    days: {
+      monday: "월요일",
+      tuesday: "화요일",
+      wednesday: "수요일",
+      thursday: "목요일",
+      friday: "금요일",
+      saturday: "토요일",
+      sunday: "일요일",
+    },
   },
   header: {
     dictionary: "과목사전",
@@ -135,6 +144,7 @@ export const commonI18nBase = {
     reviewSection: {
       title: "{{lectureName}} 강의는 어땠나요?",
       placeholder: "학점, 로드 등의 평가에 대해 설명해주세요.",
+      writeAnother: "다른 과목 후기 쓰기",
     },
     reviewFeed: {
       title: "<bold>따끈따끈</bold><normal>과목후기</normal>",

@@ -15,6 +15,7 @@ import {
   getDepartmentOptions,
   getLevelOptions,
   getTermOptions,
+  getTypeOptions,
 } from "@/common/searchOptions"
 
 export type OptionProps = {
@@ -101,18 +102,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) =>
   const departmentOptions = getDepartmentOptions().map((option) => option[1])
   const [gradeSelect, setGrade] = useState<boolean[]>(Array(gradeList.length).fill(false))
 
-  const divisionList = [
-    "기필",
-    "기선",
-    "전필",
-    "전선",
-    "교필",
-    "인선",
-    "공통",
-    "석박",
-    "자선",
-    "기타",
-  ]
+  const divisionList = getTypeOptions().map((option) => option[1])
   const [divisionSelect, setDivison] = useState<boolean[]>(
     Array(divisionList.length).fill(false),
   )
