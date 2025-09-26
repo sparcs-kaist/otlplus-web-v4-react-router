@@ -10,9 +10,14 @@ import FlexWrapper from "@/common/components/FlexWrapper"
 import Icon from "@/common/components/Icon"
 import Typography from "@/common/components/Typography"
 import TextInput from "@/common/components/search/TextInput"
-import OptionChipGrid from "@/common/components/utils/search/generateChips"
-import { getDepartmentOptions, getLevelOptions, getTermOptions, getTypeOptions, } from "@/common/searchOptions"
+import {
+  getDepartmentOptions,
+  getLevelOptions,
+  getTermOptions,
+  getTypeOptions,
+} from "@/common/searchOptions"
 import themes from "@/styles/themes"
+import OptionChipGrid from "@/utils/search/generateChips"
 
 export type OptionProps = {
   nameList: string[]

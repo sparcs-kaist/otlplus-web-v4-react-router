@@ -5,10 +5,10 @@ import { Trans, useTranslation } from "react-i18next"
 
 import FlexWrapper from "@/common/components/FlexWrapper"
 import Typography from "@/common/components/Typography"
-import type Lecture from "@/common/components/interface/Lecture"
 import type TimeBlock from "@/common/components/interface/Timeblock"
 import type { LectureSummary } from "@/common/components/interface/Timetable"
 import type UserProfile from "@/common/components/interface/User"
+import type { Lecture } from "@/common/schemas/lecture"
 
 import CustomTimeTableGrid from "../components/CustomTimeTableGrid"
 import Widget from "../components/Widget"
