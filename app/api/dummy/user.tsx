@@ -1,4 +1,4 @@
-import type UserProfile from "@/common/components/interface/User"
+import type UserProfile from "@/common/interface/User"
 
 import UserLectures from "./userLectures"
 

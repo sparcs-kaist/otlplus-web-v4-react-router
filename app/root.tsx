@@ -10,11 +10,11 @@ import {
   isRouteErrorResponse,
 } from "react-router"
 
-import Header from "@/common/guideline/components/Header"
+import Header from "@/common/components/guideline/Header"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
 
 import type { Route } from "./+types/root"
 import Providers from "./Providers"
-import FlexWrapper from "./common/components/FlexWrapper"
 import "./globals.css"
 
 export const links: Route.LinksFunction = () => [

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import { type LectureSimpleBlock as LectureSimpleBlockType } from "@/common/components/interface/LectureSimpleBlock"
+import { type LectureSimpleBlock as LectureSimpleBlockType } from "@/common/interface/LectureSimpleBlock"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 const BlockInner = styled(FlexWrapper)`
   background: ${({ theme }) => theme.colors.Background.Block.default};

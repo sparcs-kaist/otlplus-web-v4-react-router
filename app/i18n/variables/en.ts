@@ -1,4 +1,4 @@
-import { commonI18nBase, type CommonI18nBaseType } from "./_base"
+import { type CommonI18nBaseType, commonI18nBase } from "./_base"
 
 export const commonI18nEn: CommonI18nBaseType = {
   ...commonI18nBase,

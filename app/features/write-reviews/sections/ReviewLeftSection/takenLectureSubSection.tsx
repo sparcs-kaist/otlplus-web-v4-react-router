@@ -1,9 +1,9 @@
-import FlexWrapper from "@/common/components/FlexWrapper"
 import Line from "@/common/components/Line"
-import Typography from "@/common/components/Typography"
-import { type TakenLectures } from "@/common/components/interface/takenLectures"
+import { type TakenLectures } from "@/common/interface/takenLectures"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
-import LectureSimpleBlock from "../components/lectureSimpleBlock"
+import LectureSimpleBlock from "../../components/LectureSimpleBlock"
 
 interface TakenLectureSubSectionProps {
   lecturesWrap: TakenLectures

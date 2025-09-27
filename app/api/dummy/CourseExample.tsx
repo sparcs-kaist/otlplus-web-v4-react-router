@@ -1,8 +1,4 @@
-import type { NewCourse } from "@/common/components/interface/NewCourse"
-
-
-
-
+import type { NewCourse } from "@/common/interface/NewCourse"
 
 const CourseExample: NewCourse = {
   id: 745,

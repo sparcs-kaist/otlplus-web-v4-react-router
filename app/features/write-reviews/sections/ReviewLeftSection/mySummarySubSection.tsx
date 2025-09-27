@@ -1,5 +1,5 @@
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 function MySummarySubSection() {
   return (

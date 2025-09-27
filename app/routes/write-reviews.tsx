@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import { type LectureSimpleBlock } from "@/common/components/interface/LectureSimpleBlock"
-import { type TakenLectures } from "@/common/components/interface/takenLectures"
-import UserLectures from "@/dummy/userLectures"
-import ReviewLeftSection from "@/features/write-reviews/sections/reviewLeftSection"
-import ReviewRightSection from "@/features/write-reviews/sections/reviewRightSection"
+import UserLectures from "@/api/dummy/userLectures"
+import { type LectureSimpleBlock } from "@/common/interface/LectureSimpleBlock"
+import { type TakenLectures } from "@/common/interface/takenLectures"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import ReviewLeftSection from "@/features/write-reviews/sections/ReviewLeftSection"
+import ReviewRightSection from "@/features/write-reviews/sections/ReviewRightSection"
 
 const WriteReviewWrapper = styled(FlexWrapper)`
   flex: 1 0 0;
@@ -39,7 +39,7 @@ export default function WriteReviews() {
 
     const wraps: { [key: number]: LectureSimpleBlock[] } = {}
 
-    for (let lecture of UserLectures) {
+    for (const lecture of UserLectures) {
       const { year, semester, title, code } = lecture
 
       if (!wraps[year * 10 + semester]) wraps[year * 10 + semester] = []
@@ -50,7 +50,7 @@ export default function WriteReviews() {
       })
     }
 
-    for (let year_semester in wraps) {
+    for (const year_semester in wraps) {
       const year_semester_num = Number(year_semester)
       const wrap = wraps[year_semester_num]
 

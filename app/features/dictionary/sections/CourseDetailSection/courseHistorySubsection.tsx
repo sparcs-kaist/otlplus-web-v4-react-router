@@ -3,11 +3,11 @@ import React, { useEffect, useRef } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import type { NewCourse } from "@/common/components/interface/NewCourse"
+import { stringSemester } from "@/common/enum/semesterEnum"
+import type { NewCourse } from "@/common/interface/NewCourse"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 import CourseHistoryChip from "@/features/dictionary/components/CourseHistoryChip"
-import { stringSemester } from "@/utils/semesterToString"
 
 const CourseHistory = styled(FlexWrapper)`
   width: 100%;

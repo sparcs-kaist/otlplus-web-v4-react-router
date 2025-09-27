@@ -3,10 +3,9 @@ import React, { useState } from "react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 import type { ThemeType } from "@/styles/themes"
-
-import FlexWrapper from "./FlexWrapper"
 
 interface GradeButtonProps {
   children: React.ReactNode

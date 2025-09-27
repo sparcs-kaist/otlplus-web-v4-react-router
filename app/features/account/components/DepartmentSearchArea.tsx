@@ -5,12 +5,12 @@ import CloseIcon from "@mui/icons-material/Close"
 import SearchIcon from "@mui/icons-material/Search"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
+import DepartmentList from "@/api/dummy/departments.json"
 import StyledDivider from "@/common/components/StyledDivider"
-import Typography from "@/common/components/Typography"
-import type Department from "@/common/components/interface/Departmet"
-import DepartmentList from "@/dummy/departments.json"
+import type Department from "@/common/interface/Departmet"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 
 const DepartmentSearchAreaInner = styled(FlexWrapper)`
   width: 630px;

@@ -2,11 +2,11 @@ import { useState } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
 import ScrollableDropdown from "@/common/components/ScrollableDropdown"
-import Typography from "@/common/components/Typography"
-import ReviewBlock from "@/common/components/blocks/reviewBlock"
-import type ReviewFeed from "@/common/components/interface/ReviewFeed"
+import ReviewBlock from "@/common/components/blocks/ReviewBlock"
+import type ReviewFeed from "@/common/interface/ReviewFeed"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 const DropDownWrapper = styled(FlexWrapper)`
   flex: 1 0 1;

@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper, { type FlexWrapperProps } from "@/common/components/FlexWrapper"
+import FlexWrapper, { type FlexWrapperProps } from "@/common/primitives/FlexWrapper"
 
 const WidgetInner = styled(FlexWrapper)<{
   width: number | undefined

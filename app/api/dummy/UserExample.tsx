@@ -1,8 +1,4 @@
-import type NewUser from "@/common/components/interface/NewUser"
-
-
-
-
+import type NewUser from "@/common/interface/NewUser"
 
 const UserExample: NewUser = {
   name: "Sample User",

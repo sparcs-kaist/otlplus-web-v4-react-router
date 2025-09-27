@@ -1,9 +1,5 @@
 import { css } from "@emotion/react"
 
-
-
-
-
 type Breakpoint = "mobile" | "tablet" | "desktop"
 
 const breakpoints: Record<Breakpoint, string> = {

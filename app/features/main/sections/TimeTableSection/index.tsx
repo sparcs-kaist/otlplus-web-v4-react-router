@@ -3,15 +3,15 @@ import { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { Trans, useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import type TimeBlock from "@/common/components/interface/Timeblock"
-import type { LectureSummary } from "@/common/components/interface/Timetable"
-import type UserProfile from "@/common/components/interface/User"
+import type TimeBlock from "@/common/interface/Timeblock"
+import type { LectureSummary } from "@/common/interface/Timetable"
+import type UserProfile from "@/common/interface/User"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 import type { Lecture } from "@/common/schemas/lecture"
 
-import CustomTimeTableGrid from "../components/CustomTimeTableGrid"
-import Widget from "../components/Widget"
+import CustomTimeTableGrid from "../../components/CustomTimeTableGrid"
+import Widget from "../../components/Widget"
 
 const TimeTableInner = styled(FlexWrapper)`
   flex-grow: 1;

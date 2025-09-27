@@ -1,9 +1,5 @@
 import { type ReactElement } from "react"
 
-
-
-
-
 const calcLeft = (
   index: number,
   placeholderIndex: number[],

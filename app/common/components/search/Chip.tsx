@@ -6,7 +6,7 @@ import styled from "@emotion/styled"
 import AddIcon from "@mui/icons-material/Add"
 import CheckIcon from "@mui/icons-material/Check"
 
-import Icon from "../Icon"
+import Icon from "@/common/primitives/Icon"
 
 type ChipProps = {
   selected?: boolean

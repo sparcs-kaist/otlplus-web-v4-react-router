@@ -4,11 +4,11 @@ import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import TextInput from "@/common/components/TextInputArea"
-import Typography from "@/common/components/Typography"
+import { stringSemester } from "@/common/enum/semesterEnum"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import TextInput from "@/common/primitives/TextInputArea"
+import Typography from "@/common/primitives/Typography"
 import ReviewGradeCircles from "@/features/dictionary/components/ReviewGradeCircles"
-import { stringSemester } from "@/utils/semesterToString"
 
 const ReviewWrapper = styled(FlexWrapper)`
   padding: 8px 10px;

@@ -1,13 +1,12 @@
 import type { JSX } from "react"
 import { useRef } from "react"
 
-import lectures from "@/dummy/lectures"
-
-import LectureTile from "../LectureTile"
-import { WeekdayEnum } from "../enum/weekdayEnum"
-import type Lecture from "../interface/Lecture"
-import type TimeBlock from "../interface/Timeblock"
-import type { LectureSummary } from "../interface/Timetable"
+import lectures from "@/api/dummy/lectures"
+import LectureTile from "@/common/components/LectureTile"
+import { WeekdayEnum } from "@/common/enum/weekdayEnum"
+import type Lecture from "@/common/interface/Lecture"
+import type TimeBlock from "@/common/interface/Timeblock"
+import type { LectureSummary } from "@/common/interface/Timetable"
 
 const renderLectureTile = (
   lectureSummary: LectureSummary[],

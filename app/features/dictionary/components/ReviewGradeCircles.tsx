@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 const Grade = styled.div<{ selected?: boolean }>`
   width: 20px;

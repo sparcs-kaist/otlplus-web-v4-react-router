@@ -2,12 +2,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
-import Typography from "@/common/components/Typography"
-import type ReviewFeed from "@/common/components/interface/ReviewFeed"
-
-import { ReviewEnum } from "../enum/reviewEnum"
+import { ScoreEnum } from "@/common/enum/scoreEnum"
+import { stringSemester } from "@/common/enum/semesterEnum"
+import type ReviewFeed from "@/common/interface/ReviewFeed"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 
 interface ReviewBlockProps {
   review: ReviewFeed
@@ -29,7 +29,7 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
           {review.professorName}
         </Typography>
         <Typography type="Normal" color="Text.lighter">
-          {review.year} {review.semester}
+          {review.year} {stringSemester(review.semester)}
         </Typography>
       </FlexWrapper>
       <FlexWrapper direction="row" gap={0}>
@@ -43,13 +43,13 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
             {t("common.review.like")} {review.like}
           </Typography>
           <Typography type="Normal" color="Text.lighter">
-            {t("common.grade")} {ReviewEnum[review.grade]}
+            {t("common.grade")} {ScoreEnum[review.grade]}
           </Typography>
           <Typography type="Normal" color="Text.lighter">
-            {t("common.load")} {ReviewEnum[review.load]}
+            {t("common.load")} {ScoreEnum[review.load]}
           </Typography>
           <Typography type="Normal" color="Text.lighter">
-            {t("common.speech")} {ReviewEnum[review.speech]}
+            {t("common.speech")} {ScoreEnum[review.speech]}
           </Typography>
         </FlexWrapper>
         <FlexWrapper

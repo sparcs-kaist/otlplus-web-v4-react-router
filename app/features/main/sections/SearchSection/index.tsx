@@ -1,10 +1,8 @@
-"use client"
-
 import styled from "@emotion/styled"
 
-import type TimeBlock from "@/common/components/interface/Timeblock"
+import type TimeBlock from "@/common/interface/Timeblock"
 
-import SearchArea from "../components/SearchArea"
+import SearchArea from "../../components/SearchArea"
 
 const SearchSectionInner = styled.div`
   width: 645px;

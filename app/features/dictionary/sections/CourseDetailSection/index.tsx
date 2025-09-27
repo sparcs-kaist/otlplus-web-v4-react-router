@@ -2,14 +2,15 @@ import React, { useState } from "react"
 
 import styled from "@emotion/styled"
 
+import CourseExample from "@/api/dummy/CourseExample"
 import Credits from "@/common/components/Credits"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import type { NewCourse } from "@/common/components/interface/NewCourse"
-import CourseExample from "@/dummy/CourseExample"
-import CourseHistorySubsection from "@/features/dictionary/sections/courseHistorySubsection"
-import CourseInfoSubsection from "@/features/dictionary/sections/courseInfoSubsection"
-import CourseReviewSubsection from "@/features/dictionary/sections/courseReviewSubsection"
+import type { NewCourse } from "@/common/interface/NewCourse"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
+
+import CourseHistorySubsection from "./courseHistorySubsection"
+import CourseInfoSubsection from "./courseInfoSubsection"
+import CourseReviewSubsection from "./courseReviewSubsection"
 
 const CourseDetailSectionInner = styled(FlexWrapper)`
   width: 100%;

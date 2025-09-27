@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
 import Line from "@/common/components/Line"
-import { type TakenLectures } from "@/common/components/interface/takenLectures"
+import { type TakenLectures } from "@/common/interface/takenLectures"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Widget from "@/features/main/components/Widget"
 
 import MySummarySubSection from "./mySummarySubSection"

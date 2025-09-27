@@ -1,11 +1,11 @@
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
 import Line from "@/common/components/Line"
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
-import Widget from "../components/Widget"
+import Widget from "../../components/Widget"
 
 const UniformWidget = styled(Widget)`
   flex: 1 1 0;

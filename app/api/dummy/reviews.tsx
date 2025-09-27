@@ -1,8 +1,4 @@
-import type Review from "@/common/components/interface/Review"
-
-
-
-
+import type Review from "@/common/interface/Review"
 
 const reviews: Review[] = [
   {

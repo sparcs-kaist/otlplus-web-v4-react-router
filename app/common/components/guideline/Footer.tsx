@@ -2,9 +2,9 @@ import React from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
 import Line from "@/common/components/Line"
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 const FooterWrapper = styled(FlexWrapper)`
   width: 100%;

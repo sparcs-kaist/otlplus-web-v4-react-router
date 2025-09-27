@@ -1,4 +1,4 @@
-import type { NewReview } from "@/common/components/interface/NewReview"
+import type { NewReview } from "@/common/interface/NewReview"
 
 const NewReviews: NewReview = {
   reviews: [

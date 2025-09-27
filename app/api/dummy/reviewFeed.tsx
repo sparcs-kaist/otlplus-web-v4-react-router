@@ -1,8 +1,4 @@
-import type ReviewFeed from "@/common/components/interface/ReviewFeed"
-
-
-
-
+import type ReviewFeed from "@/common/interface/ReviewFeed"
 
 const exampleReviewFeed: ReviewFeed[] = [
   {

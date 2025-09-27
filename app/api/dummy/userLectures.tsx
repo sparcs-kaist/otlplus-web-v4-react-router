@@ -1,6 +1,6 @@
-import { SemesterEnum } from "@/common/components/enum/semesterEnum"
-import { WeekdayEnum } from "@/common/components/enum/weekdayEnum"
-import type Lecture from "@/common/components/interface/Lecture"
+import { SemesterEnum } from "@/common/enum/semesterEnum"
+import { WeekdayEnum } from "@/common/enum/weekdayEnum"
+import type Lecture from "@/common/interface/Lecture"
 
 const UserLectures: Lecture[] = [
   {

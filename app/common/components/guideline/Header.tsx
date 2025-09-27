@@ -6,11 +6,11 @@ import PersonIcon from "@mui/icons-material/Person"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
-import Typography from "@/common/components/Typography"
-import type NewUser from "@/common/components/interface/NewUser"
-import UserExample from "@/dummy/UserExample"
+import UserExample from "@/api/dummy/UserExample"
+import type NewUser from "@/common/interface/NewUser"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 import AccountPageModal from "@/features/account/AccountPageModal"
 
 const HeaderWrapper = styled.div`

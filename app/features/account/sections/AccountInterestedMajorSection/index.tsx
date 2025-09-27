@@ -3,11 +3,11 @@ import { useState } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
+import DepartmentList from "@/api/dummy/departments.json"
 import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import type NewUser from "@/common/components/interface/NewUser"
-import DepartmentList from "@/dummy/departments.json"
+import type NewUser from "@/common/interface/NewUser"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 import DepartmentSearchArea from "@/features/account/components/DepartmentSearchArea"
 
 const AccountInterestedMajorSectionWrapper = styled(FlexWrapper)`

@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react"
-
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
 
-import Widget from "../components/Widget"
+import Widget from "../../components/Widget"
 
 interface AdFeedSectionProps {
   src: string

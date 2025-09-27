@@ -3,22 +3,22 @@ import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import ReviewBlock from "@/common/components/blocks/reviewBlock"
+import NewReviews from "@/api/dummy/NewReviews"
+import ReviewBlock from "@/common/components/blocks/ReviewBlock"
+import { getAverageScoreLabel } from "@/common/enum/scoreEnum"
 import type { NewReview } from "@/common/interface/NewReview"
-import NewReviews from "@/dummy/NewReviews"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 import CourseReviewLanguageChip from "@/features/dictionary/components/CourseReviewLanguageChip"
 import ReviewWritingBlock from "@/features/dictionary/components/ReviewWritingBlock"
-import { getAverageScoreLabel } from "@/utils/scoreUtils"
 
 const NumberWrapper = styled(FlexWrapper)`
   width: 100%;
   padding: 10px 165px;
 `
 
-const ReviewWrapper = styled(FlexWrapper)`
-  padding: 8px 10px;
+const ReviewWrapper = styled.div`
+  padding: 8px 6px;
   width: 100%;
   border-radius: 6px;
   border: 1px ${({ theme }) => theme.colors.Background.Block.dark} solid;
@@ -86,7 +86,9 @@ const CourseReviewSubsection: React.FC<CourseReviewSubsectionProps> = ({
       </NumberWrapper>
       <ReviewWritingBlock courseName={courseName} />
       {reviews?.reviews.map((review, index) => (
-        <ReviewBlock review={review} likeReview={() => {}} key={index} />
+        <ReviewWrapper>
+          <ReviewBlock review={review} likeReview={() => {}} key={index} />
+        </ReviewWrapper>
       ))}
     </>
   )

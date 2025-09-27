@@ -2,8 +2,8 @@ import { useState } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import { type TabType } from "@/common/components/interface/ReviewWriteTabs"
+import { type TabType } from "@/common/interface/ReviewWriteTabs"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Widget from "@/features/main/components/Widget"
 
 import TabsSubSection from "./tabsSubSection"

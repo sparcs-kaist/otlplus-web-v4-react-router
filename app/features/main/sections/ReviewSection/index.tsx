@@ -1,14 +1,14 @@
-import { type Dispatch, type SetStateAction, useRef, useState } from "react"
+import { type Dispatch, type SetStateAction, useState } from "react"
 
 import { Trans, useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
 import Grade from "@/common/components/Grade"
-import TextInputArea from "@/common/components/TextInputArea"
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import TextInputArea from "@/common/primitives/TextInputArea"
+import Typography from "@/common/primitives/Typography"
 
-import Widget from "../components/Widget"
+import Widget from "../../components/Widget"
 
 interface ReviewSectionProps {
   lectureId: number

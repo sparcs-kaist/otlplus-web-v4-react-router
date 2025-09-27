@@ -1,9 +1,5 @@
 import type { JSX } from "react"
 
-
-
-
-
 const renderGrid = (
   n: number,
   m: number,

@@ -1,7 +1,7 @@
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import ReviewBlock from "@/common/components/blocks/reviewBlock"
-import type ReviewFeed from "@/common/components/interface/ReviewFeed"
+import ReviewBlock from "@/common/components/blocks/ReviewBlock"
+import type ReviewFeed from "@/common/interface/ReviewFeed"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 interface PopularFeedSubSectionProps {
   reviews: ReviewFeed[]

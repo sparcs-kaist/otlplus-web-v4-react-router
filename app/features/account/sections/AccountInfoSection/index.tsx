@@ -1,9 +1,9 @@
 import styled from "@emotion/styled"
 import { Trans, useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
-import type NewUser from "@/common/components/interface/NewUser"
+import type NewUser from "@/common/interface/NewUser"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
 const Captions = styled(Typography)`
   display: flex;

@@ -1,15 +1,13 @@
-"use client"
-
 import { useEffect, useState } from "react"
 
 import styled from "@emotion/styled"
 import { Trans, useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Typography from "@/common/components/Typography"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Typography from "@/common/primitives/Typography"
 
-import Widget from "../components/Widget"
+import Widget from "../../components/Widget"
 
 interface ScheduleSectionProps {
   content: string
@@ -29,7 +27,7 @@ const StyledLink = styled(Link)`
 
 const ScheduleSection: React.FC<ScheduleSectionProps> = (props) => {
   const [now, setNow] = useState(new Date())
-  const [timeLeft, setTimeLeft] = useState<String>("")
+  const [timeLeft, setTimeLeft] = useState<string>("")
 
   const { t } = useTranslation()
 

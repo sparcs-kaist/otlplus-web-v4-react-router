@@ -9,10 +9,10 @@ import {
   WhatshotOutlined,
 } from "@mui/icons-material"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
-import Typography from "@/common/components/Typography"
-import { type TabType, TabTypes } from "@/common/components/interface/ReviewWriteTabs"
+import { type TabType, TabTypes } from "@/common/interface/ReviewWriteTabs"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 
 interface tabsSubSectionType {
   tab: TabType
