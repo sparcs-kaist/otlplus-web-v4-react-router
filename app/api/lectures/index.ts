@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { SemesterEnum } from "@/common/enum/semesterEnum"
+import { WeekdayEnum } from "@/common/enum/weekdayEnum"
 import { LectureSchema } from "@/common/schemas/lecture"
 
 // GET /api/lectures
@@ -11,8 +13,8 @@ export const getLectures = z.object({
     level: z.number().int().optional(),
     limit: z.number().int().optional(),
     year: z.number().int().optional(),
-    semester: z.number().int().optional(),
-    day: z.number().int().optional(),
+    semester: z.nativeEnum(SemesterEnum).optional(),
+    day: z.nativeEnum(WeekdayEnum).optional(),
     begin: z.number().int().optional(),
     end: z.number().int().optional(),
   }),

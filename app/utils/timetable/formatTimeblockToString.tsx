@@ -1,4 +1,4 @@
-import { WeekdayEnum, weekdayToKorean } from "@/common/enum/weekdayEnum"
+import { WeekdayEnum, weekdayToString } from "@/common/enum/weekdayEnum"
 import type TimeBlock, { TimeBlockDay } from "@/common/interface/Timeblock"
 
 import { weekdayEnKorMap } from "./WeekdayKorEnMap"
@@ -16,7 +16,7 @@ export function formatTimeblockToString(timeblock: TimeBlock): string {
       .replace(/ /g, "")
     return `${formattedDate} ${timeblock.startTime} - ${timeblock.endTime}`
   }
-  return `${weekdayToKorean(timeblock.day)} ${timeblock.startTime} - ${timeblock.endTime}`
+  return `${weekdayToString(timeblock.day)} ${timeblock.startTime} - ${timeblock.endTime}`
 }
 
 type ResultTuple = [Date | WeekdayEnum, string, number, string]
@@ -74,13 +74,13 @@ export const formatTimeBlockToStringWithDate = (timeblock: TimeBlock): string =>
     }
   } else {
     if (startDate == endDate) {
-      return `${weekdayToKorean(startDate as WeekdayEnum)} ${startPeriod} ${startHour}시 ${
+      return `${weekdayToString(startDate as WeekdayEnum)} ${startPeriod} ${startHour}시 ${
         startMinute == "30" ? `${startMinute}분` : ""
       } - ${endPeriod} ${endHour}시 ${endMinute == "30" ? `${endMinute}분` : ""}`
     } else {
-      return `${weekdayToKorean(startDate as WeekdayEnum)} ${startPeriod} ${startHour}시 ${
+      return `${weekdayToString(startDate as WeekdayEnum)} ${startPeriod} ${startHour}시 ${
         startMinute == "30" ? `${startMinute}분` : ""
-      } - ${weekdayToKorean(endDate as WeekdayEnum)} ${endPeriod} ${endHour}시 ${
+      } - ${weekdayToString(endDate as WeekdayEnum)} ${endPeriod} ${endHour}시 ${
         endMinute == "30" ? `${endMinute}분` : ""
       }`
     }

@@ -1,5 +1,6 @@
 import { z } from "zod"
 
+import { SemesterEnum } from "@/common/enum/semesterEnum"
 import { TimetableSchema } from "@/common/schemas/timetable"
 import { TimetablesSchema } from "@/common/schemas/timetables"
 
@@ -21,7 +22,7 @@ export const createTimetable = z.object({
   body: z.object({
     userId: z.number().int(),
     year: z.number().int(),
-    semester: z.number().int(),
+    semester: z.nativeEnum(SemesterEnum),
     lectureIds: z.array(z.number().int()),
   }),
   response: TimetableSchema,

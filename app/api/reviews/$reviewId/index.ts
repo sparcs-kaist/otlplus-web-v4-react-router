@@ -1,12 +1,14 @@
 import { z } from "zod"
 
+import { ScoreEnum } from "@/common/enum/scoreEnum"
+
 // PUT /api/reviews/:reviewId
 export const putReview = z.object({
   body: z.object({
     content: z.string().min(1).max(5000),
-    grade: z.string().min(1).max(2),
-    load: z.string().min(1).max(2),
-    speech: z.string().min(1).max(2),
+    grade: z.nativeEnum(ScoreEnum),
+    load: z.nativeEnum(ScoreEnum),
+    speech: z.nativeEnum(ScoreEnum),
   }),
 })
 

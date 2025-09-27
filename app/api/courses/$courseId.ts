@@ -1,5 +1,6 @@
 import { z } from "zod"
 
+import { SemesterEnum } from "@/common/enum/semesterEnum"
 import { DepartmentSchema } from "@/common/schemas/department"
 import { ProfessorSchema } from "@/common/schemas/professor"
 
@@ -18,7 +19,7 @@ export const getCourseDetail = z.object({
     history: z.array(
       z.object({
         year: z.number().int(),
-        semester: z.number().int(),
+        semester: z.nativeEnum(SemesterEnum),
         professors: CourseHistoryProfessorSchema,
       }),
     ),

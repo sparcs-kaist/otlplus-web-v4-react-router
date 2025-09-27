@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import { stringSemester } from "@/common/enum/semesterEnum"
+import { semesterToString } from "@/common/enum/semesterEnum"
 import type { NewCourse } from "@/common/interface/NewCourse"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
@@ -76,7 +76,7 @@ const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({
         {courseDetail?.history.map((history, index) => (
           <CourseHistoryBlock key={index} direction="column" gap={6} align={"center"}>
             <Typography type={"Normal"} color={"Text.default"}>
-              {history.year} {stringSemester(history.semester)}
+              {history.year} {semesterToString(history.semester)}
             </Typography>
             {history.professors.length === 0 ? (
               <NoHistoryText color={"Text.disable"} type={"Normal"}>

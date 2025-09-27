@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { ScoreEnum } from "@/common/enum/scoreEnum"
+import { SemesterEnum } from "@/common/enum/semesterEnum"
 import { ProfessorSchema } from "@/common/schemas/professor"
 import { ReviewSchema } from "@/common/schemas/review"
 
@@ -10,7 +12,7 @@ export const getReviews = z.object({
     professorId: z.number().int().optional(),
     mode: z.enum(["default", "recent", "hall-of-fame", "review-feed", "popular-feed"]),
     year: z.number().int().optional(),
-    semester: z.number().int().optional(),
+    semester: z.nativeEnum(SemesterEnum).optional(),
   }),
   response: z.object({
     reviews: z.array(ReviewSchema),
@@ -30,11 +32,11 @@ export const postReview = z.object({
     courseId: z.number().int(),
     professor: ProfessorSchema,
     year: z.number().int(),
-    semester: z.number().int(),
+    semester: z.nativeEnum(SemesterEnum),
     content: z.string(),
-    grade: z.number().int().min(1).max(5),
-    load: z.number().int().min(1).max(5),
-    speech: z.number().int().min(1).max(5),
+    grade: z.nativeEnum(ScoreEnum),
+    load: z.nativeEnum(ScoreEnum),
+    speech: z.nativeEnum(ScoreEnum),
   }),
   response: z.object({
     id: z.number().int(),

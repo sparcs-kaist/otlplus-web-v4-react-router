@@ -3,7 +3,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import { useTranslation } from "react-i18next"
 
 import { ScoreEnum } from "@/common/enum/scoreEnum"
-import { stringSemester } from "@/common/enum/semesterEnum"
+import { semesterToString } from "@/common/enum/semesterEnum"
 import type ReviewFeed from "@/common/interface/ReviewFeed"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Icon from "@/common/primitives/Icon"
@@ -29,7 +29,7 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
           {review.professorName}
         </Typography>
         <Typography type="Normal" color="Text.lighter">
-          {review.year} {stringSemester(review.semester)}
+          {review.year} {semesterToString(review.semester)}
         </Typography>
       </FlexWrapper>
       <FlexWrapper direction="row" gap={0}>

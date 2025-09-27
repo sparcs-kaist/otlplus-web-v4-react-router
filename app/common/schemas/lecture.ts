@@ -2,6 +2,17 @@ import { z } from "zod"
 
 import { DepartmentSchema } from "@/common/schemas/department"
 import { ProfessorSchema } from "@/common/schemas/professor"
+import { TimeBlockSchema } from "@/common/schemas/timeblock"
+
+const ClassTimeSchema = TimeBlockSchema.extend({
+  buildingCode: z.string(),
+  placeName: z.string(),
+  placeNameShort: z.string().optional(),
+})
+
+const ExamTimeSchema = TimeBlockSchema.extend({
+  str: z.string(),
+})
 
 export const LectureSchema = z.object({
   id: z.number().int(),
@@ -21,24 +32,8 @@ export const LectureSchema = z.object({
   scoreSpeech: z.number(),
   isEnglish: z.boolean(),
   professors: z.array(ProfessorSchema),
-  classes: z.array(
-    z.object({
-      day: z.number().int().min(0).max(4),
-      begin: z.number().int().min(0).max(3000),
-      end: z.number().int().min(0).max(3000),
-      buildingCode: z.string(),
-      placeName: z.string(),
-      placeNameShort: z.string().optional(),
-    }),
-  ),
-  examTimes: z.array(
-    z.object({
-      day: z.number().int(),
-      str: z.string(),
-      begin: z.number().int(),
-      end: z.number().int(),
-    }),
-  ),
+  classes: z.array(ClassTimeSchema),
+  examTimes: z.array(ExamTimeSchema),
 })
 
 export type Lecture = z.infer<typeof LectureSchema>

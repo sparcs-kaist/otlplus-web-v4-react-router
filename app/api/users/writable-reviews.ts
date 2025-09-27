@@ -1,5 +1,6 @@
 import { z } from "zod"
 
+import { SemesterEnum } from "@/common/enum/semesterEnum"
 import { ProfessorSchema } from "@/common/schemas/professor"
 
 // GET /api/users/writable-reviews
@@ -9,7 +10,7 @@ export const getWritableReviews = z.object({
     courseId: z.number().int(),
     professor: ProfessorSchema,
     year: z.number().int(),
-    semester: z.number().int(),
+    semester: z.nativeEnum(SemesterEnum),
   }),
 })
 

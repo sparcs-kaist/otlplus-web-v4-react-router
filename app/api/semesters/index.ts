@@ -1,11 +1,13 @@
 import { z } from "zod"
 
+import { SemesterEnum } from "@/common/enum/semesterEnum"
+
 // GET /api/semesters
 export const getSemesters = z.object({
   response: z.array(
     z.object({
       year: z.number().int(),
-      semester: z.number().int(),
+      semester: z.nativeEnum(SemesterEnum),
       beginning: z.date(),
       end: z.date(),
       courseDesciptionSubmission: z.date(),
