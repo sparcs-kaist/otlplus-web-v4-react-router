@@ -11,6 +11,7 @@ import type ReviewFeed from "@/common/components/interface/ReviewFeed"
 const DropDownWrapper = styled(FlexWrapper)`
   flex: 1 0 1;
   width: 225px;
+  height: 36px;
 `
 
 interface ReviewFeedSectionProps {
