@@ -4,9 +4,8 @@ import styled from "@emotion/styled"
 import CloseIcon from "@mui/icons-material/Close"
 import ReactDOM from "react-dom"
 
-import Icon from "@/common/components/Icon"
-
-import Typography from "./Typography"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 
 interface ModalProps {
   isOpen: boolean

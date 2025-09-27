@@ -2,10 +2,10 @@ import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
 import Modal from "@/common/components/Modal"
-import Typography from "@/common/components/Typography"
-import type NewUser from "@/common/components/interface/NewUser"
-import AccountInfoSection from "@/features/account/sections/accountInfoSection"
-import AccountInterestedMajorSection from "@/features/account/sections/accountInterestedMajorSection"
+import type NewUser from "@/common/interface/NewUser"
+import Typography from "@/common/primitives/Typography"
+import AccountInfoSection from "@/features/account/sections/AccountInfoSection"
+import AccountInterestedMajorSection from "@/features/account/sections/AccountInterestedMajorSection"
 
 const LogoutButton = styled(Typography)`
   cursor: pointer;

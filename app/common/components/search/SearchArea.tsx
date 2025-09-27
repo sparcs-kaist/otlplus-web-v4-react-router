@@ -6,11 +6,12 @@ import CloseIcon from "@mui/icons-material/Close"
 import SearchIcon from "@mui/icons-material/Search"
 import { AnimatePresence, motion } from "framer-motion"
 
-import Button from "../Button"
-import Icon from "../Icon"
-import type TimeBlock from "../interface/Timeblock"
-import { formatTimeAreaToString } from "../utils/formatTimeblockToString"
-import OptionChipGrid from "../utils/search/generateChips"
+import Button from "@/common/components/Button"
+import type TimeBlock from "@/common/interface/Timeblock"
+import Icon from "@/common/primitives/Icon"
+import OptionChipGrid from "@/utils/search/generateChips"
+import { formatTimeAreaToString } from "@/utils/timetable/formatTimeblockToString"
+
 import TextInput from "./TextInput"
 
 export type OptionProps = {

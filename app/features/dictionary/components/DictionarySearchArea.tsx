@@ -6,13 +6,18 @@ import SearchIcon from "@mui/icons-material/Search"
 import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
-import Typography from "@/common/components/Typography"
 import TextInput from "@/common/components/search/TextInput"
-import OptionChipGrid from "@/common/components/utils/search/generateChips"
-import { getDepartmentOptions, getLevelOptions, getTermOptions, getTypeOptions, } from "@/common/searchOptions"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 import themes from "@/styles/themes"
+import OptionChipGrid from "@/utils/search/generateChips"
+import {
+  getDepartmentOptions,
+  getLevelOptions,
+  getTermOptions,
+  getTypeOptions,
+} from "@/utils/search/searchOptions"
 
 export type OptionProps = {
   nameList: string[]

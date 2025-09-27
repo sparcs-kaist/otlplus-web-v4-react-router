@@ -2,10 +2,10 @@ import styled from "@emotion/styled"
 import CircleIcon from "@mui/icons-material/Circle"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
-import Typography from "@/common/components/Typography"
-import type { CourseSearchResult } from "@/common/components/interface/CourseSearchResult"
+import type { CourseSearchResult } from "@/common/interface/CourseSearchResult"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
 import themes from "@/styles/themes"
 
 interface CourseBlockProps {
