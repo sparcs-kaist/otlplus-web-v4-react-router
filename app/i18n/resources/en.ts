@@ -1,5 +1,4 @@
-import { commonI18nEn } from "@/common/i18n/en"
-
+import { commonI18nEn } from "../variables/en"
 import { type I18nBase } from "./_base"
 
 export const i18nEn: I18nBase = {

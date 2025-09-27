@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-import Typography from "@/common/components/Typography"
+import Typography from "@/common/primitives/Typography"
 
 type ChipProps = {
   selected?: boolean

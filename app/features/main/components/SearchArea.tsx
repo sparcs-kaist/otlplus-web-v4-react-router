@@ -1,22 +1,21 @@
-/* eslint-disable no-console */
-import { useEffect, useRef, useState } from "react"
 import type { Dispatch, SetStateAction } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import type TimeBlock from "@/common/components/interface/Timeblock"
 import TextInput from "@/common/components/search/TextInput"
-import { formatTimeAreaToString } from "@/common/components/utils/formatTimeblockToString"
-import OptionChipGrid from "@/common/components/utils/search/generateChips"
+import type TimeBlock from "@/common/interface/Timeblock"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import OptionChipGrid from "@/utils/search/generateChips"
 import {
   getDepartmentOptions,
   getLevelOptions,
   getTermOptions,
   getTypeOptions,
-} from "@/common/searchOptions"
+} from "@/utils/search/searchOptions"
+import { formatTimeAreaToString } from "@/utils/timetable/formatTimeblockToString"
 
 export type OptionProps = {
   nameList: string[]

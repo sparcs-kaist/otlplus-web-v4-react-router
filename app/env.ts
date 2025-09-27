@@ -1,6 +1,14 @@
 import z from "zod"
 
-import stringToBoolean from "@/utils/stringToBoolean"
+
+
+
+
+const possibleTrueValues = ["true", "1", "yes", "y", "on", "enable", "enabled"]
+
+const stringToBoolean = (value: string) => {
+  return possibleTrueValues.includes(value)
+}
 
 const publicEnvSchema = z.object({
   VITE_APP_LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]),
