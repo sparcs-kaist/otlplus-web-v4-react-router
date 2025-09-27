@@ -1,15 +1,15 @@
 import { z } from "zod"
 
+import { DepartmentSchema } from "@/common/schemas/department"
+import { ProfessorSchema } from "@/common/schemas/professor"
+
 export const LectureSchema = z.object({
   id: z.number().int(),
   courseId: z.number().int(),
   classNo: z.string(),
   name: z.string(),
   code: z.string(),
-  department: z.object({
-    id: z.number().int(),
-    name: z.string(),
-  }),
+  department: DepartmentSchema,
   type: z.string(),
   limitPeople: z.number().int(),
   numPeople: z.number().int(),
@@ -20,12 +20,7 @@ export const LectureSchema = z.object({
   scoreLoad: z.number(),
   scoreSpeech: z.number(),
   isEnglish: z.boolean(),
-  professors: z.array(
-    z.object({
-      name: z.string(),
-      id: z.number().int(),
-    }),
-  ),
+  professors: z.array(ProfessorSchema),
   classes: z.array(
     z.object({
       day: z.number().int().min(0).max(4),

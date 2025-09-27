@@ -172,7 +172,7 @@ export const commonI18nEn: CommonI18nBaseType = {
     sortOptions: {
       code: "By Course Code",
       popularity: "By Popularity",
-      enrollment: "By Enrollment",
+      studentCount: "By Enrollment",
     },
     review: "Course Reviews",
     reviewLanguage: "Language",

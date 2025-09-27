@@ -165,7 +165,7 @@ export const commonI18nBase = {
     sortOptions: {
       code: "과목코드순",
       popularity: "인기순",
-      enrollment: "수강자 많은 순",
+      studentCount: "수강자 많은 순",
     },
     review: "과목 후기",
     reviewLanguage: "언어",
