@@ -6,6 +6,8 @@ import { ProfessorSchema } from "@/common/schemas/professor"
 
 export const ReviewSchema = z.object({
   id: z.number().int(),
+  courseId: z.number().int(),
+  courseName: z.string(),
   professor: ProfessorSchema,
   year: z.number().int(),
   semester: z.nativeEnum(SemesterEnum),
@@ -15,7 +17,7 @@ export const ReviewSchema = z.object({
   grade: z.nativeEnum(ScoreEnum),
   load: z.nativeEnum(ScoreEnum),
   speech: z.nativeEnum(ScoreEnum),
-  userspecificIsLiked: z.boolean().optional(),
+  likedByUser: z.boolean().optional(),
 })
 
 export type Review = z.infer<typeof ReviewSchema>

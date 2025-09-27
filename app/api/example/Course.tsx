@@ -1,8 +1,8 @@
-import type { NewCourse } from "@/common/interface/NewCourse"
+import type { GETCourseDetailResponse } from "@/api/courses/$courseId"
 
-const CourseExample: NewCourse = {
+const exampleCourse: GETCourseDetailResponse = {
   id: 745,
-  title: "이산구조",
+  name: "이산구조",
   code: "CS.20004",
   credit: 3,
   credit_au: 0,
@@ -245,4 +245,4 @@ const CourseExample: NewCourse = {
     "집합이론, 관계, 순열과 조합의 개념과 그 응용, Propositional and predicate logic 등의 알고리즘의 설계와 분석을 다루는 수업입니다.",
 }
 
-export default CourseExample
+export default exampleCourse

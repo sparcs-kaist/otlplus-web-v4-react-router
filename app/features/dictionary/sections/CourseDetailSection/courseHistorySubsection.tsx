@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
+import type { GETCourseDetailResponse } from "@/api/courses/$courseId"
 import { semesterToString } from "@/common/enum/semesterEnum"
-import type { NewCourse } from "@/common/interface/NewCourse"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 import CourseHistoryChip from "@/features/dictionary/components/CourseHistoryChip"
@@ -47,7 +47,7 @@ const NoHistoryText = styled(Typography)`
 `
 
 interface CourseHistorySubsectionProps {
-  courseDetail: NewCourse | null
+  courseDetail: GETCourseDetailResponse | null
   selectedProfessorId: number | null
   setSelectedProfessorId: React.Dispatch<React.SetStateAction<number | null>>
 }
@@ -93,7 +93,7 @@ const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({
                       if (selectedProfessorId === professor.id) {
                         setSelectedProfessorId(null)
                       } else {
-                        setSelectedProfessorId(professor.id)
+                        setSelectedProfessorId(professor.id as number)
                       }
                     }}
                   />

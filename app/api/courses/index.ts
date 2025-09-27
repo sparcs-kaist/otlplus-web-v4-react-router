@@ -18,6 +18,7 @@ export const getCourses = z.object({
       id: z.number().int(),
       title: z.string(),
       code: z.string(),
+      type: z.string(),
       department: DepartmentSchema,
       professors: z.array(ProfessorSchema),
       summary: z.string(),

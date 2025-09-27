@@ -2,9 +2,9 @@ import { useState } from "react"
 
 import styled from "@emotion/styled"
 
+import type { GETReviewsResponse } from "@/api/reviews"
 import ScrollableDropdown from "@/common/components/ScrollableDropdown"
 import ReviewBlock from "@/common/components/blocks/ReviewBlock"
-import type ReviewFeed from "@/common/interface/ReviewFeed"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
@@ -14,7 +14,7 @@ const DropDownWrapper = styled(FlexWrapper)`
 `
 
 interface ReviewFeedSubSectionProps {
-  reviews: ReviewFeed[]
+  reviews: GETReviewsResponse
   likeReview: (reviewId: number) => void
 }
 
@@ -41,7 +41,7 @@ function ReviewFeedSubSection({ reviews, likeReview }: ReviewFeedSubSectionProps
         </FlexWrapper>
       </FlexWrapper>
       <FlexWrapper direction="column" align="stretch" gap={12}>
-        {reviews.map((review, idx) => (
+        {reviews.reviews.map((review, idx) => (
           <ReviewBlock key={idx} review={review} likeReview={likeReview} />
         ))}
       </FlexWrapper>

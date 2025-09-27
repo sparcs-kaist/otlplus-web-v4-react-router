@@ -1,7 +1,7 @@
 import type { JSX } from "react"
 import { useRef } from "react"
 
-import lectures from "@/api/dummy/lectures"
+import exampleLectures from "@/api/example/Lectures"
 import LectureTile from "@/common/components/LectureTile"
 import { WeekdayEnum } from "@/common/enum/weekdayEnum"
 import type Lecture from "@/common/interface/Lecture"
@@ -30,7 +30,7 @@ const renderLectureTile = (
 
   for (let i = 0; i < lectureSummary.length; i++) {
     const lecture: LectureSummary = lectureSummary[i]
-    const course: Lecture | undefined = findItemById(lectures, lecture.course_id)
+    const course: Lecture | undefined = findItemById(exampleLectures, lecture.course_id)
     const timeBlocks: TimeBlock[] = lecture.timeBlocks
     const isSelected = selected == course
     const isHovered = hover == course && selected == null

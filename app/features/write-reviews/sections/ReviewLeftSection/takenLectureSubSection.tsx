@@ -1,19 +1,20 @@
+import type { GETUserPastLecturesResponse } from "@/api/users/$userId/lectures"
 import Line from "@/common/components/Line"
-import { type TakenLectures } from "@/common/interface/takenLectures"
+import { semesterToString } from "@/common/enum/semesterEnum"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
 import LectureSimpleBlock from "../../components/LectureSimpleBlock"
 
 interface TakenLectureSubSectionProps {
-  lecturesWrap: TakenLectures
+  lecturesWrap: GETUserPastLecturesResponse["lecturesWrap"][number]
 }
 
 function TakenLectureSubSection({ lecturesWrap }: TakenLectureSubSectionProps) {
   return (
     <FlexWrapper direction="column" align="stretch" justify="stretch" gap={10}>
       <Typography type="NormalBold" color="Text.default">
-        {lecturesWrap.year} {lecturesWrap.semester}
+        {lecturesWrap.year} {semesterToString(lecturesWrap.semester)}
       </Typography>
       <FlexWrapper direction="column" align="stretch" justify="stretch" gap={8}>
         {lecturesWrap.lectures.map((lecture, lid) => (

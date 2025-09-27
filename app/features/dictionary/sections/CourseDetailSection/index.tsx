@@ -2,9 +2,9 @@ import React, { useState } from "react"
 
 import styled from "@emotion/styled"
 
-import CourseExample from "@/api/dummy/CourseExample"
+import type { GETCourseDetailResponse } from "@/api/courses/$courseId"
+import exampleCourse from "@/api/example/Course"
 import Credits from "@/common/components/Credits"
-import type { NewCourse } from "@/common/interface/NewCourse"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
@@ -49,7 +49,9 @@ interface CourseDetailSectionProps {
 const CourseDetailSection: React.FC<CourseDetailSectionProps> = ({
   selectedCourseId,
 }) => {
-  const [courseDetail, setCourseDetail] = useState<NewCourse | null>(CourseExample)
+  const [courseDetail, setCourseDetail] = useState<GETCourseDetailResponse | null>(
+    exampleCourse,
+  )
   const [selectedProfessorId, setSelectedProfessorId] = useState<number | null>(null)
 
   return (
@@ -63,7 +65,7 @@ const CourseDetailSection: React.FC<CourseDetailSectionProps> = ({
         <>
           <CourseTitle direction="column" gap={2} align={"center"} justify={"center"}>
             <Typography type={"Bigger"} color={"Text.default"}>
-              {courseDetail?.title}
+              {courseDetail?.name}
             </Typography>
             <Typography type={"Big"} color={"Text.default"}>
               {courseDetail?.code}
@@ -82,10 +84,7 @@ const CourseDetailSection: React.FC<CourseDetailSectionProps> = ({
           </CourseDetailWrapper>
           <Divider />
           <CourseDetailWrapper direction="column" gap={10}>
-            <CourseReviewSubsection
-              courseName={courseDetail?.title}
-              selectedProfessorId={selectedProfessorId}
-            />
+            <CourseReviewSubsection selectedProfessorId={selectedProfessorId} />
           </CourseDetailWrapper>
         </>
       ) : (

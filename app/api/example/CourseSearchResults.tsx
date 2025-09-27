@@ -1,6 +1,6 @@
-import type { CourseSearchResult } from "@/common/interface/CourseSearchResult"
+import type { GETCoursesResponse } from "@/api/courses"
 
-const CourseSearchResults: CourseSearchResult[] = [
+const exampleCourseSearchResults: GETCoursesResponse = [
   {
     id: 745,
     code: "CS.20004",
@@ -282,4 +282,4 @@ const CourseSearchResults: CourseSearchResult[] = [
   },
 ]
 
-export default CourseSearchResults
+export default exampleCourseSearchResults

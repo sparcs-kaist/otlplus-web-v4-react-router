@@ -1,7 +1,17 @@
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
-function MySummarySubSection() {
+interface MySummarySubSectionProps {
+  totalLectures: number
+  reviewedLectures: number
+  totalLikes: number
+}
+
+function MySummarySubSection({
+  totalLectures,
+  reviewedLectures,
+  totalLikes,
+}: MySummarySubSectionProps) {
   return (
     <FlexWrapper direction="column" align="center" gap={10}>
       <Typography type="Big" color="Text.default">
@@ -12,10 +22,10 @@ function MySummarySubSection() {
         <FlexWrapper direction="column" align="center" gap={2}>
           <FlexWrapper direction="row" align="flex-end" gap={0}>
             <Typography type="BiggerBold" color="Text.default">
-              1
+              {reviewedLectures}
             </Typography>
             <Typography type="SmallBold" color="Text.default">
-              /n
+              /{totalLectures}
             </Typography>
           </FlexWrapper>
           <Typography type="Smaller" color="Text.default">
@@ -26,7 +36,7 @@ function MySummarySubSection() {
         <FlexWrapper direction="column" align="center" gap={2}>
           <FlexWrapper direction="row" align="flex-end" gap={0}>
             <Typography type="BiggerBold" color="Text.default">
-              0
+              {totalLikes}
             </Typography>
           </FlexWrapper>
           <Typography type="Smaller" color="Text.default">

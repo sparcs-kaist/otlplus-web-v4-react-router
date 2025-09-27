@@ -2,8 +2,8 @@ import type { CSSProperties } from "react"
 
 import styled from "@emotion/styled"
 
-import type TimeBlock from "@/common/interface/Timeblock"
 import type { LectureSummary } from "@/common/interface/Timetable"
+import type { TimeBlock } from "@/common/schemas/Timeblock"
 
 // tile Color를 mapping 해주는 부분
 export const colorMap: Array<CSSProperties["color"]> = [

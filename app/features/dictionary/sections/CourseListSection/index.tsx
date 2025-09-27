@@ -4,9 +4,9 @@ import styled from "@emotion/styled"
 import CircleIcon from "@mui/icons-material/Circle"
 import { Trans, useTranslation } from "react-i18next"
 
-import CourseSearchResults from "@/api/dummy/courseSearchResults"
+import type { GETCoursesResponse } from "@/api/courses"
+import exampleCourseSearchResults from "@/api/example/CourseSearchResults"
 import ScrollableDropdown from "@/common/components/ScrollableDropdown"
-import type { CourseSearchResult } from "@/common/interface/CourseSearchResult"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Icon from "@/common/primitives/Icon"
 import Typography from "@/common/primitives/Typography"
@@ -76,8 +76,8 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
 }) => {
   const { t } = useTranslation()
 
-  const [searchResult, setSearchResult] = useState<CourseSearchResult[] | null>(
-    CourseSearchResults,
+  const [searchResult, setSearchResult] = useState<GETCoursesResponse | null>(
+    exampleCourseSearchResults,
   )
   const [sortOption, setSortOption] = useState<number>(0)
 

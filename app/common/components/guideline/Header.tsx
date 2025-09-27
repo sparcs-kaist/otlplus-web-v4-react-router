@@ -6,8 +6,8 @@ import PersonIcon from "@mui/icons-material/Person"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-import UserExample from "@/api/dummy/UserExample"
-import type NewUser from "@/common/interface/NewUser"
+import exampleUserInfo from "@/api/example/UserInfo"
+import type { GETUserInfoResponse } from "@/api/users/$userId/info"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Icon from "@/common/primitives/Icon"
 import Typography from "@/common/primitives/Typography"
@@ -61,7 +61,7 @@ const AccountButtonWrapper = styled(FlexWrapper)`
 const Header: React.FC = () => {
   const [language, setLanguage] = useState<string>("ko")
   const [accountPageOpen, setAccountPageOpen] = useState<boolean>(false)
-  const [userInfo, setUserInfo] = useState<NewUser | null>(UserExample)
+  const [userInfo, setUserInfo] = useState<GETUserInfoResponse | null>(exampleUserInfo)
 
   const { t, i18n } = useTranslation()
 

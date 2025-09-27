@@ -4,13 +4,13 @@ import { useTranslation } from "react-i18next"
 
 import { ScoreEnum } from "@/common/enum/scoreEnum"
 import { semesterToString } from "@/common/enum/semesterEnum"
-import type ReviewFeed from "@/common/interface/ReviewFeed"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Icon from "@/common/primitives/Icon"
 import Typography from "@/common/primitives/Typography"
+import type { Review } from "@/common/schemas/review"
 
 interface ReviewBlockProps {
-  review: ReviewFeed
+  review: Review
   likeReview: (reviewId: number) => void
 }
 
@@ -23,10 +23,10 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
     <FlexWrapper direction="column" align="stretch" gap={8} padding="0px 4px">
       <FlexWrapper direction="row" gap={6}>
         <Typography type="NormalBold" color="Text.default">
-          {review.lectureName}
+          {review.courseName}
         </Typography>
         <Typography type="Normal" color="Text.lighter">
-          {review.professorName}
+          {review.professor.name}
         </Typography>
         <Typography type="Normal" color="Text.lighter">
           {review.year} {semesterToString(review.semester)}
@@ -55,17 +55,13 @@ function ReviewBlock({ review, likeReview }: ReviewBlockProps) {
         <FlexWrapper
           direction="row"
           gap={4}
-          onClick={() => likeReview && likeReview(review.reviewId)}
+          onClick={() => likeReview && likeReview(review.id)}
         >
           <Typography type="Normal" color="Highlight.default">
             {t("common.review.like")}
           </Typography>
           <Icon size={18} color="crimson">
-            {review.userspecificIsLiked ? (
-              <FavoriteIcon />
-            ) : (
-              <FavoriteBorderOutlinedIcon />
-            )}
+            {review.likedByUser ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
           </Icon>
         </FlexWrapper>
       </FlexWrapper>

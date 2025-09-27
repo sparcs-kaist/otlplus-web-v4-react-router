@@ -1,4 +1,4 @@
-import type TimeBlock from "./Timeblock"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 
 export default interface PersonalBlock {
   id: number

@@ -1,7 +1,7 @@
 import i18n from "i18next"
 
 export enum WeekdayEnum {
-  Mon = 1,
+  Mon = 0,
   Tue,
   Wed,
   Thu,
@@ -19,5 +19,5 @@ export const weekdayToString = (day: WeekdayEnum): string => {
     i18n.t("common.days.friday"),
     i18n.t("common.days.saturday"),
     i18n.t("common.days.sunday"),
-  ][day - 1]
+  ][day]
 }

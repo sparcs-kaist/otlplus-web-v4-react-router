@@ -20,7 +20,7 @@ export const getCourseDetail = z.object({
       z.object({
         year: z.number().int(),
         semester: z.nativeEnum(SemesterEnum),
-        professors: CourseHistoryProfessorSchema,
+        professors: z.array(CourseHistoryProfessorSchema),
       }),
     ),
     summary: z.string(),

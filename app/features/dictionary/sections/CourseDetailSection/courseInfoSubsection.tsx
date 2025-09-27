@@ -3,7 +3,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import type { NewCourse } from "@/common/interface/NewCourse"
+import type { GETCourseDetailResponse } from "@/api/courses/$courseId"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
@@ -21,7 +21,7 @@ const DetailHeaderText = styled(Typography)`
 `
 
 interface CourseInfoSubsectionProps {
-  courseDetail: NewCourse | null
+  courseDetail: GETCourseDetailResponse | null
 }
 
 const CourseInfoSubsection: React.FC<CourseInfoSubsectionProps> = ({ courseDetail }) => {

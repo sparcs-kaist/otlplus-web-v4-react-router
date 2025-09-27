@@ -3,10 +3,10 @@ import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import NewReviews from "@/api/dummy/NewReviews"
+import exampleReviews from "@/api/example/Reviews"
+import type { GETReviewsResponse } from "@/api/reviews"
 import ReviewBlock from "@/common/components/blocks/ReviewBlock"
 import { getAverageScoreLabel } from "@/common/enum/scoreEnum"
-import type { NewReview } from "@/common/interface/NewReview"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 import CourseReviewLanguageChip from "@/features/dictionary/components/CourseReviewLanguageChip"
@@ -26,17 +26,15 @@ const ReviewWrapper = styled.div`
 `
 
 interface CourseReviewSubsectionProps {
-  courseName?: string
   selectedProfessorId: number | null
 }
 
 const CourseReviewSubsection: React.FC<CourseReviewSubsectionProps> = ({
-  courseName,
   selectedProfessorId,
 }) => {
   const { t } = useTranslation()
 
-  const [reviews, setReviews] = useState<NewReview | null>(NewReviews)
+  const [reviews, setReviews] = useState<GETReviewsResponse | null>(exampleReviews)
   const [reviewLanguage, setReviewLanguage] = useState("all")
 
   return (
@@ -84,7 +82,9 @@ const CourseReviewSubsection: React.FC<CourseReviewSubsectionProps> = ({
           </FlexWrapper>
         ))}
       </NumberWrapper>
-      <ReviewWritingBlock courseName={courseName} />
+      {exampleReviews.reviews.length > 0 && (
+        <ReviewWritingBlock courseName={exampleReviews.reviews[0].courseName} />
+      )}
       {reviews?.reviews.map((review, index) => (
         <ReviewWrapper>
           <ReviewBlock review={review} likeReview={() => {}} key={index} />

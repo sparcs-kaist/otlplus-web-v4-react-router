@@ -2,12 +2,12 @@ import { useState } from "react"
 
 import styled from "@emotion/styled"
 
-import exampleReviewFeed from "@/api/dummy/reviewFeed"
-import exampleScheduleFeed from "@/api/dummy/scheduleFeed"
-import User from "@/api/dummy/user"
+import exampleReviews from "@/api/example/Reviews"
+import exampleScheduleFeed from "@/api/example/ScheduleFeed"
+import User from "@/api/example/UserInfo"
 import Footer from "@/common/components/guideline/Footer"
-import type TimeBlock from "@/common/interface/Timeblock"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 import AdFeedSection from "@/features/main/sections/AdFeedSection"
 import PopularFeedSection from "@/features/main/sections/PopularFeedSection"
 import ReviewFeedSection from "@/features/main/sections/ReviewFeedSection"
@@ -69,8 +69,8 @@ export default function Home() {
               </FlexWrapper>
             </FlexWrapper>
             <FlexWrapper direction="row" align="stretch" gap={24}>
-              <ReviewFeedSection reviews={exampleReviewFeed} likeReview={likeReview} />
-              <PopularFeedSection reviews={exampleReviewFeed} likeReview={likeReview} />
+              <ReviewFeedSection reviews={exampleReviews} likeReview={likeReview} />
+              <PopularFeedSection reviews={exampleReviews} likeReview={likeReview} />
               <ScheduleFeedSection schedules={exampleScheduleFeed} />
             </FlexWrapper>
           </FlexWrapper>

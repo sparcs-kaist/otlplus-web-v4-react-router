@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
+import type { GETUserInfoResponse } from "@/api/users/$userId/info"
 import Modal from "@/common/components/Modal"
-import type NewUser from "@/common/interface/NewUser"
 import Typography from "@/common/primitives/Typography"
 import AccountInfoSection from "@/features/account/sections/AccountInfoSection"
 import AccountInterestedMajorSection from "@/features/account/sections/AccountInterestedMajorSection"
@@ -12,8 +12,8 @@ const LogoutButton = styled(Typography)`
 `
 
 interface AccountPageModalProps {
-  userInfo: NewUser | null
-  setUserInfo: React.Dispatch<React.SetStateAction<NewUser | null>>
+  userInfo: GETUserInfoResponse | null
+  setUserInfo: React.Dispatch<React.SetStateAction<GETUserInfoResponse | null>>
   accountPageOpen: boolean
   setAccountPageOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
