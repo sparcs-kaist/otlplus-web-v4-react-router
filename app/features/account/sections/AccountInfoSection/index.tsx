@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { Trans, useTranslation } from "react-i18next"
 
-import type NewUser from "@/common/interface/NewUser"
+import type { GETUserInfoResponse } from "@/api/users/$userId/info"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
@@ -16,7 +16,7 @@ const LinkText = styled(Typography)`
 `
 
 interface AccountInfoSectionProps {
-  userInfo: NewUser | null
+  userInfo: GETUserInfoResponse | null
 }
 
 const Index: React.FC<AccountInfoSectionProps> = ({ userInfo }) => {
@@ -56,8 +56,11 @@ const Index: React.FC<AccountInfoSectionProps> = ({ userInfo }) => {
       </Captions>
       {[
         [t("account.schoolId"), userInfo?.studentNumber],
-        [t("account.course"), userInfo?.courses],
-        [t("account.major"), userInfo?.majorDepartment],
+        [t("account.course"), userInfo?.course],
+        [
+          t("account.major"),
+          userInfo?.majorDepartments.map((dept) => dept.name).join(", "),
+        ],
       ].map(([label, value], index) => (
         <FlexWrapper key={index} direction={"row"} gap={8} align={"center"}>
           <Typography type={"NormalBold"} color={"Text.default"}>

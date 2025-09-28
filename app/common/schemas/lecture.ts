@@ -1,15 +1,26 @@
 import { z } from "zod"
 
+import { DepartmentSchema } from "@/common/schemas/department"
+import { ProfessorSchema } from "@/common/schemas/professor"
+import { TimeBlockSchema } from "@/common/schemas/timeblock"
+
+const ClassTimeSchema = TimeBlockSchema.extend({
+  buildingCode: z.string(),
+  placeName: z.string(),
+  placeNameShort: z.string().optional(),
+})
+
+const ExamTimeSchema = TimeBlockSchema.extend({
+  str: z.string(),
+})
+
 export const LectureSchema = z.object({
   id: z.number().int(),
   courseId: z.number().int(),
   classNo: z.string(),
   name: z.string(),
   code: z.string(),
-  department: z.object({
-    id: z.number().int(),
-    name: z.string(),
-  }),
+  department: DepartmentSchema,
   type: z.string(),
   limitPeople: z.number().int(),
   numPeople: z.number().int(),
@@ -20,30 +31,10 @@ export const LectureSchema = z.object({
   scoreLoad: z.number(),
   scoreSpeech: z.number(),
   isEnglish: z.boolean(),
-  professors: z.array(
-    z.object({
-      name: z.string(),
-      id: z.number().int(),
-    }),
-  ),
-  classes: z.array(
-    z.object({
-      day: z.number().int().min(0).max(4),
-      begin: z.number().int().min(0).max(3000),
-      end: z.number().int().min(0).max(3000),
-      buildingCode: z.string(),
-      placeName: z.string(),
-      placeNameShort: z.string().optional(),
-    }),
-  ),
-  examTimes: z.array(
-    z.object({
-      day: z.number().int(),
-      str: z.string(),
-      begin: z.number().int(),
-      end: z.number().int(),
-    }),
-  ),
+  professors: z.array(ProfessorSchema),
+  classes: z.array(ClassTimeSchema),
+  examTimes: z.array(ExamTimeSchema),
 })
 
+export type ClassTime = z.infer<typeof ClassTimeSchema>
 export type Lecture = z.infer<typeof LectureSchema>

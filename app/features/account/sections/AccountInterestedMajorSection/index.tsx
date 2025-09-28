@@ -3,11 +3,12 @@ import { useState } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import DepartmentList from "@/api/dummy/departments.json"
+import { Departments } from "@/api/example/Departments"
+import type { GETUserInfoResponse } from "@/api/users/$userId/info"
 import Button from "@/common/components/Button"
-import type NewUser from "@/common/interface/NewUser"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
+import type { Department } from "@/common/schemas/department"
 import DepartmentSearchArea from "@/features/account/components/DepartmentSearchArea"
 
 const AccountInterestedMajorSectionWrapper = styled(FlexWrapper)`
@@ -29,8 +30,8 @@ const EditButton = styled.button`
 `
 
 interface AccountInterestedMajorSectionProps {
-  userInfo: NewUser | null
-  setUserInfo?: React.Dispatch<React.SetStateAction<NewUser | null>>
+  userInfo: GETUserInfoResponse | null
+  setUserInfo?: React.Dispatch<React.SetStateAction<GETUserInfoResponse | null>>
 }
 
 const Index: React.FC<AccountInterestedMajorSectionProps> = ({
@@ -40,15 +41,15 @@ const Index: React.FC<AccountInterestedMajorSectionProps> = ({
   const { t, i18n } = useTranslation()
 
   const [isEditing, setIsEditing] = useState<boolean>(false)
-  const [temporaryMajor, setTemporaryMajor] = useState<number[]>([])
+  const [temporaryMajor, setTemporaryMajor] = useState<Department[]>([])
 
   const startEditing = () => {
-    setTemporaryMajor(userInfo ? [...userInfo.interestedMajorDepartments] : [])
+    setTemporaryMajor(userInfo ? [...userInfo.interestedDepartments] : [])
     setIsEditing(true)
   }
 
   function findDepartmentNameById(id: number): string | undefined {
-    const department = DepartmentList.find((dept) => dept.id === id)
+    const department = Departments.find((dept) => dept.id === id)
     return department
       ? i18n.language === "en"
         ? department.code
@@ -80,9 +81,9 @@ const Index: React.FC<AccountInterestedMajorSectionProps> = ({
         {!isEditing && (
           <FlexWrapper direction={"row"} gap={8} align="center">
             <Typography type="Normal" color="Text.default">
-              {userInfo?.interestedMajorDepartments
-                .map((id) => {
-                  return findDepartmentNameById(id)
+              {userInfo?.interestedDepartments
+                .map((department) => {
+                  return findDepartmentNameById(department.id) || ""
                 })
                 .join(", ")}
             </Typography>

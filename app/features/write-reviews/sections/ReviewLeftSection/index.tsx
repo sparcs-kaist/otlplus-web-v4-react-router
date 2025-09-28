@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
+import type { GETUserPastLecturesResponse } from "@/api/users/$userId/lectures"
 import Line from "@/common/components/Line"
-import { type TakenLectures } from "@/common/interface/takenLectures"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Widget from "@/features/main/components/Widget"
 
@@ -9,7 +9,7 @@ import MySummarySubSection from "./mySummarySubSection"
 import TakenLectureSubSection from "./takenLectureSubSection"
 
 interface reviewLeftSectionType {
-  lecturesWraps: TakenLectures[]
+  takenLectures: GETUserPastLecturesResponse
 }
 
 const TakenLecturesWrapper = styled(FlexWrapper)`
@@ -21,7 +21,7 @@ const TakenLecturesWrapper = styled(FlexWrapper)`
   }
 `
 
-function Index({ lecturesWraps }: reviewLeftSectionType) {
+function Index({ takenLectures }: reviewLeftSectionType) {
   return (
     <Widget
       width={288}
@@ -31,12 +31,16 @@ function Index({ lecturesWraps }: reviewLeftSectionType) {
       borderRadius={12}
       padding="16px"
     >
-      <MySummarySubSection />
+      <MySummarySubSection
+        totalLectures={takenLectures.totalLectures}
+        reviewedLectures={takenLectures.reviewedLectures}
+        totalLikes={takenLectures.totalLikes}
+      />
 
       <Line height={2} color="Line.divider" />
 
       <TakenLecturesWrapper direction="column" align="stretch" gap={24}>
-        {lecturesWraps.map((lecturesWrap, idx) => (
+        {takenLectures.lecturesWrap.map((lecturesWrap, idx) => (
           <TakenLectureSubSection key={idx} lecturesWrap={lecturesWrap} />
         ))}
       </TakenLecturesWrapper>

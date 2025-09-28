@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-import type TimeBlock from "@/common/interface/Timeblock"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 
 import SearchArea from "../../components/SearchArea"
 

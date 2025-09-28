@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
+import type { GETSchedulesResponse } from "@/api/schedules"
 import Line from "@/common/components/Line"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
@@ -11,14 +12,8 @@ const UniformWidget = styled(Widget)`
   flex: 1 1 0;
 `
 
-type Schedule = {
-  from: Date
-  to: Date
-  title: string
-}
-
 interface ScheduleFeedSectionProps {
-  schedules: Schedule[]
+  schedules: GETSchedulesResponse
 }
 
 function ScheduleFeedSection({ schedules }: ScheduleFeedSectionProps) {
@@ -37,7 +32,7 @@ function ScheduleFeedSection({ schedules }: ScheduleFeedSectionProps) {
                 {schedule.from.getMonth() + 1}/{schedule.from.getDate()} -{" "}
                 {schedule.to.getMonth() + 1}/{schedule.to.getDate()}
               </Typography>
-              <Typography type="BigBold">{schedule.title}</Typography>
+              <Typography type="BigBold">{schedule.name}</Typography>
             </FlexWrapper>
             {idx < schedules.length - 1 ? <Line height={1} color="Line.default" /> : null}
           </FlexWrapper>

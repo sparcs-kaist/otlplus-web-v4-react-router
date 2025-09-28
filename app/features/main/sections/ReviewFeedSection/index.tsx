@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 import { Trans } from "react-i18next"
 
+import type { GETReviewsResponse } from "@/api/reviews"
 import ReviewBlock from "@/common/components/blocks/ReviewBlock"
-import type ReviewFeed from "@/common/interface/ReviewFeed"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
@@ -13,7 +13,7 @@ const UniformWidget = styled(Widget)`
 `
 
 interface ReviewFeedSectionProps {
-  reviews: ReviewFeed[]
+  reviews: GETReviewsResponse
   likeReview: (reviewId: number) => void
 }
 
@@ -37,7 +37,7 @@ function ReviewFeedSection({ reviews, likeReview }: ReviewFeedSectionProps) {
         />
       </FlexWrapper>
       <FlexWrapper direction="column" gap={15}>
-        {reviews.map((review, idx) => (
+        {reviews.reviews.map((review, idx) => (
           <ReviewBlock key={idx} review={review} likeReview={likeReview} />
         ))}
       </FlexWrapper>

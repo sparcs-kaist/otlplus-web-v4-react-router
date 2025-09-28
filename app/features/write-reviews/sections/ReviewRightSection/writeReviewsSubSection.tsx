@@ -1,4 +1,4 @@
-import exampleReviewFeed from "@/api/dummy/reviewFeed"
+import exampleReviews from "@/api/example/Reviews"
 import { type TabType } from "@/common/interface/ReviewWriteTabs"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 
@@ -23,18 +23,15 @@ function WriteReviewsSubSection({ tab }: WriteReviewsSubSectionType) {
             return <div>Preview Section (미구현)</div>
           case "popularFeed":
             return (
-              <PopularFeedSubSection
-                reviews={exampleReviewFeed}
-                likeReview={likeReview}
-              />
+              <PopularFeedSubSection reviews={exampleReviews} likeReview={likeReview} />
             )
           case "reviewFeed":
             return (
-              <ReviewFeedSubSection reviews={exampleReviewFeed} likeReview={likeReview} />
+              <ReviewFeedSubSection reviews={exampleReviews} likeReview={likeReview} />
             )
           case "liked":
             return (
-              <LikedReviewsSection reviews={exampleReviewFeed} likeReview={likeReview} />
+              <LikedReviewsSection reviews={exampleReviews} likeReview={likeReview} />
             )
           default:
             return null

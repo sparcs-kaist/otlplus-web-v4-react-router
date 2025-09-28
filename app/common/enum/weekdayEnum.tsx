@@ -1,5 +1,7 @@
+import i18n from "i18next"
+
 export enum WeekdayEnum {
-  Mon = 1,
+  Mon = 0,
   Tue,
   Wed,
   Thu,
@@ -8,16 +10,14 @@ export enum WeekdayEnum {
   Sun,
 }
 
-export const weekdayToKorean = (day: WeekdayEnum): string => {
-  const weekdays: { [key in WeekdayEnum]: string } = {
-    [WeekdayEnum.Mon]: '월요일',
-    [WeekdayEnum.Tue]: '화요일',
-    [WeekdayEnum.Wed]: '수요일',
-    [WeekdayEnum.Thu]: '목요일',
-    [WeekdayEnum.Fri]: '금요일',
-    [WeekdayEnum.Sat]: '토요일',
-    [WeekdayEnum.Sun]: '일요일',
-  };
-
-  return weekdays[day];
-};
+export const weekdayToString = (day: WeekdayEnum): string => {
+  return [
+    i18n.t("common.days.monday"),
+    i18n.t("common.days.tuesday"),
+    i18n.t("common.days.wednesday"),
+    i18n.t("common.days.thursday"),
+    i18n.t("common.days.friday"),
+    i18n.t("common.days.saturday"),
+    i18n.t("common.days.sunday"),
+  ][day]
+}

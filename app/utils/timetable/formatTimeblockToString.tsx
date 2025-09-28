@@ -1,9 +1,20 @@
-import { WeekdayEnum, weekdayToKorean } from "@/common/enum/weekdayEnum"
-import type TimeBlock from "@/common/interface/Timeblock"
-import { type TimeBlockDay } from "@/common/interface/Timeblock"
+import i18n from "i18next"
+
+import { WeekdayEnum, weekdayToString } from "@/common/enum/weekdayEnum"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 
 import { weekdayEnKorMap } from "./WeekdayKorEnMap"
-import { formatTimeindexToString } from "./formatTimeindexToString"
+
+function formatMinuteToString(minute: number, by12: boolean = false): string {
+  const hour = Math.floor(minute / 60)
+  const min = (minute % 60).toString().padStart(2, "0")
+  if (by12) {
+    const period = hour < 12 ? i18n.t("common.am") : i18n.t("common.pm")
+    const displayHour = (hour % 12 === 0 ? 12 : hour % 12).toString().padStart(2, "0")
+    return `${period} ${displayHour}:${min}`
+  }
+  return hour.toString().padStart(2, "0") + ":" + min
+}
 
 export function formatTimeblockToString(timeblock: TimeBlock): string {
   if (timeblock.day instanceof Date) {
@@ -15,84 +26,17 @@ export function formatTimeblockToString(timeblock: TimeBlock): string {
         day: "2-digit",
       })
       .replace(/ /g, "")
-    return `${formattedDate} ${timeblock.startTime} - ${timeblock.endTime}`
+    return `${formattedDate} ${formatMinuteToString(timeblock.begin)} - ${formatMinuteToString(timeblock.end)}`
   }
-  return `${weekdayToKorean(timeblock.day)} ${timeblock.startTime} - ${timeblock.endTime}`
-}
-
-type ResultTuple = [Date | WeekdayEnum, string, number, string]
-
-const backTo24 = (date: TimeBlockDay, time: string): ResultTuple => {
-  const [hourStr, minuteStr] = time.split(":")
-  let hour = parseInt(hourStr, 10)
-
-  if (date instanceof Date) {
-    const newDate = new Date(date)
-    if (hour >= 24) {
-      newDate.setDate(newDate.getDate() + 1)
-      hour -= 24
-    }
-
-    const period = hour < 12 ? "오전" : "오후"
-    const displayHour = hour % 12 === 0 ? 12 : hour % 12
-    return [newDate, period, displayHour, minuteStr]
-  } else {
-    let weekDay = date
-    if (hour >= 24) {
-      weekDay = ((weekDay + 1) % 7) + 1
-      hour -= 24
-    }
-
-    const period = hour < 12 ? "오전" : "오후"
-    const displayHour = hour % 12 === 0 ? 12 : hour % 12
-    return [weekDay, period, displayHour, minuteStr]
-  }
-}
-
-// 최종 일정 확정에 나오는 것처럼 format
-export const formatTimeBlockToStringWithDate = (timeblock: TimeBlock): string => {
-  const date = timeblock.day
-  const startTime = timeblock.startTime
-  const endTime = timeblock.endTime
-
-  const [startDate, startPeriod, startHour, startMinute] = backTo24(date, startTime)
-  const [endDate, endPeriod, endHour, endMinute] = backTo24(date, endTime)
-
-  if (startDate instanceof Date && endDate instanceof Date) {
-    if (+startDate == +endDate) {
-      const formattedDate = `${startDate.getMonth() + 1}월 ${startDate.getDate()}일`
-      return `${formattedDate} ${startPeriod} ${startHour}시 ${
-        startMinute == "30" ? `${startMinute}분` : ""
-      } - ${endPeriod} ${endHour}시 ${endMinute == "30" ? `${endMinute}분` : ""}`
-    } else {
-      const startFormattedDate = `${startDate.getMonth() + 1}월 ${startDate.getDate()}일`
-      const endFormattedDate = `${endDate.getMonth() + 1}월 ${endDate.getDate()}일`
-      return `${startFormattedDate} ${startPeriod} ${startHour}시 ${
-        startMinute == "30" ? `${startMinute}분` : ""
-      } - ${endFormattedDate} ${endPeriod} ${endHour}시 ${
-        endMinute == "30" ? `${endMinute}분` : ""
-      }`
-    }
-  } else {
-    if (startDate == endDate) {
-      return `${weekdayToKorean(startDate as WeekdayEnum)} ${startPeriod} ${startHour}시 ${
-        startMinute == "30" ? `${startMinute}분` : ""
-      } - ${endPeriod} ${endHour}시 ${endMinute == "30" ? `${endMinute}분` : ""}`
-    } else {
-      return `${weekdayToKorean(startDate as WeekdayEnum)} ${startPeriod} ${startHour}시 ${
-        startMinute == "30" ? `${startMinute}분` : ""
-      } - ${weekdayToKorean(endDate as WeekdayEnum)} ${endPeriod} ${endHour}시 ${
-        endMinute == "30" ? `${endMinute}분` : ""
-      }`
-    }
-  }
+  return `${weekdayToString(timeblock.day)} ${formatMinuteToString(timeblock.begin)} - ${formatMinuteToString(timeblock.end)}`
 }
 
 // timetable에서 시간 filter 위함
 export function formatTimeAreaToString(timeBlock: TimeBlock): string {
   const eng = WeekdayEnum[timeBlock.day as WeekdayEnum]
 
-  return `${weekdayEnKorMap.get(eng)} ${formatTimeindexToString(
-    timeBlock.timeIndex,
-  )} - ${formatTimeindexToString(timeBlock.timeIndex + timeBlock.duration)}`
+  return `${weekdayEnKorMap.get(eng)} ${formatMinuteToString(
+    timeBlock.begin,
+    true,
+  )} - ${formatMinuteToString(timeBlock.end, true)}`
 }
