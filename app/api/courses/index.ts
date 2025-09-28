@@ -1,13 +1,15 @@
 import { z } from "zod"
 
+
 import { DepartmentSchema } from "@/common/schemas/department"
 import { ProfessorSchema } from "@/common/schemas/professor"
+
 
 // GET /api/courses
 export const getCourses = z.object({
   query: z.object({
     type: z.string().optional(),
-    department: z.string().optional(),
+    department: z.number().int().optional(),
     level: z.string().optional(),
     term: z.number().int().optional(),
     order: z.enum(["code", "popular", "studentCount"]),
