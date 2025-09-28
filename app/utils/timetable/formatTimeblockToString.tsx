@@ -1,5 +1,6 @@
 import { WeekdayEnum, weekdayToKorean } from "@/common/enum/weekdayEnum"
-import type TimeBlock, { TimeBlockDay } from "@/common/interface/Timeblock"
+import type TimeBlock from "@/common/interface/Timeblock"
+import { type TimeBlockDay } from "@/common/interface/Timeblock"
 
 import { weekdayEnKorMap } from "./WeekdayKorEnMap"
 import { formatTimeindexToString } from "./formatTimeindexToString"

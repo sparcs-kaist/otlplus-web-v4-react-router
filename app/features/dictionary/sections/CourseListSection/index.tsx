@@ -34,10 +34,6 @@ const NoResultText = styled(Typography)`
   justify-content: center;
 `
 
-const CourseListHeader = styled(FlexWrapper)`
-  width: 100%;
-`
-
 const HeaderText = styled(Typography)`
   display: flex;
   align-items: center;
@@ -77,23 +73,19 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
   const { t } = useTranslation()
 
   const [searchResult, setSearchResult] = useState<CourseSearchResult[] | null>(
-    CourseSearchResults,
+    //CourseSearchResults,
+    null,
   )
   const [sortOption, setSortOption] = useState<number>(0)
 
   return (
-    <CourseListSectionInner direction="column" gap={8}>
+    <CourseListSectionInner direction="column" justify="stretch" align="stretch" gap={8}>
       <SearchSubSection>
         <DictionarySearchArea />
       </SearchSubSection>
       {searchResult ? (
         <>
-          <CourseListHeader
-            direction="row"
-            gap={0}
-            justify={"space-between"}
-            align={"center"}
-          >
+          <FlexWrapper direction="row" gap={0} justify={"space-between"} align={"center"}>
             <HeaderText color={"Text.default"}>
               <Trans
                 i18nKey="dictionary.courseCountInfo"
@@ -125,7 +117,7 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
                 />
               </DropDownWrapper>
             </SortWrapper>
-          </CourseListHeader>
+          </FlexWrapper>
           <CourseBlockWrapper direction="column" gap={12}>
             {searchResult.map((course) => (
               <CourseBlock
@@ -138,9 +130,11 @@ const CourseListSection: React.FC<CourseListSectionProps> = ({
           </CourseBlockWrapper>
         </>
       ) : (
-        <NoResultText type={"Bigger"} color={"Text.placeholder"}>
-          {t("dictionary.noResults")}
-        </NoResultText>
+        <FlexWrapper direction="column" gap={0} justify="stretch" align="center">
+          <Typography type={"Bigger"} color={"Text.placeholder"}>
+            {t("dictionary.noResults")}
+          </Typography>
+        </FlexWrapper>
       )}
     </CourseListSectionInner>
   )

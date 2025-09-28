@@ -46,13 +46,6 @@ const Icon: React.FC<IconProps> = ({
     )
   }
 
-  /*
-  return (
-    <IconWrapper onClick={onClick} size={`${size}px`} clickable={!!onClick} color={color}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </IconWrapper>
-  )
-    */
   return (
     <IconWrapper onClick={onClick} size={`${size}px`} clickable={!!onClick} color={color}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
