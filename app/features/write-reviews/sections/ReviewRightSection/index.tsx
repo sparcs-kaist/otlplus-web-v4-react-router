@@ -6,8 +6,8 @@ import { type TabType } from "@/common/interface/ReviewWriteTabs"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Widget from "@/features/main/components/Widget"
 
-import TabsSubSection from "./tabsSubSection"
-import WriteReviewsSubSection from "./writeReviewsSubSection"
+import TabsSubSection from "./TabsSubSection"
+import WriteReviewsSubSection from "./WriteReviewsSubSection"
 
 const StyledWidget = styled(Widget)`
   background: transparent;

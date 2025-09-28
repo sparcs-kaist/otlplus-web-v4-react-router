@@ -8,9 +8,9 @@ import Credits from "@/common/components/Credits"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
-import CourseHistorySubsection from "./courseHistorySubsection"
-import CourseInfoSubsection from "./courseInfoSubsection"
-import CourseReviewSubsection from "./courseReviewSubsection"
+import CourseHistorySubsection from "./CourseHistorySubsection"
+import CourseInfoSubsection from "./CourseInfoSubsection"
+import CourseReviewSubsection from "./CourseReviewSubsection"
 
 const CourseDetailSectionInner = styled(FlexWrapper)`
   width: 100%;
