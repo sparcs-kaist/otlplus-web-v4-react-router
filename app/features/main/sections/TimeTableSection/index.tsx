@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import styled from "@emotion/styled"
 import { Trans, useTranslation } from "react-i18next"
 
-import type TimeBlock from "@/common/interface/Timeblock"
-import type { LectureSummary } from "@/common/interface/Timetable"
-import type UserProfile from "@/common/interface/User"
+import exampleLectures from "@/api/example/Lectures"
+import type { GETUserInfoResponse } from "@/api/users/$userId/info"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 import type { Lecture } from "@/common/schemas/lecture"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 
 import CustomTimeTableGrid from "../../components/CustomTimeTableGrid"
 import Widget from "../../components/Widget"
@@ -19,7 +19,7 @@ const TimeTableInner = styled(FlexWrapper)`
 `
 
 interface TimeTableSectionProps {
-  user: UserProfile
+  user: GETUserInfoResponse
 }
 
 const TimeTableSection = ({ user }: TimeTableSectionProps) => {
@@ -29,31 +29,9 @@ const TimeTableSection = ({ user }: TimeTableSectionProps) => {
 
   const [selectedOption, setSelectedOption] = useState<number>(0)
 
-  const [lectureSummary, setLectureSummary] = useState<LectureSummary[]>()
+  const [lectureSummary, setLectureSummary] = useState<Lecture[]>(exampleLectures)
 
   const { t } = useTranslation()
-
-  useEffect(() => {
-    setLectureSummary(
-      user.my_timetable_lectures.map((lecture) => ({
-        id: lecture.id,
-        course_id: lecture.course,
-        title: lecture.title,
-        title_en: lecture.title_en,
-        professor_name: lecture.professors.map((prof) => prof.name).join(", "),
-        professor_name_en: lecture.professors.map((prof) => prof.name_en).join(", "),
-        classroom: lecture.classroom,
-        classroom_en: lecture.classroom_en,
-        timeBlocks: lecture.classtimes.map((time) => ({
-          day: time.day,
-          timeIndex: time.timeIndex,
-          duration: time.duration,
-          startTime: time.startTime,
-          endTime: time.endTime,
-        })),
-      })),
-    )
-  }, [user])
 
   return (
     <Widget width={856} direction="column" gap={0} padding="30px">
@@ -62,7 +40,7 @@ const TimeTableSection = ({ user }: TimeTableSectionProps) => {
           <FlexWrapper direction="row" gap={0}>
             <Trans
               i18nKey="main.hisTimeTable"
-              values={{ name: user.firstName + user.lastName }}
+              values={{ name: user.name }}
               components={{
                 name: (
                   <Typography

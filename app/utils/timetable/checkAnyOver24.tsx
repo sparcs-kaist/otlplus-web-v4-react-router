@@ -1,24 +1,20 @@
-import type { MeetingResult } from "@/common/interface/Group"
 import type PersonalBlock from "@/common/interface/Personal"
-import type TimeBlock from "@/common/interface/Timeblock"
-import type { LectureSummary } from "@/common/interface/Timetable"
+import type { Lecture } from "@/common/schemas/lecture"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 
-export function checkAnyOver24(
-  schedule: LectureSummary[] | MeetingResult[] | PersonalBlock[],
-): boolean {
+export function checkAnyOver24(schedule: Lecture[] | PersonalBlock[]): boolean {
   schedule.forEach((val, _) => {
-    const timeBlocks = val.timeBlocks
+    let timeBlocks: TimeBlock[] = []
+    if (!("timeBlocks" in val)) {
+      timeBlocks = val.classes
+    } else {
+      timeBlocks = val.timeBlocks
+    }
     timeBlocks.forEach((t, __) => {
-      if (checkIfOver24(t)) {
+      if (t.end > 24) {
         return true
       }
     })
   })
   return false
-}
-
-export function checkIfOver24(timeBlock: TimeBlock): boolean {
-  const timeIndex = timeBlock.timeIndex
-  const duration = timeBlock.duration
-  return timeIndex + duration > 31
 }

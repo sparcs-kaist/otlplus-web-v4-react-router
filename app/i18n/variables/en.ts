@@ -29,6 +29,8 @@ export const commonI18nEn: CommonI18nBaseType = {
     hours: "Hours",
     minutes: "Min",
     seconds: "Sec",
+    am: "AM",
+    pm: "PM",
     type: {
       basic: "Basic",
       major: "Major",

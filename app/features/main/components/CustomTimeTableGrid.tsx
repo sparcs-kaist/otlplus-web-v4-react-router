@@ -3,10 +3,9 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import type Lecture from "@/common/interface/Lecture"
-import type TimeBlock from "@/common/interface/Timeblock"
-import type { LectureSummary } from "@/common/interface/Timetable"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
+import type { Lecture } from "@/common/schemas/lecture"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 import { checkAnyOver24 } from "@/utils/timetable/checkAnyOver24"
 import renderGrid from "@/utils/timetable/renderGrid"
 import renderLectureTile from "@/utils/timetable/renderLectureTile"
@@ -14,7 +13,7 @@ import renderTargetArea from "@/utils/timetable/renderTargetArea"
 
 interface GridProps {
   cellWidth?: number
-  lectureSummary: LectureSummary[]
+  lectureSummary: Lecture[]
   setTimeFilter: React.Dispatch<React.SetStateAction<TimeBlock | null>>
   hover: Lecture | null
   setHover: React.Dispatch<React.SetStateAction<Lecture | null>>

@@ -74,7 +74,22 @@ const exampleLectures: Lecture[] = [
     credit: 4,
     au: 0,
     limitPeople: 20,
-    classes: [],
+    classes: [
+      {
+        day: 1,
+        begin: 630,
+        end: 720,
+        buildingCode: "E2",
+        placeName: "산업경영학동 1225",
+      },
+      {
+        day: 2,
+        begin: 780,
+        end: 870,
+        buildingCode: "E2",
+        placeName: "산업경영학동 1225",
+      },
+    ],
     examTimes: [
       {
         day: WeekdayEnum.Wed,
@@ -107,7 +122,22 @@ const exampleLectures: Lecture[] = [
     credit: 3,
     au: 0,
     limitPeople: 70,
-    classes: [],
+    classes: [
+      {
+        day: 1,
+        begin: 480,
+        end: 570,
+        buildingCode: "E2",
+        placeName: "산업경영학동 1225",
+      },
+      {
+        day: 3,
+        begin: 600,
+        end: 690,
+        buildingCode: "E2",
+        placeName: "산업경영학동 1225",
+      },
+    ],
     examTimes: [
       {
         day: WeekdayEnum.Thu,

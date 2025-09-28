@@ -26,6 +26,8 @@ export const commonI18nBase = {
     hours: "시간",
     minutes: "분",
     seconds: "초",
+    am: "오전",
+    pm: "오후",
     type: {
       basic: "기초",
       major: "전공",

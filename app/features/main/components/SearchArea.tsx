@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
 import TextInput from "@/common/components/search/TextInput"
-import type TimeBlock from "@/common/interface/Timeblock"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
+import type { TimeBlock } from "@/common/schemas/timeblock"
 import OptionChipGrid from "@/utils/search/generateChips"
 import {
   getDepartmentOptions,

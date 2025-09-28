@@ -4,12 +4,10 @@ import { useRef } from "react"
 import exampleLectures from "@/api/example/Lectures"
 import LectureTile from "@/common/components/LectureTile"
 import { WeekdayEnum } from "@/common/enum/weekdayEnum"
-import type Lecture from "@/common/interface/Lecture"
-import type TimeBlock from "@/common/interface/Timeblock"
-import type { LectureSummary } from "@/common/interface/Timetable"
+import type { ClassTime, Lecture } from "@/common/schemas/lecture"
 
 const renderLectureTile = (
-  lectureSummary: LectureSummary[],
+  lectureSummary: Lecture[],
   cellWidth: number,
   cellHeight: number,
   colPadding: number,
@@ -29,17 +27,17 @@ const renderLectureTile = (
   }
 
   for (let i = 0; i < lectureSummary.length; i++) {
-    const lecture: LectureSummary = lectureSummary[i]
-    const course: Lecture | undefined = findItemById(exampleLectures, lecture.course_id)
-    const timeBlocks: TimeBlock[] = lecture.timeBlocks
+    const lecture: Lecture = lectureSummary[i]
+    const course: Lecture | undefined = findItemById(exampleLectures, lecture.courseId)
+    const timeBlocks: ClassTime[] = lecture.classes
     const isSelected = selected == course
     const isHovered = hover == course && selected == null
 
     for (let j = 0; j < timeBlocks.length; j++) {
       const timeBlock = timeBlocks[j]
-      const weekDay = (timeBlock.day as unknown as WeekdayEnum) - 1
+      const weekDay = timeBlock.day as unknown as WeekdayEnum
       const left = weekDay * (cellWidth + colPadding)
-      const startIndex = timeBlock.timeIndex
+      const startIndex = Math.floor(timeBlock.begin / 30) - 16 // 8시부터 시작
       const top = startIndex * cellHeight
 
       rectangles.push(
