@@ -1,4 +1,4 @@
-import { commonI18nBase } from "@/common/i18n/_base"
+import { commonI18nBase } from "../variables/_base"
 
 export const i18nBase = {
   common: commonI18nBase,

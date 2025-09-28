@@ -2,9 +2,9 @@ import { useState } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import CourseDetailSection from "@/features/dictionary/sections/courseDetailSection"
-import CourseListSection from "@/features/dictionary/sections/courseListSection"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import CourseDetailSection from "@/features/dictionary/sections/CourseDetailSection"
+import CourseListSection from "@/features/dictionary/sections/CourseListSection"
 
 const DictionaryWrapper = styled(FlexWrapper)`
   flex: 1 0 0;

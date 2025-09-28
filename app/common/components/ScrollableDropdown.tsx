@@ -4,8 +4,8 @@ import styled from "@emotion/styled"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
-import Icon from "@/common/components/Icon"
-import { IconButton } from "@/common/components/IconButton"
+import Icon from "@/common/primitives/Icon"
+import { IconButton } from "@/common/primitives/IconButton"
 
 interface ScrollableDropdownProps {
   options?: string[]

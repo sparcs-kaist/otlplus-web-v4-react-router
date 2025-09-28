@@ -5,12 +5,12 @@ import CloseIcon from "@mui/icons-material/Close"
 import SearchIcon from "@mui/icons-material/Search"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import Icon from "@/common/components/Icon"
+import { Departments, DepartmentsEN } from "@/api/example/Departments"
 import StyledDivider from "@/common/components/StyledDivider"
-import Typography from "@/common/components/Typography"
-import type Department from "@/common/components/interface/Departmet"
-import DepartmentList from "@/dummy/departments.json"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import Icon from "@/common/primitives/Icon"
+import Typography from "@/common/primitives/Typography"
+import type { Department } from "@/common/schemas/department"
 
 const DepartmentSearchAreaInner = styled(FlexWrapper)`
   width: 630px;
@@ -75,8 +75,8 @@ const SearchResultText = styled(Typography)`
 `
 
 interface DepartmentSearchAreaProps {
-  currentDepartment: number[]
-  setCurrentDepartment: React.Dispatch<React.SetStateAction<number[]>>
+  currentDepartment: Department[]
+  setCurrentDepartment: React.Dispatch<React.SetStateAction<Department[]>>
 }
 
 const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
@@ -91,23 +91,20 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
   const searchInput = useRef<HTMLInputElement | null>(null)
 
   function findDepartmentNameById(id: number): string | undefined {
+    const DepartmentList = i18n.language === "en" ? DepartmentsEN : Departments
     const department = DepartmentList.find((dept) => dept.id === id)
-    return department
-      ? i18n.language === "en"
-        ? department.name_en
-        : department.name
-      : undefined
+    return department ? department.name : undefined
   }
 
-  const addDepartment = (id: number) => {
-    if (!currentDepartment.includes(id)) {
-      setCurrentDepartment([...currentDepartment, id])
+  const addDepartment = (department: Department) => {
+    if (!currentDepartment.map((dept) => dept.id).includes(department.id)) {
+      setCurrentDepartment([...currentDepartment, department])
     }
     setInputValue("")
   }
 
   const removeDepartment = (id: number) => {
-    setCurrentDepartment(currentDepartment.filter((deptId) => deptId !== id))
+    setCurrentDepartment(currentDepartment.filter((dept) => dept.id !== id))
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -123,12 +120,14 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
   }
 
   useEffect(() => {
+    const DepartmentList = i18n.language === "en" ? DepartmentsEN : Departments
     const filtered = (DepartmentList as Department[]).filter((dept) => {
-      const isNotSelected = !currentDepartment.includes(dept.id)
+      const isNotSelected = !currentDepartment.map((dept) => dept.id).includes(dept.id)
+      if (!dept.name) return false
       const matchesSearch =
         inputValue.trim() === ""
           ? true
-          : dept.name.toLowerCase().includes(inputValue.toLowerCase())
+          : dept.name?.toLowerCase().includes(inputValue.toLowerCase())
       return isNotSelected && matchesSearch
     })
     setSearchResult(filtered)
@@ -150,14 +149,14 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
           gap={8}
           align="center"
         >
-          {currentDepartment.map((id, index) => (
+          {currentDepartment.map((department, index) => (
             <TagItem key={index} direction={"row"} gap={8} align="center">
-              {findDepartmentNameById(id)}
+              {findDepartmentNameById(department.id)}
               <Icon
                 size={16}
                 onClick={(e) => {
                   e.stopPropagation()
-                  removeDepartment(id)
+                  removeDepartment(department.id)
                 }}
               >
                 <CloseIcon />
@@ -185,9 +184,9 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
             key={result.id}
             type="Normal"
             color="Text.default"
-            onClick={() => addDepartment(result.id)}
+            onClick={() => addDepartment(result)}
           >
-            {i18n.language === "en" ? result.name_en : result.name} ({result.code})
+            {result.name} ({result.code})
           </SearchResultText>
         ))}
       </SearchResultWrapper>

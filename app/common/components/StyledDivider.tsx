@@ -1,5 +1,3 @@
-"use client"
-
 import styled from "@emotion/styled"
 
 const StyledDividerRow = styled.div`

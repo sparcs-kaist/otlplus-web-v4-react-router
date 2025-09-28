@@ -2,8 +2,7 @@ import type { CSSProperties } from "react"
 
 import styled from "@emotion/styled"
 
-import type TimeBlock from "./interface/Timeblock"
-import type { LectureSummary } from "./interface/Timetable"
+import type { ClassTime, Lecture } from "@/common/schemas/lecture"
 
 // tile Color를 mapping 해주는 부분
 export const colorMap: Array<CSSProperties["color"]> = [
@@ -95,8 +94,8 @@ const DescWrapper = styled.span<{ isHighlighted: boolean }>`
 `
 
 const LectureTile: React.FC<{
-  lecture: LectureSummary
-  timeBlock: TimeBlock
+  lecture: Lecture
+  timeBlock: ClassTime
   cellWidth: number
   cellHeight: number
   isSelected?: boolean
@@ -113,16 +112,20 @@ const LectureTile: React.FC<{
 
   return (
     <TileWrapper
-      course_id={lecture.course_id}
-      duration={timeBlock.duration}
+      course_id={lecture.courseId}
+      duration={(timeBlock.end - timeBlock.begin) / 30}
       cellWidth={cellWidth}
       isSelected={isSelected}
       isHighlighted={isHighlighted}
       cellHeight={cellHeight}
     >
-      <TitleWrapper isHighlighted={isHighlighted}>{lecture.title}</TitleWrapper>
-      <DescWrapper isHighlighted={isHighlighted}>{lecture.professor_name}</DescWrapper>
-      <DescWrapper isHighlighted={isHighlighted}>{lecture.classroom}</DescWrapper>
+      <TitleWrapper isHighlighted={isHighlighted}>{lecture.name}</TitleWrapper>
+      <DescWrapper isHighlighted={isHighlighted}>
+        {lecture.professors.map((prof) => prof.name).join(", ")}
+      </DescWrapper>
+      <DescWrapper isHighlighted={isHighlighted}>
+        ({timeBlock.buildingCode}) {timeBlock.placeName}
+      </DescWrapper>
     </TileWrapper>
   )
 }

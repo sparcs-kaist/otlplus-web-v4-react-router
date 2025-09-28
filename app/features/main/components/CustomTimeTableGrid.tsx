@@ -1,20 +1,19 @@
-import React, { use, useEffect, useLayoutEffect, useRef, useState } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import type Lecture from "@/common/components/interface/Lecture"
-import type TimeBlock from "@/common/components/interface/Timeblock"
-import type { LectureSummary } from "@/common/components/interface/Timetable"
-import { checkAnyOver24 } from "@/common/components/utils/checkAnyOver24"
-import renderGrid from "@/common/components/utils/renderGrid"
-import renderLectureTile from "@/common/components/utils/renderLectureTile"
-import renderTargetArea from "@/common/components/utils/renderTargetArea"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import type { Lecture } from "@/common/schemas/lecture"
+import type { TimeBlock } from "@/common/schemas/timeblock"
+import { checkAnyOver24 } from "@/utils/timetable/checkAnyOver24"
+import renderGrid from "@/utils/timetable/renderGrid"
+import renderLectureTile from "@/utils/timetable/renderLectureTile"
+import renderTargetArea from "@/utils/timetable/renderTargetArea"
 
 interface GridProps {
   cellWidth?: number
-  lectureSummary: LectureSummary[]
+  lectureSummary: Lecture[]
   setTimeFilter: React.Dispatch<React.SetStateAction<TimeBlock | null>>
   hover: Lecture | null
   setHover: React.Dispatch<React.SetStateAction<Lecture | null>>
