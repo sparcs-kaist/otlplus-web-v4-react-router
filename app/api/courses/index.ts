@@ -1,9 +1,7 @@
 import { z } from "zod"
 
-
 import { DepartmentSchema } from "@/common/schemas/department"
 import { ProfessorSchema } from "@/common/schemas/professor"
-
 
 // GET /api/courses
 export const getCourses = z.object({
