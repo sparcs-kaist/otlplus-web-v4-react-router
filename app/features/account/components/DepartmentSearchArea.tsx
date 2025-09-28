@@ -122,9 +122,7 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
   useEffect(() => {
     const DepartmentList = i18n.language === "en" ? DepartmentsEN : Departments
     const filtered = (DepartmentList as Department[]).filter((dept) => {
-      const isNotSelected = !currentDepartment
-        .map((dept) => dept.id)
-        .includes(dept.id as number)
+      const isNotSelected = !currentDepartment.map((dept) => dept.id).includes(dept.id)
       if (!dept.name) return false
       const matchesSearch =
         inputValue.trim() === ""
@@ -153,12 +151,12 @@ const DepartmentSearchArea: React.FC<DepartmentSearchAreaProps> = ({
         >
           {currentDepartment.map((department, index) => (
             <TagItem key={index} direction={"row"} gap={8} align="center">
-              {findDepartmentNameById(department.id as number)}
+              {findDepartmentNameById(department.id)}
               <Icon
                 size={16}
                 onClick={(e) => {
                   e.stopPropagation()
-                  removeDepartment(department.id as number)
+                  removeDepartment(department.id)
                 }}
               >
                 <CloseIcon />

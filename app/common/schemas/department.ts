@@ -1,8 +1,8 @@
 import { z } from "zod"
 
 export const DepartmentSchema = z.object({
-  id: z.number().int().optional(),
-  name: z.string().optional(),
+  id: z.number().int(),
+  name: z.string(),
   code: z.string().optional(),
 })
 

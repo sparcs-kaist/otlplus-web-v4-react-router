@@ -93,7 +93,7 @@ const CourseHistorySubsection: React.FC<CourseHistorySubsectionProps> = ({
                       if (selectedProfessorId === professor.id) {
                         setSelectedProfessorId(null)
                       } else {
-                        setSelectedProfessorId(professor.id as number)
+                        setSelectedProfessorId(professor.id)
                       }
                     }}
                   />

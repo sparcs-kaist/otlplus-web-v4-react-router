@@ -83,7 +83,7 @@ const Index: React.FC<AccountInterestedMajorSectionProps> = ({
             <Typography type="Normal" color="Text.default">
               {userInfo?.interestedDepartments
                 .map((department) => {
-                  return findDepartmentNameById(department.id as number) || ""
+                  return findDepartmentNameById(department.id) || ""
                 })
                 .join(", ")}
             </Typography>

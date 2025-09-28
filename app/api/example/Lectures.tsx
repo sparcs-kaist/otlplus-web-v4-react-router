@@ -6,7 +6,7 @@ const exampleLectures: Lecture[] = [
     id: 3678,
     code: "CBE342",
     courseId: 1234,
-    department: {},
+    department: { id: 701, name: "생명화학공학과" },
     name: "화학 및 생물 제품디자인",
     type: "전공선택",
     professors: [
@@ -54,7 +54,7 @@ const exampleLectures: Lecture[] = [
     id: 295,
     code: "CBE441",
     courseId: 5678,
-    department: {},
+    department: { id: 701, name: "생명화학공학과" },
     name: "공정 및 제품 디자인",
     type: "전공선택",
     professors: [
@@ -106,7 +106,7 @@ const exampleLectures: Lecture[] = [
     id: 1599,
     code: "CBE442",
     courseId: 9101,
-    department: {},
+    department: { id: 701, name: "생명화학공학과" },
     name: "생명화학공학 디자인 프로젝트",
     type: "전공필수",
     professors: [

@@ -7,6 +7,7 @@ const exampleReviews: GETReviewsResponse = {
       courseId: 745,
       courseName: "이산구조",
       professor: {
+        id: 1534,
         name: "박진아",
       },
       year: 2025,
@@ -25,6 +26,7 @@ const exampleReviews: GETReviewsResponse = {
       courseId: 745,
       courseName: "이산구조",
       professor: {
+        id: 2057,
         name: "이주영",
       },
       year: 2025,
@@ -43,6 +45,7 @@ const exampleReviews: GETReviewsResponse = {
       courseId: 745,
       courseName: "이산구조",
       professor: {
+        id: 1534,
         name: "박진아",
       },
       year: 2025,
@@ -61,6 +64,7 @@ const exampleReviews: GETReviewsResponse = {
       courseId: 745,
       courseName: "이산구조",
       professor: {
+        id: 2057,
         name: "이주영",
       },
       year: 2025,

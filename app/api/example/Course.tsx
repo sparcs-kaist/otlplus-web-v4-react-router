@@ -6,7 +6,7 @@ const exampleCourse: GETCourseDetailResponse = {
   code: "CS.20004",
   credit: 3,
   credit_au: 0,
-  department: { name: "전산학부" },
+  department: { name: "전산학부", id: 9945 },
   type: "전공필수",
   num_classes: 3,
   num_labs: 0,
