@@ -2,9 +2,9 @@ import exampleReviews from "@/api/example/Reviews"
 import { type TabType } from "@/common/interface/ReviewWriteTabs"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 
-import LikedReviewsSection from "./likedReviewsSubSection"
-import PopularFeedSubSection from "./popularFeedSubSection"
-import ReviewFeedSubSection from "./reviewFeedSubSection"
+import LikedReviewsSection from "./LikedReviewsSubSection"
+import PopularFeedSubSection from "./PopularFeedSubSection"
+import ReviewFeedSubSection from "./ReviewFeedSubSection"
 
 interface WriteReviewsSubSectionType {
   tab: TabType

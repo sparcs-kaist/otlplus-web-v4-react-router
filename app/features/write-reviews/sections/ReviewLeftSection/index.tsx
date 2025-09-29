@@ -5,8 +5,8 @@ import Line from "@/common/components/Line"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Widget from "@/features/main/components/Widget"
 
-import MySummarySubSection from "./mySummarySubSection"
-import TakenLectureSubSection from "./takenLectureSubSection"
+import MySummarySubSection from "./MySummarySubSection"
+import TakenLectureSubSection from "./TakenLectureSubSection"
 
 interface reviewLeftSectionType {
   takenLectures: GETUserPastLecturesResponse
