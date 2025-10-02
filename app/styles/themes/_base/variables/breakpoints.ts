@@ -1,5 +1,7 @@
+// each breakpoint represents the maximum width for that device type
+
 export const breakpoints = {
-  mobile: 768,
-  tablet: 1024,
-  desktop: 1440,
+  mobile: 720,
+  tablet: 960,
+  laptop: 1440,
 }
