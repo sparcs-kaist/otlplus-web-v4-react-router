@@ -18,65 +18,82 @@ import SearchSection from "@/features/main/sections/SearchSection"
 import TimeTableSection from "@/features/main/sections/TimeTableSection"
 
 const MainWrapper = styled(FlexWrapper)`
-  margin-top: 60px;
+    margin-top: 60px;
 `
 
 const MainWrapperInner = styled(FlexWrapper)`
-  width: 1298px;
+    width: 1298px;
 `
 
 const SearchSectionWrapper = styled(FlexWrapper)`
-  width: 100%;
-  height: 68px;
-  z-index: 2;
-`
-
-const StretechedFlexWrapper = styled(FlexWrapper)`
-  flex: 1 1 auto;
+    height: 68px;
+    z-index: 2;
 `
 
 export default function Home() {
-  const [timeFilter, setTimeFilter] = useState<TimeBlock | null>(null)
+    const [timeFilter, setTimeFilter] = useState<TimeBlock | null>(null)
 
-  function likeReview(reviewId: number) {
-    alert("like review " + reviewId)
-  }
+    function likeReview(reviewId: number) {
+        alert("like review " + reviewId)
+    }
 
-  return (
-    <>
-      <MainWrapper direction="column" align="center" gap={240}>
-        <MainWrapperInner direction="column" align="center" gap={60}>
-          <SearchSectionWrapper direction="row" justify="center" gap={0}>
-            <SearchSection timeFilter={timeFilter} setTimeFilter={setTimeFilter} />
-          </SearchSectionWrapper>
-          <FlexWrapper direction="column" justify="center" gap={24}>
-            <FlexWrapper direction="row" align="stretch" gap={24}>
-              <FlexWrapper direction="column" align="stretch" gap={0}>
-                <TimeTableSection user={User} />
-              </FlexWrapper>
-              <FlexWrapper direction="column" align="stretch" gap={24}>
-                <FlexWrapper direction="column" align="stretch" gap={24}>
-                  <ScheduleSection
-                    content="2025 봄 수강신청 마감"
-                    dueDate={new Date("2025-04-11")}
-                  />
-                  <ReviewSection lectureId={3678} lectureName="이산구조" />
-                </FlexWrapper>
-                <StretechedFlexWrapper direction="column" align="stretch" gap={24}>
-                  <AdFeedSection src="/ad.png" />
-                  <AdFeedSection src="/ad.png" />
-                </StretechedFlexWrapper>
-              </FlexWrapper>
-            </FlexWrapper>
-            <FlexWrapper direction="row" align="stretch" gap={24}>
-              <ReviewFeedSection reviews={exampleReviews} likeReview={likeReview} />
-              <PopularFeedSection reviews={exampleReviews} likeReview={likeReview} />
-              <ScheduleFeedSection schedules={exampleScheduleFeed} />
-            </FlexWrapper>
-          </FlexWrapper>
-        </MainWrapperInner>
-        <Footer />
-      </MainWrapper>
-    </>
-  )
+    return (
+        <>
+            <MainWrapper direction="column" align="center" gap={240}>
+                <MainWrapperInner
+                    direction="column"
+                    align="center"
+                    justify="stretch"
+                    gap={60}
+                >
+                    <SearchSectionWrapper direction="row" justify="center" gap={0}>
+                        <SearchSection
+                            timeFilter={timeFilter}
+                            setTimeFilter={setTimeFilter}
+                        />
+                    </SearchSectionWrapper>
+                    <FlexWrapper direction="column" justify="center" gap={24}>
+                        <FlexWrapper direction="row" align="stretch" gap={24}>
+                            <FlexWrapper direction="column" align="stretch" gap={0}>
+                                <TimeTableSection user={User} />
+                            </FlexWrapper>
+                            <FlexWrapper direction="column" align="stretch" gap={24}>
+                                <FlexWrapper direction="column" align="stretch" gap={24}>
+                                    <ScheduleSection
+                                        content="2025 봄 수강신청 마감"
+                                        dueDate={new Date("2025-04-11")}
+                                    />
+                                    <ReviewSection
+                                        lectureId={3678}
+                                        lectureName="이산구조"
+                                    />
+                                </FlexWrapper>
+                                <FlexWrapper
+                                    direction="column"
+                                    align="stretch"
+                                    gap={24}
+                                    flex="1 1 auto"
+                                >
+                                    <AdFeedSection src="/ad.png" />
+                                    <AdFeedSection src="/ad.png" />
+                                </FlexWrapper>
+                            </FlexWrapper>
+                        </FlexWrapper>
+                        <FlexWrapper direction="row" align="stretch" gap={24}>
+                            <ReviewFeedSection
+                                reviews={exampleReviews}
+                                likeReview={likeReview}
+                            />
+                            <PopularFeedSection
+                                reviews={exampleReviews}
+                                likeReview={likeReview}
+                            />
+                            <ScheduleFeedSection schedules={exampleScheduleFeed} />
+                        </FlexWrapper>
+                    </FlexWrapper>
+                </MainWrapperInner>
+                <Footer />
+            </MainWrapper>
+        </>
+    )
 }

@@ -6,43 +6,43 @@ import ReviewBlock from "@/common/components/blocks/ReviewBlock"
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
-import Widget from "../../components/Widget"
+import Widget from "../../../../common/primitives/Widget"
 
 const UniformWidget = styled(Widget)`
-  flex: 1 1 0;
+    flex: 1 1 0;
 `
 
 interface PopularFeedSectionProps {
-  reviews: GETReviewsResponse
-  likeReview: (reviewId: number) => void
+    reviews: GETReviewsResponse
+    likeReview: (reviewId: number) => void
 }
 
 function PopularFeedSection({ reviews, likeReview }: PopularFeedSectionProps) {
-  return (
-    <UniformWidget direction="column" gap={20} padding="30px">
-      <FlexWrapper direction="row" gap={0}>
-        <Trans
-          i18nKey="main.popularFeed.title"
-          components={{
-            bold: (
-              <Typography
-                type="BiggerBold"
-                color="Highlight.default"
-                children={undefined}
-              />
-            ),
-            space: <>&nbsp;</>,
-            normal: <Typography type="BiggerBold" children={undefined} />,
-          }}
-        />
-      </FlexWrapper>
-      <FlexWrapper direction="column" gap={15}>
-        {reviews.reviews.map((review, idx) => (
-          <ReviewBlock key={idx} review={review} likeReview={likeReview} />
-        ))}
-      </FlexWrapper>
-    </UniformWidget>
-  )
+    return (
+        <UniformWidget direction="column" gap={20} padding="30px">
+            <FlexWrapper direction="row" gap={0}>
+                <Trans
+                    i18nKey="main.popularFeed.title"
+                    components={{
+                        bold: (
+                            <Typography
+                                type="BiggerBold"
+                                color="Highlight.default"
+                                children={undefined}
+                            />
+                        ),
+                        space: <>&nbsp;</>,
+                        normal: <Typography type="BiggerBold" children={undefined} />,
+                    }}
+                />
+            </FlexWrapper>
+            <FlexWrapper direction="column" gap={15}>
+                {reviews.reviews.map((review, idx) => (
+                    <ReviewBlock key={idx} review={review} likeReview={likeReview} />
+                ))}
+            </FlexWrapper>
+        </UniformWidget>
+    )
 }
 
 export default PopularFeedSection
