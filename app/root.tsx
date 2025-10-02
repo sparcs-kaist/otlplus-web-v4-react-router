@@ -59,6 +59,7 @@ const AppWrapper = styled(FlexWrapper)`
   width: 100%;
   min-height: 100%;
   position: absolute;
+  overflow: hidden;
 `
 
 export default function App() {

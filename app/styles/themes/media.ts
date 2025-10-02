@@ -1,6 +1,6 @@
 import { breakpoints } from "@/styles/themes/_base/variables/breakpoints"
 
-type Breakpoint = "mobile" | "tablet" | "desktop"
+type Breakpoint = "mobile" | "tablet" | "laptop"
 
 export const media = Object.keys(breakpoints as Record<Breakpoint, number>).reduce(
   (acc, label) => {
