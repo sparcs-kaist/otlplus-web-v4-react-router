@@ -1,24 +1,12 @@
-import { css } from "@emotion/react"
+import { breakpoints } from "@/styles/themes/_base/variables/breakpoints"
 
 type Breakpoint = "mobile" | "tablet" | "desktop"
 
-const breakpoints: Record<Breakpoint, string> = {
-  mobile: "768px",
-  tablet: "1024px",
-  desktop: "1280px",
-}
-
-export const media = Object.keys(breakpoints).reduce(
+export const media = Object.keys(breakpoints as Record<Breakpoint, number>).reduce(
   (acc, label) => {
-    acc[label as Breakpoint] = (literals: TemplateStringsArray, ...args: any[]) => css`
-      @media (max-width: ${breakpoints[label as Breakpoint]}) {
-        ${css(literals, ...args)};
-      }
-    `
+    const breakpoint = label as Breakpoint
+    acc[breakpoint] = `@media (max-width: ${breakpoints[breakpoint]}px)`
     return acc
   },
-  {} as Record<
-    Breakpoint,
-    (l: TemplateStringsArray, ...a: any[]) => ReturnType<typeof css>
-  >,
+  {} as Record<Breakpoint, string>,
 )
