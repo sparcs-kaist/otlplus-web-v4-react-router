@@ -1,12 +1,12 @@
-import React from "react"
+import { useEffect, useState } from "react"
 
 import { useTheme } from "@emotion/react"
 
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = React.useState(false)
+const useIsMobile = (): boolean => {
   const theme = useTheme()
+  const [isMobile, setIsMobile] = useState(window.innerWidth < theme.breakpoints.mobile)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < theme.breakpoints.mobile)
     }
