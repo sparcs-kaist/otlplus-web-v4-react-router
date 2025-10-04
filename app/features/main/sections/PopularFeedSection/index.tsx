@@ -8,10 +8,6 @@ import Typography from "@/common/primitives/Typography"
 
 import Widget from "../../../../common/primitives/Widget"
 
-const UniformWidget = styled(Widget)`
-    flex: 1 1 0;
-`
-
 interface PopularFeedSectionProps {
     reviews: GETReviewsResponse
     likeReview: (reviewId: number) => void
@@ -19,7 +15,7 @@ interface PopularFeedSectionProps {
 
 function PopularFeedSection({ reviews, likeReview }: PopularFeedSectionProps) {
     return (
-        <UniformWidget direction="column" gap={20} padding="30px">
+        <Widget direction="column" gap={20} padding="30px" flex="1 1 0">
             <FlexWrapper direction="row" gap={0}>
                 <Trans
                     i18nKey="main.popularFeed.title"
@@ -41,7 +37,7 @@ function PopularFeedSection({ reviews, likeReview }: PopularFeedSectionProps) {
                     <ReviewBlock key={idx} review={review} likeReview={likeReview} />
                 ))}
             </FlexWrapper>
-        </UniformWidget>
+        </Widget>
     )
 }
 

@@ -28,6 +28,7 @@ export const commonI18nBase = {
         seconds: "초",
         am: "오전",
         pm: "오후",
+        year: "연도",
         type: {
             basic: "기초",
             major: "전공",
@@ -190,12 +191,21 @@ export const commonI18nBase = {
             "이 정보는 KAIST Portal과 연동됩니다. 정보가 일치하지 않을 경우 <bold>otlplus@sparcs.org</bold>로 문의해주세요",
     },
     writeReviews: {
+        mySummary: {
+            title: "내가 들은 과목",
+            written: "작성 후기",
+            likes: "추천",
+        },
         write: {
             title: "후기 작성 - {{lectureName}}",
             related: "연관 후기 - {{lectureName}}",
         },
         reviewFeed: {
             title: "명예의 전당 - {{year}} {{semester}}",
+            total: "전체 후기",
+        },
+        likedReviews: {
+            title: "좋아요한 후기",
         },
         tabs: {
             write: "후기 작성하기",

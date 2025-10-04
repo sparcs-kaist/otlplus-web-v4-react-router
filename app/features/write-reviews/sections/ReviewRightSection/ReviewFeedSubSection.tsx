@@ -34,7 +34,7 @@ function ReviewFeedSubSection({ reviews, likeReview }: ReviewFeedSubSectionProps
     return (
         <FlexWrapper direction="column" align="stretch" gap={12}>
             <FlexWrapper direction="row" align="center" gap={8}>
-                <Typography type="NormalBold">년도</Typography>
+                <Typography type="NormalBold">{t("common.year")}</Typography>
                 <DropDownWrapper direction="row" gap={0}>
                     <ScrollableDropdown
                         options={options}
@@ -54,8 +54,10 @@ function ReviewFeedSubSection({ reviews, likeReview }: ReviewFeedSubSectionProps
                     />
                 </Typography>
                 <FlexWrapper direction="column" align="center" gap={0}>
-                    <Typography type="Bigger">9988</Typography>
-                    <Typography type="Smaller">전체 후기</Typography>
+                    <Typography type="Bigger">{reviews.reviews.length}</Typography>
+                    <Typography type="Smaller">
+                        {t("writeReviews.reviewFeed.total")}
+                    </Typography>
                 </FlexWrapper>
             </FlexWrapper>
             <FlexWrapper direction="column" align="stretch" gap={12}>

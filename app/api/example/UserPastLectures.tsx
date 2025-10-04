@@ -4,7 +4,7 @@ import { SemesterEnum } from "@/common/enum/semesterEnum"
 import exampleLectures from "./Lectures"
 
 const exampleUserPastLectures: GETUserPastLecturesResponse = {
-    totalLectures: 9,
+    totalLectures: 12,
     reviewedLectures: 0,
     totalLikes: 0,
     lecturesWrap: [

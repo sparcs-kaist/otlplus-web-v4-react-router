@@ -13,7 +13,7 @@ interface ReviewFeedSectionProps {
 
 function ReviewFeedSection({ reviews, likeReview }: ReviewFeedSectionProps) {
     return (
-        <Widget direction="column" gap={20} padding="30px">
+        <Widget direction="column" gap={20} padding="30px" flex="1 1 0">
             <FlexWrapper direction="row" gap={0}>
                 <Trans
                     i18nKey="main.reviewFeed.title"

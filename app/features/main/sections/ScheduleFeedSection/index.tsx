@@ -8,10 +8,6 @@ import Typography from "@/common/primitives/Typography"
 
 import Widget from "../../../../common/primitives/Widget"
 
-const UniformWidget = styled(Widget)`
-    flex: 1 1 0;
-`
-
 interface ScheduleFeedSectionProps {
     schedules: GETSchedulesResponse
 }
@@ -20,7 +16,7 @@ function ScheduleFeedSection({ schedules }: ScheduleFeedSectionProps) {
     const { t } = useTranslation()
 
     return (
-        <UniformWidget direction="column" gap={20} align="stretch" padding="30px">
+        <Widget direction="column" gap={20} align="stretch" padding="30px" flex="1 1 0">
             <FlexWrapper direction="row" gap={0}>
                 <Typography type="BiggerBold">{t("main.scheduleFeed.title")}</Typography>
             </FlexWrapper>
@@ -40,7 +36,7 @@ function ScheduleFeedSection({ schedules }: ScheduleFeedSectionProps) {
                     </FlexWrapper>
                 ))}
             </FlexWrapper>
-        </UniformWidget>
+        </Widget>
     )
 }
 

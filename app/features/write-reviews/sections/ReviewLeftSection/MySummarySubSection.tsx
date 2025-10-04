@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next"
+
 import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Typography from "@/common/primitives/Typography"
 
@@ -12,10 +14,12 @@ function MySummarySubSection({
     reviewedLectures,
     totalLikes,
 }: MySummarySubSectionProps) {
+    const { t } = useTranslation()
+
     return (
         <FlexWrapper direction="column" align="center" gap={10}>
             <Typography type="Big" color="Text.default">
-                내가 들은 과목
+                {t("writeReviews.mySummary.title")}
             </Typography>
 
             <FlexWrapper direction="row" align="center" gap={48}>
@@ -29,7 +33,7 @@ function MySummarySubSection({
                         </Typography>
                     </FlexWrapper>
                     <Typography type="Smaller" color="Text.default">
-                        작성후기
+                        {t("writeReviews.mySummary.written")}
                     </Typography>
                 </FlexWrapper>
 
@@ -40,7 +44,7 @@ function MySummarySubSection({
                         </Typography>
                     </FlexWrapper>
                     <Typography type="Smaller" color="Text.default">
-                        추천
+                        {t("writeReviews.mySummary.likes")}
                     </Typography>
                 </FlexWrapper>
             </FlexWrapper>

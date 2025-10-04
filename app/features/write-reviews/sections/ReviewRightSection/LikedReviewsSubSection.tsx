@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { useTranslation } from "react-i18next"
 
 import type { GETReviewsResponse } from "@/api/reviews"
 import ReviewBlock from "@/common/components/blocks/ReviewBlock"
@@ -16,10 +17,14 @@ const ReviewWrapper = styled(FlexWrapper)`
 `
 
 function LikedReviewsSection({ reviews, likeReview }: LikedReviewsSectionProps) {
+    const { t } = useTranslation()
+
     return (
         <FlexWrapper direction="column" align="stretch" gap={12}>
             <FlexWrapper direction="column" align="center" gap={12}>
-                <Typography type="NormalBold">좋아요한 과목 후기</Typography>
+                <Typography type="NormalBold">
+                    {t("writeReviews.likedReviews.title")}
+                </Typography>
             </FlexWrapper>
             <FlexWrapper direction="column" align="stretch" gap={12}>
                 {reviews.reviews.map((review, idx) => (
