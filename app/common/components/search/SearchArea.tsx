@@ -1,360 +1,258 @@
-import type { Dispatch, SetStateAction } from "react"
-import { useEffect, useRef, useState } from "react"
+import { type ReactElement, useState } from "react"
 
-import styled from "@emotion/styled"
-import CloseIcon from "@mui/icons-material/Close"
-import SearchIcon from "@mui/icons-material/Search"
+import { Search } from "@mui/icons-material"
 import { AnimatePresence, motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 
-import Button from "@/common/components/Button"
-import type TimeBlock from "@/common/interface/Timeblock"
+import { type GETCoursesQuery } from "@/api/courses"
+import { type SearchOptions } from "@/common/interface/SearchOptions"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
 import Icon from "@/common/primitives/Icon"
-import OptionChipGrid from "@/utils/search/generateChips"
+import Typography from "@/common/primitives/Typography"
+import { type TimeBlock } from "@/common/schemas/timeblock"
 import { formatTimeAreaToString } from "@/utils/timetable/formatTimeblockToString"
 
+import Button from "../Button"
+import SearchFilterArea, {
+    type ExportDataType,
+    type SearchFilterAreaProps,
+    isSingleSelectOption,
+} from "./SearchFilterArea"
 import TextInput from "./TextInput"
 
-export type OptionProps = {
-  nameList: string[]
-  selectedList: boolean[]
-  setSelectedList: Dispatch<SetStateAction<boolean[]>>
+export type SearchParamsType = {
+    type?: GETCoursesQuery["type"]
+    department?: GETCoursesQuery["department"]
+    level?: GETCoursesQuery["level"]
+    term?: GETCoursesQuery["term"]
+    time?: GETCoursesQuery["time"]
+    keyword: GETCoursesQuery["keyword"]
 }
 
-interface SearchAreaProps {
-  timeFilter: TimeBlock | null
-  setTimeFilter: React.Dispatch<React.SetStateAction<TimeBlock | null>>
-}
-
-const SearchInputAreaWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: flex-start;
-`
-
-const PageWrapper = styled.div`
-  width: 300px;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`
-
-const TimeFilterArea = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const ButtonArea = styled.div`
-  display: inline-flex;
-  width: 100%;
-  flex-wrap: wrap;
-  overflow: hidden;
-  justify-content: flex-end;
-  gap: 6px;
-`
-
-const OptionAreaWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 10px;
-  line-height: 12.5px;
-  font-weight: 700;
-`
-
-const SearchParamWrapper = styled.div`
-  display: "inline-block";
-  flex-shrink: 1;
-  flex-direction: column;
-  font-size: 14px;
-  line-height: 17.5px;
-  overflow: hidden;
-  white-space: normal;
-  word-break: keep-all;
-`
-
-const SearchArea: React.FC<SearchAreaProps> = ({ timeFilter, setTimeFilter }) => {
-  const [open, setOpen] = useState<boolean>(false)
-  const [value, setValue] = useState<string>("")
-  const inputRef = useRef<HTMLInputElement | null>(null)
-
-  const gradeList = ["100번대", "200번대", "300번대", "400번대"]
-  const [gradeSelect, setGrade] = useState<boolean[]>(Array(gradeList.length).fill(false))
-
-  const divisionList = [
-    "기필",
-    "기선",
-    "전필",
-    "전선",
-    "교필",
-    "인선",
-    "공통",
-    "석박",
-    "자선",
-    "기타",
-  ]
-  const [divisionSelect, setDivison] = useState<boolean[]>(
-    Array(divisionList.length).fill(false),
-  )
-
-  const majorList = [
-    "인문",
-    "건환",
-    "기경",
-    "기계",
-    "뇌인지",
-    "물리",
-    "바공",
-    "반시공",
-    "상공",
-    "산디",
-    "생명",
-    "생화공",
-    "수리",
-    "신소재",
-    "원양",
-    "융인",
-    "전산",
-    "전자",
-    "항공",
-    "화학",
-    "기타",
-  ]
-  const [majorSelect, setMajor] = useState<boolean[]>(Array(majorList.length).fill(false))
-
-  const OptionMap: Map<string, OptionProps> = new Map([
-    [
-      "분류",
-      {
-        nameList: divisionList,
-        selectedList: divisionSelect,
-        setSelectedList: setDivison,
-      },
-    ],
-    [
-      "학년",
-      { nameList: gradeList, selectedList: gradeSelect, setSelectedList: setGrade },
-    ],
-    [
-      "학과",
-      { nameList: majorList, selectedList: majorSelect, setSelectedList: setMajor },
-    ],
-  ])
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.nativeEvent.isComposing) {
-      // 한글 입력 중이면 Enter 이벤트 무시
-      return
-    }
-
-    if (event.key === "Enter") {
-      handleSubmit()
-      console.log("입력된 값:", value)
-    }
-  }
-
-  const handleOptionClick = (
-    idx: number,
-    targetList: boolean[],
-    setList: Dispatch<SetStateAction<boolean[]>>,
-  ) => {
-    const updatedList = [...targetList]
-    updatedList[idx] = !targetList[idx]
-    setList(updatedList)
-  }
-
-  const handleSelectAll = (
-    targetList: boolean[],
-    setList: Dispatch<SetStateAction<boolean[]>>,
-  ) => {
-    setList(Array(targetList.length).fill(false))
-  }
-
-  const handleReset = () => {
-    setValue("")
-    setOpen(false)
-    handleSelectAll(divisionSelect, setDivison)
-    handleSelectAll(majorSelect, setMajor)
-    handleSelectAll(gradeSelect, setGrade)
-    setTimeFilter(null)
-  }
-
-  const handleSubmit = () => {
-    console.log("필터 결과")
-    divisionSelect.map((val, index) => {
-      if (val == true) {
-        console.log(divisionList[index])
+type TimeProps<ops extends readonly SearchOptions[]> = "time" extends ops[number]
+    ? {
+          timeFilter: TimeBlock | null
+          setTimeFilter: (timeFilter: TimeBlock | null) => {}
       }
-    })
-    majorSelect.map((val, index) => {
-      if (val == true) {
-        console.log(majorList[index])
-      }
-    })
-    gradeSelect.map((val, index) => {
-      if (val == true) {
-        console.log(gradeList[index])
-      }
-    })
-    setOpen(false)
-  }
+    : { timeFilter?: never; setTimeFilter?: never }
 
-  useEffect(() => {
-    if (open && inputRef.current) {
-      inputRef.current.focus()
-    } else {
-      if (!open && inputRef.current) {
-        inputRef.current.blur()
-      }
-    }
-  }, [open])
+type SearchAreaProps<ops extends readonly SearchOptions[]> = {
+    options: ops
+    onSearch: (params: SearchParamsType) => void
+    SearchIcon?: ReactElement
+} & TimeProps<ops>
 
-  function getOptionList(key: string) {
-    let res: string = ""
-    const option = OptionMap.get(key)!
-
-    option.selectedList.forEach((val, idx) => {
-      if (val) {
-        res += `${option.nameList[idx]} `
-      }
-    })
-
-    if (res.endsWith(" ")) {
-      res = res.slice(0, -1)
-    }
-
-    if (res.length <= 0) {
-      return res
-    }
-
-    return `(${key} : ${res})`
-  }
-
-  const dropInVariants = {
+const dropInVariants = {
     hidden: { opacity: 0, height: 0 },
     visible: { opacity: 1, height: "auto" },
     exit: { opacity: 0, height: 0 },
-  }
+}
 
-  return (
-    <PageWrapper>
-      {/* 위쪽 검색어 입력 부분 */}
-      <SearchInputAreaWrapper
-        onClick={() => {
-          if (!open) {
-            setOpen(true)
-          }
-        }}
-      >
-        <Icon size={17.5} color="#E54C65" onClick={() => {}}>
-          <SearchIcon />
-        </Icon>
-        <SearchParamWrapper>
-          <TextInput
-            ref={inputRef}
-            value={value}
-            handleChange={(newValue) => {
-              setValue(newValue)
-            }}
-            onKeyDown={handleKeyDown}
-          />
-          <span
-            style={{
-              color: "#555555",
-              fontSize: "12px",
-              lineHeight: "15px",
-            }}
-          >
-            {`${getOptionList("분류")} ${getOptionList("학과")} ${getOptionList("학년")} ${
-              timeFilter ? `(${formatTimeAreaToString(timeFilter)})` : ""
-            }`}
-          </span>
-        </SearchParamWrapper>
-      </SearchInputAreaWrapper>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={dropInVariants}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            style={{
-              overflow: "hidden",
-              display: "flex",
-              gap: "12px",
-              flexDirection: "column",
-            }}
-          >
-            {[...OptionMap.entries()].map(([key, value]) => (
-              <OptionAreaWrapper key={key}>
-                {key}
-                <OptionChipGrid
-                  nameList={value.nameList}
-                  chosenList={value.selectedList}
-                  handleOptionClick={(idx: number) => {
-                    handleOptionClick(idx, value.selectedList, value.setSelectedList)
-                  }}
-                  handleSelectAllClick={() => {
-                    handleSelectAll(value.selectedList, value.setSelectedList)
-                  }}
-                  selectedAll={!value.selectedList.includes(true)}
-                />
-              </OptionAreaWrapper>
-            ))}
+function SearchArea<const ops extends readonly SearchOptions[]>({
+    options,
+    onSearch,
+    SearchIcon,
+    timeFilter,
+    setTimeFilter,
+}: SearchAreaProps<ops>) {
+    const { t } = useTranslation()
 
-            <OptionAreaWrapper>
-              시간
-              <div
-                style={{
-                  backgroundColor: "#F5F5F5",
-                  color: "#555555",
-                  padding: "7px 10px",
-                  fontSize: "14px",
-                  fontWeight: "400",
-                  lineHeight: "17.5px",
+    const [open, setOpen] = useState<boolean>(false)
+    const [value, setValue] = useState<string>("")
+
+    const [chipsOptions, setChipsOptions] = useState<ExportDataType>({})
+
+    const handleKeyDown = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+        chipsOptions: ExportDataType,
+        textValue: string,
+    ) => {
+        if (event.nativeEvent.isComposing) return
+
+        if (event.key === "Enter") {
+            handleSubmit(chipsOptions, textValue)
+            console.log("입력된 값:", value)
+        }
+    }
+
+    function handleReset() {
+        setOpen(false)
+        setChipsOptions({})
+    }
+
+    function handleSubmit(chipsOptions: ExportDataType, textValue: string) {
+        console.log("필터 결과")
+        setOpen(false)
+        onSearch(getSearchParams(chipsOptions, textValue))
+        setChipsOptions({})
+    }
+
+    function getOptionList(
+        chipsOptions: ExportDataType,
+        key: keyof typeof chipsOptions,
+    ): string {
+        let result: string = ""
+        const value = chipsOptions[key]
+
+        if (value != undefined) {
+            if (key == "time") result = `${formatTimeAreaToString(value as TimeBlock)}`
+
+            if (isSingleSelectOption(key)) result = t((value as [any, string])[1])
+            else result = (value as [any, string]).map((x) => t(x[1])).join(", ")
+        }
+
+        return result
+    }
+
+    function getSearchParams(
+        chipsOptions: ExportDataType,
+        textValue: string,
+    ): SearchParamsType {
+        const result = {} as SearchParamsType
+
+        ;(Object.keys(chipsOptions) as Array<keyof typeof chipsOptions>).forEach(
+            (key: keyof typeof chipsOptions) => {
+                const value = chipsOptions[key]
+
+                if (value != undefined) {
+                    if (key == "time") result[key] = value as TimeBlock
+                    else {
+                        if (isSingleSelectOption(key))
+                            result[key] = (value as [any, string])[0]
+                        else
+                            result[key] = (value as [any, string][]).map(
+                                (x) => x[0],
+                            ) as any
+                    }
+                }
+            },
+        )
+
+        result["keyword"] = textValue
+
+        return result
+    }
+
+    function onChange(options: ExportDataType) {
+        setChipsOptions(options)
+    }
+
+    function withTimeFilter<T extends readonly SearchOptions[]>(
+        options: T,
+        timeFilter?: TimeBlock | null,
+    ): Pick<SearchFilterAreaProps<T>, "timeFilter"> {
+        return options.includes("time") && timeFilter != undefined
+            ? ({ timeFilter: timeFilter, setTimeFilter: setTimeFilter } as Pick<
+                  SearchFilterAreaProps<T>,
+                  "timeFilter"
+              >)
+            : ({} as Pick<SearchFilterAreaProps<T>, "timeFilter">)
+    }
+
+    return (
+        <FlexWrapper direction="column" align="stretch" gap={0}>
+            <FlexWrapper
+                direction="column"
+                align="stretch"
+                onClick={() => {
+                    if (!open) setOpen(true)
                 }}
-              >
-                {timeFilter == null ? (
-                  `클릭 후 시간표에서 드래그하여 선택`
-                ) : (
-                  <TimeFilterArea>
-                    {`${formatTimeAreaToString(timeFilter)}`}
-                    <Icon
-                      size={17.5}
-                      onClick={() => {
-                        setTimeFilter(null)
-                      }}
+                gap={0}
+                padding="4px 16px"
+            >
+                <FlexWrapper direction="row" align="center" gap={0}>
+                    {SearchIcon == undefined ? (
+                        <Icon size={17.5} color="#E54C65" onClick={() => {}}>
+                            <Search />
+                        </Icon>
+                    ) : (
+                        SearchIcon
+                    )}
+                    <TextInput
+                        value={value}
+                        handleChange={(newValue) => {
+                            setValue(newValue)
+                        }}
+                        placeholder={t("common.search.placeholder")}
+                        onKeyDown={(e) => {
+                            handleKeyDown(e, chipsOptions, value)
+                        }}
+                    />
+                </FlexWrapper>
+                <FlexWrapper direction="row" gap={8} align="center">
+                    {Object.keys(chipsOptions).map((key) => (
+                        <FlexWrapper
+                            direction="row"
+                            gap={0}
+                            padding="8px 0px 0px 0px"
+                            key={key}
+                        >
+                            <Typography type="SmallerBold">
+                                {t(`common.search.${key}`)}:&nbsp;
+                            </Typography>
+                            <Typography type="Smaller">
+                                {getOptionList(
+                                    chipsOptions,
+                                    key as keyof typeof chipsOptions,
+                                )}
+                            </Typography>
+                        </FlexWrapper>
+                    ))}
+                </FlexWrapper>
+            </FlexWrapper>
+
+            <AnimatePresence>
+                {open && (
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={dropInVariants}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        style={{
+                            overflow: "hidden",
+                            display: "flex",
+                            gap: "12px",
+                            flexDirection: "column",
+                        }}
                     >
-                      <CloseIcon />
-                    </Icon>
-                  </TimeFilterArea>
+                        <FlexWrapper
+                            direction="column"
+                            align="stretch"
+                            padding="16px"
+                            gap={16}
+                        >
+                            <SearchFilterArea
+                                options={options}
+                                onChange={onChange}
+                                // 임시 방편, 나중에 방법 알아내면 수정할 예정
+                                {...(withTimeFilter(options, timeFilter) as any)}
+                            />
+                            <FlexWrapper direction="row" justify="flex-end" gap={8}>
+                                <Button
+                                    $paddingLeft={24}
+                                    $paddingTop={9}
+                                    onClick={handleReset}
+                                >
+                                    <Typography>취소</Typography>
+                                </Button>
+                                <Button
+                                    $paddingLeft={24}
+                                    $paddingTop={9}
+                                    type="selected"
+                                    onClick={() => {
+                                        handleSubmit(chipsOptions, value)
+                                    }}
+                                >
+                                    <Typography>검색</Typography>
+                                </Button>
+                            </FlexWrapper>
+                        </FlexWrapper>
+                    </motion.div>
                 )}
-              </div>
-            </OptionAreaWrapper>
-            <ButtonArea>
-              <Button $paddingLeft={10} $paddingTop={7} onClick={handleReset}>
-                취소
-              </Button>
-              <Button
-                type="selected"
-                $paddingLeft={10}
-                $paddingTop={7}
-                onClick={handleSubmit}
-              >
-                검색
-              </Button>
-            </ButtonArea>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </PageWrapper>
-  )
+            </AnimatePresence>
+        </FlexWrapper>
+    )
 }
 
 export default SearchArea

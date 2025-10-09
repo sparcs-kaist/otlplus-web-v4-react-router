@@ -2,6 +2,7 @@ import { z } from "zod"
 
 import { DepartmentSchema } from "@/common/schemas/department"
 import { ProfessorSchema } from "@/common/schemas/professor"
+import { TimeBlockSchema } from "@/common/schemas/timeblock"
 
 // GET /api/courses
 export const getCourses = z.object({
@@ -11,6 +12,7 @@ export const getCourses = z.object({
     level: z.string().optional(),
     term: z.number().int().optional(),
     order: z.enum(["code", "popular", "studentCount"]),
+    time: TimeBlockSchema.optional(),
     keyword: z.string().optional(),
   }),
   response: z.array(
