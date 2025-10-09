@@ -9,7 +9,6 @@ import mockInterceptor from "./_axios/axiosMockInterceptor"
 
 /**
  * @name axiosClient
- * @author Jiho Park
  * @description Axios Client used for backend API requests that require NO authentication
  */
 export const axiosClient = axios.create({
@@ -29,7 +28,6 @@ axiosClient.interceptors.response.use(
 
 /**
  * @name.axiosClientWithCredentials
- * @author Jiho Park
  * @description Axios Client used for backend API requests that REQUIRE authentication
  */
 
@@ -54,7 +52,6 @@ axiosClientWithAuth.interceptors.response.use(
 
 /**
  * @name defineAxiosMock
- * @author Jiho Park
  * @description Defines the mock mode for axiosClient
  */
 export const defineAxiosMock = (() => {

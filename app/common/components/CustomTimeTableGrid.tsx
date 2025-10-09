@@ -2,15 +2,15 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "./FlexWrapper"
-import type Lecture from "./interface/Lecture"
-import type TimeBlock from "./interface/Timeblock"
-import type { LectureSummary } from "./interface/Timetable"
-import { checkAnyOver24 } from "./utils/checkAnyOver24"
-import getColumnIndex from "./utils/getColumnIndex"
-import renderGrid from "./utils/renderGrid"
-import renderLectureTile from "./utils/renderLectureTile"
-import renderTargetArea from "./utils/renderTargetArea"
+import type Lecture from "@/common/interface/Lecture"
+import type TimeBlock from "@/common/interface/Timeblock"
+import type { LectureSummary } from "@/common/interface/Timetable"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import { checkAnyOver24 } from "@/utils/timetable/checkAnyOver24"
+import getColumnIndex from "@/utils/timetable/getColumnIndex"
+import renderGrid from "@/utils/timetable/renderGrid"
+import renderLectureTile from "@/utils/timetable/renderLectureTile"
+import renderTargetArea from "@/utils/timetable/renderTargetArea"
 
 interface GridProps {
   cellWidth?: number

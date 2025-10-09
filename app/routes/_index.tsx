@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import styled from "@emotion/styled"
 
-import FlexWrapper from "@/common/components/FlexWrapper"
-import type TimeBlock from "@/common/components/interface/Timeblock"
-import Footer from "@/common/guideline/components/Footer"
-import exampleReviewFeed from "@/dummy/reviewFeed"
-import exampleScheduleFeed from "@/dummy/scheduleFeed"
-import User from "@/dummy/user"
-import AdFeedSection from "@/features/main/sections/adFeedSection"
-import PopularFeedSection from "@/features/main/sections/popularFeedSection"
-import ReviewFeedSection from "@/features/main/sections/reviewFeedSection"
-import ReviewSection from "@/features/main/sections/reviewSection"
-import ScheduleFeedSection from "@/features/main/sections/scheduleFeedSection"
-import ScheduleSection from "@/features/main/sections/scheduleSection"
-import SearchSection from "@/features/main/sections/searchSection"
-import TimeTableSection from "@/features/main/sections/timeTableSection"
+import exampleReviews from "@/api/example/Reviews"
+import exampleScheduleFeed from "@/api/example/ScheduleFeed"
+import User from "@/api/example/UserInfo"
+import Footer from "@/common/components/guideline/Footer"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import type { TimeBlock } from "@/common/schemas/timeblock"
+import AdFeedSection from "@/features/main/sections/AdFeedSection"
+import PopularFeedSection from "@/features/main/sections/PopularFeedSection"
+import ReviewFeedSection from "@/features/main/sections/ReviewFeedSection"
+import ReviewSection from "@/features/main/sections/ReviewSection"
+import ScheduleFeedSection from "@/features/main/sections/ScheduleFeedSection"
+import ScheduleSection from "@/features/main/sections/ScheduleSection"
+import SearchSection from "@/features/main/sections/SearchSection"
+import TimeTableSection from "@/features/main/sections/TimeTableSection"
 
 const MainWrapper = styled(FlexWrapper)`
   margin-top: 60px;
@@ -69,8 +69,8 @@ export default function Home() {
               </FlexWrapper>
             </FlexWrapper>
             <FlexWrapper direction="row" align="stretch" gap={24}>
-              <ReviewFeedSection reviews={exampleReviewFeed} likeReview={likeReview} />
-              <PopularFeedSection reviews={exampleReviewFeed} likeReview={likeReview} />
+              <ReviewFeedSection reviews={exampleReviews} likeReview={likeReview} />
+              <PopularFeedSection reviews={exampleReviews} likeReview={likeReview} />
               <ScheduleFeedSection schedules={exampleScheduleFeed} />
             </FlexWrapper>
           </FlexWrapper>

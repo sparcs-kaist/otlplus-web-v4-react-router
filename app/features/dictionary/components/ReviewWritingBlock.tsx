@@ -4,11 +4,11 @@ import styled from "@emotion/styled"
 import { useTranslation } from "react-i18next"
 
 import Button from "@/common/components/Button"
-import FlexWrapper from "@/common/components/FlexWrapper"
-import TextInput from "@/common/components/TextInputArea"
-import Typography from "@/common/components/Typography"
+import { semesterToString } from "@/common/enum/semesterEnum"
+import FlexWrapper from "@/common/primitives/FlexWrapper"
+import TextInput from "@/common/primitives/TextInputArea"
+import Typography from "@/common/primitives/Typography"
 import ReviewGradeCircles from "@/features/dictionary/components/ReviewGradeCircles"
-import { stringSemester } from "@/utils/semesterToString"
 
 const ReviewWrapper = styled(FlexWrapper)`
   padding: 8px 10px;
@@ -45,7 +45,7 @@ const ReviewWritingBlock: React.FC<ReviewWritingBlockProps> = ({ courseName }) =
           <Typography type={"NormalBold"} color={"Text.default"}>
             {courseName}
           </Typography>
-          {["스팍스", "2025", stringSemester(3)].map((text) => (
+          {["스팍스", "2025", semesterToString(3)].map((text) => (
             <Typography type={"Normal"} color={"Text.lighter"}>
               {text}
             </Typography>
